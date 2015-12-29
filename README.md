@@ -87,6 +87,8 @@ This is a table of available libraries.
 
 # License
 
+All scripts are licensed under GNU GPL v.2. 
+
 # Notes
 
 There is additional util.cmake file for pretty print of version information to the console. 
