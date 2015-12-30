@@ -68,7 +68,7 @@ This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
 |---|:-:|---|---|
-| lib_z  | yes | Linux, Windows  |   |
+| [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows  |   |
 | lib_lzma  | yes   | Linux, Windows |  |
 | lib_xml2  | yes   | Linux, Windows |  |
 | lib_curl  | no   | |  |
