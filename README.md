@@ -69,21 +69,21 @@ This is a table of available libraries.
 | Repository | Cmaked  | OS tested | Notes |
 |---|:-:|---|---|
 | [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows  |   |
-| lib_lzma  | yes   | Linux, Windows |  |
-| lib_xml2  | yes   | Linux, Windows |  |
-| lib_curl  | no   | |  |
-| lib_geotiff  | yes   | Linux |  |
-| lib_tiff  | yes   | Linux |  |
-| lib_jpeg  | yes   | Linux |  |
-| lib_jbig  | yes   | Linux |  |
-| lib_iconv  | yes   | Linux, Windows |  |
-| lib_gdal  | no   | |  |
-| lib_openssl  | yes   | |  |
-| lib_jsonc  | no   | |  |
-| lib_expat  | no   | |  |
-| lib_proj  | yes   | |  |
-| lib_png  | no   | |  |
-| lib_hdf4 | no   | |  |
+| [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes   | Linux, Windows |  |
+| [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes   | Linux, Windows |  |
+| [lib_curl](https://github.com/nextgis-extra/lib_curl) | no   | |  |
+| [lib_geotiff](https://github.com/nextgis-extra/lib_geotiff) | yes   | Linux |  |
+| [lib_tiff](https://github.com/nextgis-extra/lib_tiff) | yes   | Linux |  |
+| [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes   | Linux |  |
+| [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes   | Linux |  |
+| [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes   | Linux, Windows |  |
+| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | no   | |  |
+| [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes   | |  |
+| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | no   | |  |
+| [lib_expat](https://github.com/nextgis-extra/lib_expat) | no   | |  |
+| [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes   | |  |
+| [lib_png](https://github.com/nextgis-extra/lib_png) | no   | |  |
+| [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | no   | |  |
 
 # License
 
