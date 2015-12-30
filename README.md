@@ -68,15 +68,15 @@ This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
 |---|:-:|---|---|
-| lib_z  | yes | Linux  |   |
-| lib_lzma  | yes   | Linux |  |
-| lib_xml2  | yes   | Linux |  |
+| lib_z  | yes | Linux, Windows  |   |
+| lib_lzma  | yes   | Linux, Windows |  |
+| lib_xml2  | yes   | Linux, Windows |  |
 | lib_curl  | no   | |  |
 | lib_geotiff  | yes   | Linux |  |
 | lib_tiff  | yes   | Linux |  |
 | lib_jpeg  | yes   | Linux |  |
 | lib_jbig  | yes   | Linux |  |
-| lib_iconv  | yes   | Linux |  |
+| lib_iconv  | yes   | Linux, Windows |  |
 | lib_gdal  | no   | |  |
 | lib_openssl  | yes   | |  |
 | lib_jsonc  | no   | |  |
