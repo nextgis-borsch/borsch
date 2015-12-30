@@ -91,4 +91,6 @@ All scripts are licensed under GNU GPL v.2.
 
 # Notes
 
-There is additional util.cmake file for pretty print of version information to the console. 
+* There is additional util.cmake file for pretty print of version information to the console. 
+
+* MSVC 2013 update 2 and later have enough C99 support to build under Windows.
