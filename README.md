@@ -75,7 +75,7 @@ This is a table of available libraries.
 | [lib_geotiff](https://github.com/nextgis-extra/lib_geotiff) | yes   | Linux |  |
 | [lib_tiff](https://github.com/nextgis-extra/lib_tiff) | yes   | Linux |  |
 | [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes   | Linux, Windows |  |
-| [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes   | Linux |  |
+| [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes   | Linux, Windows |  |
 | [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes   | Linux, Windows |  |
 | [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | no   | |  |
 | [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes   | |  |
