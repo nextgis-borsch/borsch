@@ -62,6 +62,12 @@ find_anyproject(CURL REQUIRED CMAKE_ARGS
       -DCMAKE_USE_LIBSSH2=OFF)
 ```      
 
+The final step is to link target libraries:
+
+```
+target_link_extlibraries(${LIB_NAME}) 
+```
+
 # Cmaked libraries
 
 This is a table of available libraries.
