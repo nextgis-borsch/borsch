@@ -89,7 +89,8 @@ This is a table of available libraries.
 | [lib_expat](https://github.com/nextgis-extra/lib_expat) | no   | |  |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes   | Linux |  |
 | [lib_png](https://github.com/nextgis-extra/lib_png) | no   | |  |
-| [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | no   | |  |
+| [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux |  |
+| [lib_szip](https://github.com/nextgis-extra/lib_szip) | no   | |  |
 
 # License
 
