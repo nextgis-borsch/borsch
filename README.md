@@ -90,7 +90,7 @@ This is a table of available libraries.
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes   | Linux, Windows |  |
 | [lib_png](https://github.com/nextgis-extra/lib_png) | no   | |  |
 | [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux |  |
-| [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux |  |
+| [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
 | [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux |  |
 | [lib_hdfeos5](https://github.com/nextgis-extra/lib_hdfeos5) | no   | |  |
 
