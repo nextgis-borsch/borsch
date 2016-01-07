@@ -20,14 +20,12 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-function(report_version name ver)
+set(repo_name lib_hdf4)
 
-    if(NOT WIN32)
-      string(ASCII 27 Esc)
-      set(BoldYellow  "${Esc}[1;33m")
-      set(ColourReset "${Esc}[m")
-    endif()    
-        
-    message(STATUS "${BoldYellow}${name} version ${ver}${ColourReset}")
-    
-endfunction()  
+if(BUILD_SHARED_LIBS)    
+    set(repo_project hdf)
+else()
+    set(repo_project hdfstatic)
+endif()
+
+set(repo_include)

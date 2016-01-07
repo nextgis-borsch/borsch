@@ -1,12 +1,12 @@
 #.rst:
-# FindJBIG
+# FindHDFEOS2
 # ---------
 #
-# Find jbig kit
+# Find HDFEOS2 kit
 #
-#   JBIG_INCLUDE_DIRS - where to find jbig.h, etc.
-#   JBIG_LIBRARIES    - List of libraries when using jbig.
-#   JBIG_FOUND        - True if jbig kit found.
+#   HDFEOS2_INCLUDE_DIRS - where to find HdfEosDef.h, etc.
+#   HDFEOS2_LIBRARIES    - List of libraries when using hdf-eos2.
+#   HDFEOS2_FOUND        - True if hdf-eos2 kit found.
 #
 ################################################################################
 # Project:  external projects
@@ -31,41 +31,40 @@
 ################################################################################
 
 # Look for the header file.
-find_path(JBIG_INCLUDE_DIR NAMES jbig.h)
+find_path(HDFEOS2_INCLUDE_DIRS NAMES HdfEosDef.h)
 
 # Look for the library.
-find_library(JBIG_LIBRARY NAMES jbig libjbig)
+find_library(HDFEOS2_LIBRARY NAMES hdfeos libhdfeos Gctp libGctp)
 
-if (JBIG_INCLUDE_DIR AND EXISTS "${JBIG_INCLUDE_DIR}/jbig.h")
-    file(STRINGS "${JBIG_INCLUDE_DIR}/jbig.h" jbig_version_str
+if (HDFEOS2_INCLUDE_DIR AND EXISTS "${HDFEOS2_INCLUDE_DIR}/HDFEOS2.h")
+    file(STRINGS "${HDFEOS2_INCLUDE_DIR}/HDFEOS2.h" HDFEOS2_version_str
          REGEX "^#[\t ]*define[\t ]+JBG_VERSION_(MAJOR|MINOR)[\t ]+[0-9]+$")
 
-    unset(JBIG_VERSION_STRING)
+    unset(HDFEOS2_VERSION_STRING)
     foreach(VPART MAJOR MINOR)
-        foreach(VLINE ${jbig_version_str})
+        foreach(VLINE ${HDFEOS2_version_str})
             if(VLINE MATCHES "^#[\t ]*define[\t ]+JBG_VERSION_${VPART}[\t ]+([0-9]+)$")
-                set(JBIG_VERSION_PART "${CMAKE_MATCH_1}")
-                if(JBIG_VERSION_STRING)
-                    set(JBIG_VERSION_STRING "${JBIG_VERSION_STRING}.${JBIG_VERSION_PART}")
+                set(HDFEOS2_VERSION_PART "${CMAKE_MATCH_1}")
+                if(HDFEOS2_VERSION_STRING)
+                    set(HDFEOS2_VERSION_STRING "${HDFEOS2_VERSION_STRING}.${HDFEOS2_VERSION_PART}")
                 else()
-                    set(JBIG_VERSION_STRING "${JBIG_VERSION_PART}")
+                    set(HDFEOS2_VERSION_STRING "${HDFEOS2_VERSION_PART}")
                 endif()
             endif()
         endforeach()
     endforeach()
 endif ()
 
-# handle the QUIETLY and REQUIRED arguments and set JBIG_FOUND to TRUE if
+# handle the QUIETLY and REQUIRED arguments and set HDFEOS2_FOUND to TRUE if
 # all listed variables are TRUE
 include(FindPackageHandleStandardArgs)
-FIND_PACKAGE_HANDLE_STANDARD_ARGS(JBIG
-                                  REQUIRED_VARS JBIG_LIBRARY JBIG_INCLUDE_DIR
-                                  VERSION_VAR JBIG_VERSION_STRING)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(HDFEOS2
+                                  REQUIRED_VARS HDFEOS2_LIBRARY HDFEOS2_INCLUDE_DIR)
 
 # Copy the results to the output variables.
-if(JBIG_FOUND)
-  set(JBIG_LIBRARIES ${JBIG_LIBRARY})
-  set(JBIG_INCLUDE_DIRS ${JBIG_INCLUDE_DIR})
+if(HDFEOS2_FOUND)
+  set(HDFEOS2_LIBRARIES ${HDFEOS2_LIBRARY})
+  set(HDFEOS2_INCLUDE_DIRS ${HDFEOS2_INCLUDE_DIR})
 endif()
 
-mark_as_advanced(JBIG_INCLUDE_DIR JBIG_LIBRARY)
+mark_as_advanced(HDFEOS2_INCLUDE_DIR HDFEOS2_LIBRARY)

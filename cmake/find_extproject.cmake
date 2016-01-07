@@ -20,6 +20,17 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
+function(get_imported_targets file_to_search targets)
+    file(STRINGS ${file_to_search} targets_str
+         REGEX "^foreach+([()_a-zA-Z0-9 ]+)")    
+    string(SUBSTRING ${targets_str} 24 -1 targets_local)
+    string(LENGTH ${targets_local} STR_LEN)
+    math(EXPR LAST_INDEX "${STR_LEN} - 1")
+    string(SUBSTRING ${targets_local} 0 ${LAST_INDEX} targets_local)  
+    string(REPLACE " " ";" targets_local ${targets_local})
+    set(${targets} ${targets_local} PARENT_SCOPE)
+endfunction()
+
 function(find_extproject name)
   
     include (CMakeParseArguments)
@@ -103,15 +114,17 @@ function(find_extproject name)
        WORKING_DIRECTORY ${EP_BASE}/Build/${name}_EP RESULT_VARIABLE _rv)
     
     if(${_rv} EQUAL 0) 
-        set(${name}_FOUND TRUE PARENT_SCOPE)  
+        string(TOUPPER ${name}_FOUND IS_FOUND)
+        set(${IS_FOUND} TRUE PARENT_SCOPE)  
     endif()          
     
-    include(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake)  
-
-    add_dependencies(${repo_project} ${name}_EP)  
+    include(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake) 
+    get_imported_targets(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake IMPOTED_TARGETS)
     
-    set(DEPENDENCY_LIB ${DEPENDENCY_LIB} ${repo_project} PARENT_SCOPE)   
-    set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${repo_project} PARENT_SCOPE)
+    add_dependencies(${IMPOTED_TARGETS} ${name}_EP)  
+    
+    set(DEPENDENCY_LIB ${DEPENDENCY_LIB} ${IMPOTED_TARGETS} PARENT_SCOPE)   
+    set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${IMPOTED_TARGETS} PARENT_SCOPE)
     
     include_directories(${EP_BASE}/Install/${name}_EP/include)
     foreach (inc ${repo_include})
