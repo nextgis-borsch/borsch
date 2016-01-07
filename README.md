@@ -90,9 +90,26 @@ This is a table of available libraries.
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes   | Linux, Windows |  |
 | [lib_png](https://github.com/nextgis-extra/lib_png) | no   | |  |
 | [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux |  |
+| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 | [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
 | [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux |  |
-| [lib_hdfeos5](https://github.com/nextgis-extra/lib_hdfeos5) | no   | |  |
+| lib_hdfeos5 | no | |  |
+| lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
+| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
+| lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
+| lib_cfitsio | no | | For GDAL FITS (.fits) driver |
+| lib_sqlite3 | no | | For GDAL GeoPackage driver |
+| lib_gif | no | | For GDAL GIF driver |
+| lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
+| lib_grass | no | | For GDAL GRASS driver |
+| lib_gta | no | | For GDAL Generic Tagged Arrays (.gta) driver |
+| lib_jasper | no | | For GDAL JPEG2000 (.jp2, .j2k) driver |
+| lib_openjpeg | no | | For GDAL OpenJPEG driver |
+| lib_csf | no | | For GDAL PCRaster driver |
+| lib_pdfium | no | | For GDAL Geospatial PDF driver |
+| lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver |
+| lib_ras | no | | For GDAL Rasdaman driver |
+| lib_webp | no | | For GDAL WEBP driver |
 
 # License
 
