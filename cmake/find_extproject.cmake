@@ -31,6 +31,22 @@ function(get_imported_targets file_to_search targets)
     set(${targets} ${targets_local} PARENT_SCOPE)
 endfunction()
 
+function(check_updates file_path update_period check)
+    #check not very often, i.e. per 400 sec.  
+    file(TIMESTAMP ${file_path} LAST_PULL "%H%M%S" UTC)
+    if(NOT LAST_PULL)
+        set(LAST_PULL 0)
+    endif()
+    string(TIMESTAMP CURRENT_TIME "%H%M%S" UTC)
+    math(EXPR DIFF_TIME "${CURRENT_TIME} - ${LAST_PULL}")
+    message(STATUS "period ${update_period} diff ${DIFF_TIME} current ${CURRENT_TIME} last ${LAST_PULL}")
+    if(DIFF_TIME GREATER ${update_period})
+        set(${check} TRUE)
+    else()
+        set(${check} FALSE)
+    endif()
+endfunction()
+
 function(find_extproject name)
   
     include (CMakeParseArguments)
@@ -49,9 +65,14 @@ function(find_extproject name)
     if(NOT DEFINED EP_URL)
         set(EP_URL "https://github.com/nextgis-extra")
     endif()  
+    
+    if(NOT DEFINED PULL_UPDATE_PERIOD)
+        set(PULL_UPDATE_PERIOD 400)
+    endif()    
 
     list(APPEND find_extproject_CMAKE_ARGS -DEP_BASE=${EP_BASE})   
     list(APPEND find_extproject_CMAKE_ARGS -DEP_URL=${EP_URL})       
+    list(APPEND find_extproject_CMAKE_ARGS -DPULL_UPDATE_PERIOD=${PULL_UPDATE_PERIOD})       
         
     include(ExternalProject)
     set_property(DIRECTORY PROPERTY "EP_BASE" ${EP_BASE})
@@ -104,9 +125,13 @@ function(find_extproject name)
         execute_process(COMMAND ${GIT_EXECUTABLE} clone ${EP_URL}/${repo_name} ${name}_EP
            WORKING_DIRECTORY  ${EP_BASE}/Source)
    
-    else()    
-        execute_process(COMMAND ${GIT_EXECUTABLE} pull
-           WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP)    
+    else() 
+        check_updates(${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt ${PULL_UPDATE_PERIOD} CHECK_UPDATES)
+        if(CHECK_UPDATES)
+            execute_process(COMMAND ${GIT_EXECUTABLE} pull
+               WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP)
+        endif()
+        file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")    
     endif()
      
     execute_process(COMMAND ${CMAKE_COMMAND} ${EP_BASE}/Source/${name}_EP
