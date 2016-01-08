@@ -39,13 +39,23 @@ function(check_updates file_path update_period check)
     endif()
     string(TIMESTAMP CURRENT_TIME "%H%M%S" UTC)
     math(EXPR DIFF_TIME "${CURRENT_TIME} - ${LAST_PULL}")
-    message(STATUS "period ${update_period} diff ${DIFF_TIME} current ${CURRENT_TIME} last ${LAST_PULL}")
+    #message(STATUS "period ${update_period} diff ${DIFF_TIME} current ${CURRENT_TIME} last ${LAST_PULL}")
     if(DIFF_TIME GREATER ${update_period})
         set(${check} TRUE)
     else()
         set(${check} FALSE)
     endif()
 endfunction()
+
+function(color_message text)
+
+    string(ASCII 27 Esc)
+    set(BoldGreen   "${Esc}[1;32m")
+    set(ColourReset "${Esc}[m")
+        
+    message(STATUS "${BoldGreen}${text}${ColourReset}")
+    
+endfunction() 
 
 function(find_extproject name)
   
@@ -68,7 +78,11 @@ function(find_extproject name)
     
     if(NOT DEFINED PULL_UPDATE_PERIOD)
         set(PULL_UPDATE_PERIOD 400)
-    endif()    
+    endif()
+
+    if(NOT DEFINED SUPRESS_WITH_MESSAGES)
+        set(SUPRESS_WITH_MESSAGES TRUE)
+    endif()
 
     list(APPEND find_extproject_CMAKE_ARGS -DEP_BASE=${EP_BASE})   
     list(APPEND find_extproject_CMAKE_ARGS -DEP_URL=${EP_URL})       
@@ -102,7 +116,9 @@ function(find_extproject name)
     get_cmake_property(_variableNames VARIABLES)
     string (REGEX MATCHALL "(^|;)WITH_[A-Za-z0-9_]*" _matchedVars "${_variableNames}") 
     foreach(_variableName ${_matchedVars})
-        message(STATUS "${_variableName}=${${_variableName}}")
+        if(NOT SUPRESS_WITH_MESSAGES)
+            message(STATUS "${_variableName}=${${_variableName}}")
+        endif()    
         list(APPEND find_extproject_CMAKE_ARGS -D${_variableName}=${${_variableName}})
     endforeach()
     
@@ -122,12 +138,14 @@ function(find_extproject name)
     endif()
    
     if(NOT EXISTS "${EP_BASE}/Source/${name}_EP/.git")
+        color_message("Git clone ${repo_name} ...")
         execute_process(COMMAND ${GIT_EXECUTABLE} clone ${EP_URL}/${repo_name} ${name}_EP
            WORKING_DIRECTORY  ${EP_BASE}/Source)
    
     else() 
         check_updates(${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt ${PULL_UPDATE_PERIOD} CHECK_UPDATES)
         if(CHECK_UPDATES)
+            color_message("Git pull ${repo_name} ...")
             execute_process(COMMAND ${GIT_EXECUTABLE} pull
                WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP)
         endif()
