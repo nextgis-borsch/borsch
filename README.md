@@ -74,21 +74,21 @@ This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
 |---|:-:|---|---|
-| [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows  |   |
-| [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes   | Linux, Windows |  |
-| [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes   | Linux, Windows |  |
-| [lib_curl](https://github.com/nextgis-extra/lib_curl) | no   | |  |
-| [lib_geotiff](https://github.com/nextgis-extra/lib_geotiff) | yes   | Linux |  |
-| [lib_tiff](https://github.com/nextgis-extra/lib_tiff) | yes   | Linux, Windows |  |
-| [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes   | Linux, Windows |  |
-| [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes   | Linux, Windows |  |
-| [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes   | Linux, Windows |  |
-| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | no   | |  |
-| [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes   | |  |
-| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | no   | |  |
-| [lib_expat](https://github.com/nextgis-extra/lib_expat) | no   | |  |
-| [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes   | Linux, Windows |  |
-| [lib_png](https://github.com/nextgis-extra/lib_png) | no   | |  |
+| [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows |   |
+| [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes | Linux, Windows |  |
+| [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes | Linux, Windows |  |
+| [lib_curl](https://github.com/nextgis-extra/lib_curl) | no | |  |
+| [lib_geotiff](https://github.com/nextgis-extra/lib_geotiff) | yes | Linux, Windows |  |
+| [lib_tiff](https://github.com/nextgis-extra/lib_tiff) | yes | Linux, Windows |  |
+| [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes | Linux, Windows |  |
+| [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes | Linux, Windows |  |
+| [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes | Linux, Windows |  |
+| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | no | |  |
+| [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | |  |
+| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | no | |  |
+| [lib_expat](https://github.com/nextgis-extra/lib_expat) | no | |  |
+| [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
+| [lib_png](https://github.com/nextgis-extra/lib_png) | no | |  |
 | [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux |  |
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 | [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
@@ -110,6 +110,13 @@ This is a table of available libraries.
 | lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver |
 | lib_ras | no | | For GDAL Rasdaman driver |
 | lib_webp | no | | For GDAL WEBP driver |
+| lib_xerces | no | | For GDAL INTERLIS driver |
+| lib_kml | no | | For GDAL LIBKML driver |
+| lib_mongo | no | | For GDAL MongoDB driver |
+| lib_mysql | no | | For GDAL MySQL driver |
+| lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
+| lib_podofo | no | | For GDAL Geospatial PDF driver |
+| lib_freexl | no | | For GDAL MS Excel format driver |
 
 # License
 
