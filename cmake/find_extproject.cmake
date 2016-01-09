@@ -79,8 +79,8 @@ function(find_extproject name)
         set(PULL_UPDATE_PERIOD 10)
     endif()
     
-    if(NOT DEFINED PULL_UPDATE_TIMEOUT)
-        set(PULL_UPDATE_TIMEOUT 100)
+    if(NOT DEFINED PULL_TIMEOUT)
+        set(PULL_TIMEOUT 100)
     endif()
 
     if(NOT DEFINED SUPRESS_WITH_MESSAGES)
@@ -90,7 +90,7 @@ function(find_extproject name)
     list(APPEND find_extproject_CMAKE_ARGS -DEP_BASE=${EP_BASE})   
     list(APPEND find_extproject_CMAKE_ARGS -DEP_URL=${EP_URL})       
     list(APPEND find_extproject_CMAKE_ARGS -DPULL_UPDATE_PERIOD=${PULL_UPDATE_PERIOD})       
-    list(APPEND find_extproject_CMAKE_ARGS -DPULL_UPDATE_TIMEOUT=${PULL_UPDATE_TIMEOUT})       
+    list(APPEND find_extproject_CMAKE_ARGS -DPULL_TIMEOUT=${PULL_TIMEOUT})       
         
     include(ExternalProject)
     set_property(DIRECTORY PROPERTY "EP_BASE" ${EP_BASE})
@@ -152,12 +152,16 @@ function(find_extproject name)
             color_message("Git pull ${repo_name} ...")
             execute_process(COMMAND ${GIT_EXECUTABLE} pull
                WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP
-               TIMEOUT ${PULL_UPDATE_TIMEOUT}
+               TIMEOUT ${PULL_TIMEOUT}
                OUTPUT_VARIABLE PULL_OUTPUT)
             file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")  
-            string(SUBSTRING ${PULL_OUTPUT} 0 18 PULL_OUTPUT)
-            if(${PULL_OUTPUT} STREQUAL "Already up-to-date")
-                set(HAS_CHANGES FALSE)                
+            if(PULL_OUTPUT)
+                string(SUBSTRING ${PULL_OUTPUT} 0 18 PULL_OUTPUT)
+                if(${PULL_OUTPUT} STREQUAL "Already up-to-date")
+                    set(HAS_CHANGES FALSE)                
+                endif()
+            else()
+                set(HAS_CHANGES FALSE)  # some error while git pull occured 
             endif()
         else()
             set(HAS_CHANGES FALSE)  
