@@ -76,7 +76,11 @@ function(find_extproject name)
     endif()  
     
     if(NOT DEFINED PULL_UPDATE_PERIOD)
-        set(PULL_UPDATE_PERIOD 5)
+        set(PULL_UPDATE_PERIOD 10)
+    endif()
+    
+    if(NOT DEFINED PULL_UPDATE_TIMEOUT)
+        set(PULL_UPDATE_TIMEOUT 100)
     endif()
 
     if(NOT DEFINED SUPRESS_WITH_MESSAGES)
@@ -86,6 +90,7 @@ function(find_extproject name)
     list(APPEND find_extproject_CMAKE_ARGS -DEP_BASE=${EP_BASE})   
     list(APPEND find_extproject_CMAKE_ARGS -DEP_URL=${EP_URL})       
     list(APPEND find_extproject_CMAKE_ARGS -DPULL_UPDATE_PERIOD=${PULL_UPDATE_PERIOD})       
+    list(APPEND find_extproject_CMAKE_ARGS -DPULL_UPDATE_TIMEOUT=${PULL_UPDATE_TIMEOUT})       
         
     include(ExternalProject)
     set_property(DIRECTORY PROPERTY "EP_BASE" ${EP_BASE})
@@ -136,30 +141,39 @@ function(find_extproject name)
       return()
     endif()
    
+    set(HAS_CHANGES TRUE)
     if(NOT EXISTS "${EP_BASE}/Source/${name}_EP/.git")
         color_message("Git clone ${repo_name} ...")
         execute_process(COMMAND ${GIT_EXECUTABLE} clone ${EP_URL}/${repo_name} ${name}_EP
            WORKING_DIRECTORY  ${EP_BASE}/Source)
-   
     else() 
         check_updates(${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt ${PULL_UPDATE_PERIOD} CHECK_UPDATES)
         if(CHECK_UPDATES)
             color_message("Git pull ${repo_name} ...")
             execute_process(COMMAND ${GIT_EXECUTABLE} pull
-               WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP)
-            file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")    
+               WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP
+               TIMEOUT ${PULL_UPDATE_TIMEOUT}
+               OUTPUT_VARIABLE PULL_OUTPUT)
+            file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")  
+            string(SUBSTRING ${PULL_OUTPUT} 0 18 PULL_OUTPUT)
+            if(${PULL_OUTPUT} STREQUAL "Already up-to-date")
+                set(HAS_CHANGES FALSE)                
+            endif()
+        else()
+            set(HAS_CHANGES FALSE)  
         endif()        
     endif()
-     
-    execute_process(COMMAND ${CMAKE_COMMAND} ${EP_BASE}/Source/${name}_EP
-       ${find_extproject_CMAKE_ARGS}
-       WORKING_DIRECTORY ${EP_BASE}/Build/${name}_EP RESULT_VARIABLE _rv)
     
-    if(${_rv} EQUAL 0) 
-        string(TOUPPER ${name}_FOUND IS_FOUND)
-        set(${IS_FOUND} TRUE PARENT_SCOPE)  
-    endif()          
-    
+    if(HAS_CHANGES)
+        execute_process(COMMAND ${CMAKE_COMMAND} ${EP_BASE}/Source/${name}_EP
+           ${find_extproject_CMAKE_ARGS}
+           WORKING_DIRECTORY ${EP_BASE}/Build/${name}_EP RESULT_VARIABLE _rv)
+        
+        if(${_rv} EQUAL 0) 
+            string(TOUPPER ${name}_FOUND IS_FOUND)
+            set(${IS_FOUND} TRUE PARENT_SCOPE)  
+        endif()          
+    endif()
     include(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake) 
     get_imported_targets(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake IMPOTED_TARGETS)
     
