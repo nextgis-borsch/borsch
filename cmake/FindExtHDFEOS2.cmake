@@ -29,3 +29,9 @@ else()
 endif()
 
 set(repo_include)
+
+if(BUILD_SHARED_LIBS)
+    add_definitions(-DHDFEOS_DLL_IMPORTS -DGCTP_DLL_IMPORTS)
+else()
+    add_definitions(-DHDFEOS_STATIC -DGCTP_STATIC)
+endif()

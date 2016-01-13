@@ -29,3 +29,9 @@ else()
 endif()
 
 set(repo_include)
+
+if(BUILD_SHARED_LIBS)
+    add_definitions(-DJPEG_DLL_IMPORTS)
+else()
+    add_definitions(-DJPEG_STATIC)
+endif()

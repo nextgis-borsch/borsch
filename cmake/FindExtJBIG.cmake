@@ -29,3 +29,9 @@ else()
 endif()
 
 set(repo_include "")
+
+if(BUILD_SHARED_LIBS)
+    add_definitions(-DJBIG_DLL_IMPORTS)
+else()
+    add_definitions(-DJBIG_STATIC)
+endif()

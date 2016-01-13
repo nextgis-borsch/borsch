@@ -56,6 +56,16 @@ function(color_message text)
     
 endfunction() 
 
+function(include_exports_path include_path)
+    #add to list imported 
+    list(FIND EXPORTS_PATHS ${include_path} PATH_INDEX)
+    if(PATH_INDEX EQUAL -1)
+        list(APPEND EXPORTS_PATHS "${include_path}")
+        set(EXPORTS_PATHS "${EXPORTS_PATHS}" PARENT_SCOPE)
+        include(${include_path})
+    endif()
+endfunction() 
+
 function(find_extproject name)
   
     include (CMakeParseArguments)
@@ -103,7 +113,7 @@ function(find_extproject name)
         list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EP_BASE}/Install/${name}_EP)
     endif()
     
-    # search CMAKE_INSTALL_PREFIX
+    # search BUILD_SHARED_LIBS
     string (REGEX MATCHALL "(^|;)-DBUILD_SHARED_LIBS[A-Za-z0-9_]*" _matchedVars "${find_extproject_CMAKE_ARGS}")   
     unset(_matchedVars)
     list(LENGTH _matchedVars _list_size)    
@@ -111,10 +121,22 @@ function(find_extproject name)
         list(APPEND find_extproject_CMAKE_ARGS -DBUILD_SHARED_LIBS=${BUILD_SHARED_LIBS})
     endif()
     
+    # set some arguments          
+    list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_GENERATOR=${CMAKE_GENERATOR})    
+    if(CMAKE_BUILD_TYPE)
+        list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
+    endif()        
+    # list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_CONFIGURATION_TYPES=${CMAKE_CONFIGURATION_TYPES})       
+    
     if(EXISTS ${EP_BASE}/Build/${name}_EP/ext_options.cmake)         
         include(${EP_BASE}/Build/${name}_EP/ext_options.cmake)
         # add include into  ext_options.cmake
-        set(WITHOPT "${WITHOPT}include(${EP_BASE}/Build/${name}_EP/ext_options.cmake)\n" PARENT_SCOPE)    
+        set(WITHOPT "${WITHOPT}include(${EP_BASE}/Build/${name}_EP/ext_options.cmake)\n" PARENT_SCOPE)   
+       
+        foreach(INCLUDE_EXPORT_PATH ${INCLUDE_EXPORTS_PATHS})   
+            include_exports_path(${INCLUDE_EXPORT_PATH})
+        endforeach()
+        unset(INCLUDE_EXPORT_PATH)
     endif()
     
     get_cmake_property(_variableNames VARIABLES)
@@ -141,50 +163,54 @@ function(find_extproject name)
       return()
     endif()
    
-    set(HAS_CHANGES TRUE)
     if(NOT EXISTS "${EP_BASE}/Source/${name}_EP/.git")
         color_message("Git clone ${repo_name} ...")
         execute_process(COMMAND ${GIT_EXECUTABLE} clone ${EP_URL}/${repo_name} ${name}_EP
            WORKING_DIRECTORY  ${EP_BASE}/Source)
+        #execute_process(COMMAND ${GIT_EXECUTABLE} checkout master
+        #    WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP)
+        file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitclone-lastrun.txt "")
     else() 
         check_updates(${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt ${PULL_UPDATE_PERIOD} CHECK_UPDATES)
         if(CHECK_UPDATES)
             color_message("Git pull ${repo_name} ...")
             execute_process(COMMAND ${GIT_EXECUTABLE} pull
                WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP
-               TIMEOUT ${PULL_TIMEOUT}
-               OUTPUT_VARIABLE PULL_OUTPUT)
-            file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")  
-            if(PULL_OUTPUT)
-                string(SUBSTRING ${PULL_OUTPUT} 0 18 PULL_OUTPUT)
-                if(${PULL_OUTPUT} STREQUAL "Already up-to-date")
-                    set(HAS_CHANGES FALSE)                
-                endif()
-            else()
-                set(HAS_CHANGES FALSE)  # some error while git pull occured 
-            endif()
-        else()
-            set(HAS_CHANGES FALSE)  
+               TIMEOUT ${PULL_TIMEOUT})
+            file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")              
         endif()        
+    endif() 
+
+    execute_process(COMMAND ${CMAKE_COMMAND} ${EP_BASE}/Source/${name}_EP
+       ${find_extproject_CMAKE_ARGS}
+       WORKING_DIRECTORY ${EP_BASE}/Build/${name}_EP)         
+    
+    set(INCLUDE_EXPORT_PATH "${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake")
+    
+    if(EXISTS ${INCLUDE_EXPORT_PATH})
+        get_imported_targets(${INCLUDE_EXPORT_PATH} IMPORTED_TARGETS)
+        string(TOUPPER ${name}_FOUND IS_FOUND)
+        set(${IS_FOUND} TRUE PARENT_SCOPE)
+           
+        #add to list imported
+        include_exports_path(${INCLUDE_EXPORT_PATH})
     endif()
     
-    if(HAS_CHANGES)
-        execute_process(COMMAND ${CMAKE_COMMAND} ${EP_BASE}/Source/${name}_EP
-           ${find_extproject_CMAKE_ARGS}
-           WORKING_DIRECTORY ${EP_BASE}/Build/${name}_EP RESULT_VARIABLE _rv)
-        
-        if(${_rv} EQUAL 0) 
-            string(TOUPPER ${name}_FOUND IS_FOUND)
-            set(${IS_FOUND} TRUE PARENT_SCOPE)  
-        endif()          
-    endif()
-    include(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake) 
-    get_imported_targets(${EP_BASE}/Build/${name}_EP/${repo_project}-exports.cmake IMPOTED_TARGETS)
+    add_dependencies(${IMPORTED_TARGETS} ${name}_EP)  
     
-    add_dependencies(${IMPOTED_TARGETS} ${name}_EP)  
+    set(DEPENDENCY_LIB ${DEPENDENCY_LIB} ${IMPORTED_TARGETS} PARENT_SCOPE) 
     
-    set(DEPENDENCY_LIB ${DEPENDENCY_LIB} ${IMPOTED_TARGETS} PARENT_SCOPE)   
-    set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${IMPOTED_TARGETS} PARENT_SCOPE)
+    set(IMPORTED_TARGET_PATH)
+    foreach(IMPORTED_TARGET ${IMPORTED_TARGETS})
+        set(IMPORTED_TARGET_PATH ${IMPORTED_TARGET_PATH} $<TARGET_LINKER_FILE:${IMPORTED_TARGET}>) #${IMPORTED_TARGET}
+        if(NOT BUILD_SHARED_LIBS)
+            get_target_property(LINK_INTERFACE_LIBS "${IMPORTED_TARGET}" INTERFACE_LINK_LIBRARIES)
+            if(LINK_INTERFACE_LIBS) 
+                set(IMPORTED_TARGET_PATH ${IMPORTED_TARGET_PATH} ${LINK_INTERFACE_LIBS})
+            endif()
+        endif()
+    endforeach()
+    set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${IMPORTED_TARGET_PATH} PARENT_SCOPE)
     
     include_directories(${EP_BASE}/Install/${name}_EP/include)
     foreach (inc ${repo_include})
@@ -192,5 +218,6 @@ function(find_extproject name)
     endforeach ()    
     
     install( DIRECTORY ${EP_BASE}/Install/${name}_EP/ DESTINATION ${CMAKE_INSTALL_PREFIX} )
-    
+        
+    set(EXPORTS_PATHS ${EXPORTS_PATHS} PARENT_SCOPE)
 endfunction()

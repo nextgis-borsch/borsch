@@ -29,3 +29,7 @@ else()
 endif()
 
 set(repo_include "")
+
+if(NOT BUILD_SHARED_LIBS)
+    add_definitions(-DLZMA_API_STATIC)
+endif()
