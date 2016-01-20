@@ -1,10 +1,10 @@
 # Common cmake scripts
 This is common cmake scripts for building system. 
-Now two main files created **find_anyproject.cmake** and **find_extproject.cmake**.
+Now two main files created **FindAnyProject.cmake** and **FindExtProject.cmake**.
 
-find_anyproject.cmake - have to functions: find_anyproject and target_link_extlibraries. 
+FindAnyProject.cmake - have two main functions: find_anyproject and target_link_extlibraries. 
 
-The first one try to find_package locally. If no package found user can select to use external project. The find_extproject.cmake used for it.
+The first one try to find_package locally. If no package found user can select to use external project. The FindExtProject.cmake used for it.
 
 The second one used to link target libraries from both local or external packages. 
 
@@ -22,7 +22,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 Than a few lines of code need to add some external project:
 
 ```
-include(find_anyproject)
+include(FindAnyProject)
 
 # TIFF support - required, default=ON
 find_anyproject(TIFF REQUIRED)
