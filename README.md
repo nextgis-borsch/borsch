@@ -107,7 +107,7 @@ This is a table of available libraries.
 | lib_openjpeg | no | | For GDAL OpenJPEG driver |
 | lib_csf | no | | For GDAL PCRaster driver |
 | lib_pdfium | no | | For GDAL Geospatial PDF driver |
-| lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver |
+| lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt|
 | lib_ras | no | | For GDAL Rasdaman driver |
 | lib_webp | no | | For GDAL WEBP driver |
 | lib_xerces | no | | For GDAL INTERLIS driver |
