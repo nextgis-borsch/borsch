@@ -83,10 +83,10 @@ This is a table of available libraries.
 | [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes | Linux, Windows |  |
 | [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes | Linux, Windows |  |
 | [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes | Linux, Windows |  |
-| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | no | |  |
+| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux |  |
 | [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | |  |
-| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | no | |  |
-| [lib_expat](https://github.com/nextgis-extra/lib_expat) | no | |  |
+| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux |  |
+| [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux |  |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
 | [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux |  |
 | [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux, Windows |  |
