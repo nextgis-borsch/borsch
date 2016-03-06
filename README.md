@@ -85,7 +85,11 @@ This is a table of available libraries.
 | [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes | Linux, Windows |  |
 | [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux |  |
 | [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | |  |
+<<<<<<< HEAD
 | [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux |  |
+=======
+| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | no | |  |
+>>>>>>> 86a9f8e50f294af427298006e960407a517282ed
 | [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux |  |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
 | [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux |  |
@@ -107,7 +111,7 @@ This is a table of available libraries.
 | lib_openjpeg | no | | For GDAL OpenJPEG driver |
 | lib_csf | no | | For GDAL PCRaster driver |
 | lib_pdfium | no | | For GDAL Geospatial PDF driver |
-| lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver |
+| lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt|
 | lib_ras | no | | For GDAL Rasdaman driver |
 | lib_webp | no | | For GDAL WEBP driver |
 | lib_xerces | no | | For GDAL INTERLIS driver |
