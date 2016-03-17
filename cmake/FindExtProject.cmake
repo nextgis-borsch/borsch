@@ -140,6 +140,13 @@ function(find_extproject name)
         list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
     endif()        
     # list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_CONFIGURATION_TYPES=${CMAKE_CONFIGURATION_TYPES})       
+    if(CMAKE_GENERATOR_TOOLSET)
+        list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_GENERATOR_TOOLSET=${CMAKE_GENERATOR_TOOLSET})
+    endif() 
+    
+    if(_WIN32_WINNT)
+        list(APPEND find_extproject_CMAKE_ARGS -D_WIN32_WINNT=${_WIN32_WINNT})
+    endif() 
     
     if(EXISTS ${EP_BASE}/Build/${name}_EP/ext_options.cmake)         
         include(${EP_BASE}/Build/${name}_EP/ext_options.cmake)
@@ -208,6 +215,9 @@ function(find_extproject name)
            
         #add to list imported
         include_exports_path(${INCLUDE_EXPORT_PATH})
+    else()
+        message(WARNING "The path ${INCLUDE_EXPORT_PATH} not exist")
+        return()
     endif()
     
     add_dependencies(${IMPORTED_TARGETS} ${name}_EP)  
@@ -244,7 +254,7 @@ function(find_extproject name)
     endforeach ()    
     
     install( DIRECTORY ${EP_BASE}/Install/${name}_EP/ 
-             DESTINATION ${CMAKE_INSTALL_PREFIX} 
+             DESTINATION / #${CMAKE_INSTALL_PREFIX} 
              COMPONENT libraries)
         
     set(EXPORTS_PATHS ${EXPORTS_PATHS} PARENT_SCOPE)
