@@ -144,10 +144,6 @@ function(find_extproject name)
         list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_GENERATOR_TOOLSET=${CMAKE_GENERATOR_TOOLSET})
     endif() 
     
-    if(_WIN32_WINNT)
-        list(APPEND find_extproject_CMAKE_ARGS -D_WIN32_WINNT=${_WIN32_WINNT})
-    endif() 
-    
     if(EXISTS ${EP_BASE}/Build/${name}_EP/ext_options.cmake)         
         include(${EP_BASE}/Build/${name}_EP/ext_options.cmake)
         # add include into  ext_options.cmake
@@ -254,7 +250,7 @@ function(find_extproject name)
     endforeach ()    
     
     install( DIRECTORY ${EP_BASE}/Install/${name}_EP/ 
-             DESTINATION / #${CMAKE_INSTALL_PREFIX} 
+             DESTINATION ${CMAKE_INSTALL_PREFIX} #on win32 may need only / 
              COMPONENT libraries)
         
     set(EXPORTS_PATHS ${EXPORTS_PATHS} PARENT_SCOPE)
