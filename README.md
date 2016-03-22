@@ -93,7 +93,7 @@ This is a table of available libraries.
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 | [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
 | [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows |  |
-| lib_geos | no | |  |
+| [lib_geos](https://github.com/nextgis-extra/lib_geos) | no | |  |
 | lib_hdfeos5 | no | |  |
 | lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
@@ -108,7 +108,7 @@ This is a table of available libraries.
 | lib_openjpeg | no | | For GDAL OpenJPEG driver |
 | lib_csf | no | | For GDAL PCRaster driver |
 | lib_pdfium | no | | For GDAL Geospatial PDF driver |
-| lib_pq | no | | For GDAL PostGIS Raster (previously WKTRaster) driver https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt|
+| lib_pq | no | | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
 | lib_ras | no | | For GDAL Rasdaman driver |
 | lib_webp | no | | For GDAL WEBP driver |
 | lib_xerces | no | | For GDAL INTERLIS driver |
