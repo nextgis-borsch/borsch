@@ -88,12 +88,12 @@ This is a table of available libraries.
 | [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux, Windows |  |
 | [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux, Windows |  |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
-| [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux |  |
+| [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux, Windows |  |
 | [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux, Windows |  |
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 | [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
 | [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows |  |
-| [lib_geos](https://github.com/nextgis-extra/lib_geos) | no | |  |
+| [lib_geos](https://github.com/nextgis-extra/lib_geos) | yes | Linux |  |
 | lib_hdfeos5 | no | |  |
 | lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
