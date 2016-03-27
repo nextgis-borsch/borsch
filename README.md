@@ -93,7 +93,7 @@ This is a table of available libraries.
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 | [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
 | [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows |  |
-| [lib_geos](https://github.com/nextgis-extra/lib_geos) | no | |  |
+| [lib_geos](https://github.com/nextgis-extra/lib_geos) | yes | Linux |  |
 | lib_hdfeos5 | no | |  |
 | lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
