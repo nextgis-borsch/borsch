@@ -99,7 +99,7 @@ This is a table of available libraries.
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
 | lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
 | lib_cfitsio | no | | For GDAL FITS (.fits) driver |
-| lib_sqlite3 | no | | For GDAL GeoPackage driver |
+| [lib_sqlite3](https://github.com/nextgis-extra/lib_sqlite) | yes | | For GDAL GeoPackage and other drivers |
 | lib_gif | no | | For GDAL GIF driver |
 | lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
 | lib_grass | no | | For GDAL GRASS driver |
