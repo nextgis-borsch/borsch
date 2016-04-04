@@ -74,7 +74,7 @@ This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
 |---|:-:|---|---|
-| [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows |   |
+| [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows | tests present |
 | [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes | Linux, Windows |  |
 | [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes | Linux, Windows |  |
 | [lib_curl](https://github.com/nextgis-extra/lib_curl) | no | |  |
@@ -86,20 +86,20 @@ This is a table of available libraries.
 | [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux, Windows |  |
 | [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | |  |
 | [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux, Windows |  |
-| [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux, Windows |  |
+| [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux, Windows | tests present |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
-| [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux, Windows |  |
+| [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux, Windows | tests present |
 | [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux, Windows |  |
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
-| [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows |  |
-| [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows |  |
+| [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows | tests present |
+| [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows | tests present |
 | [lib_geos](https://github.com/nextgis-extra/lib_geos) | yes | Linux |  |
 | lib_hdfeos5 | no | |  |
 | lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
 | lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
 | lib_cfitsio | no | | For GDAL FITS (.fits) driver |
-| [lib_sqlite3](https://github.com/nextgis-extra/lib_sqlite) | yes | | For GDAL GeoPackage and other drivers |
+| [lib_sqlite3](https://github.com/nextgis-extra/lib_sqlite) | yes | Windows | For GDAL GeoPackage and other drivers |
 | lib_gif | no | | For GDAL GIF driver |
 | lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
 | lib_grass | no | | For GDAL GRASS driver |
