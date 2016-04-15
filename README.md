@@ -37,7 +37,7 @@ Some additional parameters supported. From find_project support:
 
 Also the version can be specified via VERSION <version>
 
-Any other parameters will be forward to the external project. The important parameter is **CMAKE_ARGS**.
+Any other parameters will be forward to the external project. The important parameter is **CMAKE_ARGS**. Note: do not pass WITH_X options with CMAKE_ARGS, use set(WITH_X ...) instead.
 
 ```
 find_anyproject(CURL REQUIRED CMAKE_ARGS
@@ -77,14 +77,14 @@ This is a table of available libraries.
 | [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows | tests present |
 | [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes | Linux, Windows |  |
 | [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes | Linux, Windows |  |
-| [lib_curl](https://github.com/nextgis-extra/lib_curl) | no | |  |
+| [lib_curl](https://github.com/nextgis-extra/lib_curl) | yes | Windows |  |
 | [lib_geotiff](https://github.com/nextgis-extra/lib_geotiff) | yes | Linux, Windows |  |
 | [lib_tiff](https://github.com/nextgis-extra/lib_tiff) | yes | Linux, Windows |  |
 | [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes | Linux, Windows |  |
 | [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes | Linux, Windows |  |
 | [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes | Linux, Windows |  |
 | [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux, Windows |  |
-| [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | |  |
+| [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | Windows |  |
 | [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux, Windows |  |
 | [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux, Windows | tests present |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
