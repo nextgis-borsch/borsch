@@ -45,11 +45,14 @@ function(find_anyproject name)
     option(WITH_${name} "Set ON to use ${name}" ${_WITH_OPTION_ON})
     
     string(TOUPPER ${name}_FOUND IS_FOUND)
+    string(TOUPPER ${name}_VERSION_STRING VERSION_STRING)
     if(NOT DEFINED ${IS_FOUND}) #if the package was found anywhere
         set(${IS_FOUND} FALSE)
     endif()
     string(TOUPPER ${name} UPPER_NAME)
 
+    write_ext_options()
+    
     if(WITH_${name})
         option(WITH_${name}_EXTERNAL "Set ON to use external ${name}" OFF)
         if(WITH_${name}_EXTERNAL)
@@ -79,9 +82,10 @@ function(find_anyproject name)
             find_package(${name} ${FIND_PROJECT_ARG})
         endif() 
         
-        # message(STATUS "IS_FOUND ${IS_FOUND} ${${IS_FOUND}}")
+        #message(STATUS "VERSION_STRING ${VERSION_STRING} ${${VERSION_STRING}}")
         if(${IS_FOUND}) 
-            set(${IS_FOUND} TRUE CACHE BOOL "use ${name} external")  
+            set(${IS_FOUND} TRUE CACHE INTERNAL "use ${name}")  
+            set(${VERSION_STRING} ${${VERSION_STRING}} CACHE INTERNAL "version ${name}") 
             mark_as_advanced(${IS_FOUND})
         elseif(find_anyproject_REQUIRED)
             message(FATAL_ERROR "${name} is required in ${PROJECT_NAME}!")
@@ -106,7 +110,7 @@ function(find_anyproject name)
         set(DEPENDENCY_LIB ${DEPENDENCY_LIB} PARENT_SCOPE)    
     endif()
     set(WITHOPT ${WITHOPT} PARENT_SCOPE)
-    set(EXPORTS_PATHS ${EXPORTS_PATHS} PARENT_SCOPE)
+    set(EXPORTS_PATHS ${EXPORTS_PATHS} PARENT_SCOPE)    
 endfunction()
 
 function(target_link_extlibraries name)
@@ -117,7 +121,7 @@ function(target_link_extlibraries name)
         #list(REMOVE_DUPLICATES TARGET_LINK_LIB) debug;...;optimised;... etc. if filter out
         target_link_libraries(${name} ${TARGET_LINK_LIB})
     endif()
-    write_ext_options()
+    
 endfunction()
 
 function(write_ext_options)
