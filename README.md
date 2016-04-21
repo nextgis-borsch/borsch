@@ -83,9 +83,9 @@ This is a table of available libraries.
 | [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes | Linux, Windows |  |
 | [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes | Linux, Windows |  |
 | [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes | Linux, Windows |  |
-| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux, Windows |  |
+| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux, Windows | tests present |
 | [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | Windows |  |
-| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux, Windows |  |
+| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux, Windows | tests present |
 | [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux, Windows | tests present |
 | [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
 | [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux, Windows | tests present |
@@ -118,6 +118,8 @@ This is a table of available libraries.
 | lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 | lib_podofo | no | | For GDAL Geospatial PDF driver |
 | lib_freexl | no | | For GDAL MS Excel format driver |
+| [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | no | | |
+| [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | no | | |
 
 # License
 
