@@ -118,6 +118,8 @@ This is a table of available libraries.
 | lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 | lib_podofo | no | | For GDAL Geospatial PDF driver |
 | lib_freexl | no | | For GDAL MS Excel format driver |
+| [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | no | | |
+| [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | no | | |
 
 # License
 
