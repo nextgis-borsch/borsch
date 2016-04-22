@@ -130,7 +130,7 @@ export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_I
 3.2. Add cmake instruction (if it is not present):  
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})  
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
-5. Preferably add Find<library name>.cmake with version check (see. FindGEOS and FindPROJ)
+5. Preferably add Find<library name>.cmake with version check (see. [FindGEOS](https://github.com/nextgis-extra/common_cmake/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-extra/common_cmake/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExt<library name>.cmake with library repository name and some optional variables
 
 # License
