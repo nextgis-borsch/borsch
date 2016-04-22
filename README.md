@@ -121,6 +121,15 @@ This is a table of available libraries.
 | [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | no | | |
 | [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | no | | |
 
+# Cmaked libraries requirements  
+1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
+2. Add export instruction:  
+export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
+3. All dependencies must be connected via find_anyproject (see "Common cmake scripts").  
+3.1. You need to add the relevant scripts from common_cmake to 'cmake' directory  
+3.2. Add cmake instruction (if it is not present):  
+SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})  
+
 # License
 
 All scripts are licensed under GNU GPL v.2. 
