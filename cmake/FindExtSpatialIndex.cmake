@@ -20,12 +20,12 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_spatialiteindex)
+set(repo_name lib_spatialindex)
 
 if(BUILD_SHARED_LIBS)    
-    set(repo_project spatialiteindex)
+    set(repo_project spatialindex)
 else()
-    set(repo_project spatialiteindexstatic)
+    set(repo_project spatialindexstatic)
 endif()
 
 set(repo_include)
