@@ -117,9 +117,21 @@ This is a table of available libraries.
 | lib_mysql | no | | For GDAL MySQL driver |
 | lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 | lib_podofo | no | | For GDAL Geospatial PDF driver |
-| lib_freexl | no | | For GDAL MS Excel format driver |
+| [lib_freexl](https://github.com/nextgis-extra/lib_freexl) | no | | For GDAL MS Excel format driver |
 | [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | no | | |
 | [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | no | | |
+
+# Cmaked libraries requirements  
+1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
+2. Add export instruction:  
+export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
+3. All dependencies must be connected via find_anyproject (see "Common cmake scripts").  
+3.1. You need to add the relevant scripts from common_cmake to 'cmake' directory  
+3.2. Add cmake instruction (if it is not present):  
+SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})  
+4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
+5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-extra/common_cmake/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-extra/common_cmake/blob/master/cmake/FindPROJ4.cmake))
+6. Create FindExtxxx.cmake with library repository name and some optional variables
 
 # License
 
