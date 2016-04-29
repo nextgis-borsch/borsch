@@ -93,7 +93,7 @@ This is a table of available libraries.
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 | [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows | tests present |
 | [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows | tests present |
-| [lib_geos](https://github.com/nextgis-extra/lib_geos) | yes | Linux |  |
+| [lib_geos](https://github.com/nextgis-extra/lib_geos) | yes | Linux, Windows |  |
 | lib_hdfeos5 | no | |  |
 | lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
@@ -117,9 +117,9 @@ This is a table of available libraries.
 | lib_mysql | no | | For GDAL MySQL driver |
 | lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 | lib_podofo | no | | For GDAL Geospatial PDF driver |
-| [lib_freexl](https://github.com/nextgis-extra/lib_freexl) | no | | For GDAL MS Excel format driver |
-| [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | no | | |
-| [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | no | | |
+| [lib_freexl](https://github.com/nextgis-extra/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
+| [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
+| [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | yes | Windows | |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
