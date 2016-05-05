@@ -1,3 +1,6 @@
+# Introduction
+Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. Enter NextGIS Borsch (http://nextgis.ru/en/borsch) - new build system that is a) easier to use, b) better solves depencies and c) provides more uniform way of building packages. Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows and Linux.
+
 # Common cmake scripts
 This is common cmake scripts for building system. 
 Now two main files created **FindAnyProject.cmake** and **FindExtProject.cmake**.
