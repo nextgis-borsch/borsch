@@ -76,7 +76,7 @@ target_link_extlibraries(${LIB_NAME})
 This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
-|---|:-:|---|---|
+|---|:-:|---|:---|
 | [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows | tests present |
 | [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes | Linux, Windows |  |
 | [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes | Linux, Windows |  |
