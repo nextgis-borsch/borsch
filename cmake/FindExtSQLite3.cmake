@@ -1,10 +1,10 @@
 ################################################################################
 # Project:  external projects
 # Purpose:  CMake build scripts
-# Author:   Dmitry Baryshnikov, polimax@mail.ru
+# Author:   Mikhail Gusev, gusevmihs@gmail.com
 ################################################################################
-# Copyright (C) 2015, NextGIS <info@nextgis.com>
-# Copyright (C) 2015 Dmitry Baryshnikov
+# Copyright (C) 2016, NextGIS <info@nextgis.com>
+# Copyright (C) 2016 Mikhail Gusev
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,13 +20,12 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_curl)
+set(repo_name lib_sqlite)
 
 if(BUILD_SHARED_LIBS)    
-    set(repo_project curl)
+    set(repo_project sqlite3)
 else()
-    set(repo_project curlstatic)
+    set(repo_project sqlite3static)
 endif()
 
-set(repo_include "")
-
+set(repo_include)
