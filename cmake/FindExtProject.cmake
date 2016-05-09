@@ -208,9 +208,9 @@ function(find_extproject name)
             execute_process(COMMAND ${GIT_EXECUTABLE} pull
                WORKING_DIRECTORY  ${EP_BASE}/Source/${name}_EP
                TIMEOUT ${PULL_TIMEOUT} OUTPUT_VARIABLE OUT_STR)
-            string(FIND ${OUT_STR} "Already up-to-date" STR_POS)   
-            if(STR_POS GREATER -1) 
-                set(RECONFIGURE ON)  
+            string(FIND ${OUT_STR} "Already up-to-date" STR_POS)
+            if(STR_POS LESS 0) 
+                set(RECONFIGURE ON)
             endif()   
             file(WRITE ${EP_BASE}/Stamp/${name}_EP/${name}_EP-gitpull.txt "")              
         endif()        
