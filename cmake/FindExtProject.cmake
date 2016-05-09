@@ -101,7 +101,7 @@ function(find_extproject name)
 
     # set default url
     if(NOT DEFINED EP_URL)
-        set(EP_URL "https://github.com/nextgis-extra")
+        set(EP_URL "https://github.com/nextgis-borsch")
     endif()  
     
     if(NOT DEFINED PULL_UPDATE_PERIOD)

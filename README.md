@@ -77,32 +77,32 @@ This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
 |---|:-:|---|:---|
-| [lib_z](https://github.com/nextgis-extra/lib_z)  | yes | Linux, Windows | tests present |
-| [lib_lzma](https://github.com/nextgis-extra/lib_lzma) | yes | Linux, Windows |  |
-| [lib_xml2](https://github.com/nextgis-extra/lib_xml2) | yes | Linux, Windows |  |
-| [lib_curl](https://github.com/nextgis-extra/lib_curl) | yes | Windows |  |
-| [lib_geotiff](https://github.com/nextgis-extra/lib_geotiff) | yes | Linux, Windows |  |
-| [lib_tiff](https://github.com/nextgis-extra/lib_tiff) | yes | Linux, Windows |  |
-| [lib_jpeg](https://github.com/nextgis-extra/lib_jpeg) | yes | Linux, Windows |  |
-| [lib_jbig](https://github.com/nextgis-extra/lib_jbig) | yes | Linux, Windows |  |
-| [lib_iconv](https://github.com/nextgis-extra/lib_iconv) | yes | Linux, Windows |  |
-| [lib_gdal](https://github.com/nextgis-extra/lib_gdal) | yes | Linux, Windows | tests present |
-| [lib_openssl](https://github.com/nextgis-extra/lib_openssl) | yes | Windows |  |
-| [lib_jsonc](https://github.com/nextgis-extra/lib_jsonc) | yes | Linux, Windows | tests present |
-| [lib_expat](https://github.com/nextgis-extra/lib_expat) | yes | Linux, Windows | tests present |
-| [lib_proj](https://github.com/nextgis-extra/lib_proj) | yes | Linux, Windows |  |
-| [lib_png](https://github.com/nextgis-extra/lib_png) | yes | Linux, Windows | tests present |
-| [lib_hdf4](https://github.com/nextgis-extra/lib_hdf4) | yes | Linux, Windows |  |
+| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present |
+| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows |  |
+| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows |  |
+| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Windows |  |
+| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows |  |
+| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows |  |
+| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows |  |
+| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows |  |
+| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
+| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows | tests present |
+| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Windows |  |
+| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows | tests present |
+| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present |
+| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows |  |
+| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows | tests present |
+| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
 | lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
-| [lib_szip](https://github.com/nextgis-extra/lib_szip) | yes | Linux, Windows | tests present |
-| [lib_hdfeos2](https://github.com/nextgis-extra/lib_hdfeos2) | yes | Linux, Windows | tests present |
-| [lib_geos](https://github.com/nextgis-extra/lib_geos) | yes | Linux, Windows |  |
+| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Linux, Windows | tests present |
+| [lib_hdfeos2](https://github.com/nextgis-borsch/lib_hdfeos2) | yes | Linux, Windows | tests present |
+| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Linux, Windows |  |
 | lib_hdfeos5 | no | |  |
 | lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 | lib_dap | no | | For GDAL DODS / OPeNDAP driver |
 | lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
 | lib_cfitsio | no | | For GDAL FITS (.fits) driver |
-| [lib_sqlite3](https://github.com/nextgis-extra/lib_sqlite) | yes | Windows | For GDAL GeoPackage and other drivers |
+| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Windows | For GDAL GeoPackage and other drivers |
 | lib_gif | no | | For GDAL GIF driver |
 | lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
 | lib_grass | no | | For GDAL GRASS driver |
@@ -111,7 +111,7 @@ This is a table of available libraries.
 | lib_openjpeg | no | | For GDAL OpenJPEG driver |
 | lib_csf | no | | For GDAL PCRaster driver |
 | lib_pdfium | no | | For GDAL Geospatial PDF driver |
-| [lib_pq](https://github.com/nextgis-extra/lib_pq) | no | | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
+| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | no | | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
 | lib_ras | no | | For GDAL Rasdaman driver |
 | lib_webp | no | | For GDAL WEBP driver |
 | lib_xerces | no | | For GDAL INTERLIS driver |
@@ -120,20 +120,20 @@ This is a table of available libraries.
 | lib_mysql | no | | For GDAL MySQL driver |
 | lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 | lib_podofo | no | | For GDAL Geospatial PDF driver |
-| [lib_freexl](https://github.com/nextgis-extra/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
-| [lib_spatialite](https://github.com/nextgis-extra/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
-| [lib_spatialiteindex](https://github.com/nextgis-extra/lib_spatialiteindex) | yes | Windows | |
+| [lib_freexl](https://github.com/nextgis-borsch/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
+| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
+| [lib_spatialiteindex](https://github.com/nextgis-borsch/lib_spatialiteindex) | yes | Windows | |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
 2. Add export instruction:  
 export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
-3. All dependencies must be connected via find_anyproject (see "Common cmake scripts").  
-3.1. You need to add the relevant scripts from common_cmake to 'cmake' directory  
+3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
+3.1. You need to add the relevant scripts from borsch to 'cmake' directory  
 3.2. Add cmake instruction (if it is not present):  
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})  
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
-5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-extra/common_cmake/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-extra/common_cmake/blob/master/cmake/FindPROJ4.cmake))
+5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExtxxx.cmake with library repository name and some optional variables
 
 # License
