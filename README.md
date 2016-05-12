@@ -76,53 +76,54 @@ target_link_extlibraries(${LIB_NAME})
 This is a table of available libraries.
 
 | Repository | Cmaked  | OS tested | Notes |
-|---|:-:|---|:---|
-| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present |
-| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows |  |
-| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows |  |
-| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows |  |
-| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows |  |
-| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows |  |
-| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows |  |
-| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows |  |
-| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
-| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows | tests present |
-| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows |  |
-| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows | tests present |
-| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present |
-| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows |  |
-| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows | tests present |
-| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
-| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
-| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Linux, Windows | tests present |
-| [lib_hdfeos2](https://github.com/nextgis-borsch/lib_hdfeos2) | yes | Linux, Windows | tests present |
-| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Linux, Windows |  |
-| lib_hdfeos5 | no | |  |
-| lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
-| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
-| lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
-| lib_cfitsio | no | | For GDAL FITS (.fits) driver |
-| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows | For GDAL GeoPackage and other drivers |
-| lib_gif | no | | For GDAL GIF driver |
-| lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
-| lib_grass | no | | For GDAL GRASS driver |
-| lib_gta | no | | For GDAL Generic Tagged Arrays (.gta) driver |
-| lib_jasper | no | | For GDAL JPEG2000 (.jp2, .j2k) driver |
-| lib_openjpeg | no | | For GDAL OpenJPEG driver |
-| lib_csf | no | | For GDAL PCRaster driver |
-| lib_pdfium | no | | For GDAL Geospatial PDF driver |
-| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | no | | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
-| lib_ras | no | | For GDAL Rasdaman driver |
-| lib_webp | no | | For GDAL WEBP driver |
-| lib_xerces | no | | For GDAL INTERLIS driver |
-| lib_kml | no | | For GDAL LIBKML driver |
-| lib_mongo | no | | For GDAL MongoDB driver |
-| lib_mysql | no | | For GDAL MySQL driver |
-| lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
-| lib_podofo | no | | For GDAL Geospatial PDF driver |
-| [lib_freexl](https://github.com/nextgis-borsch/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
-| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
-| [lib_spatialiteindex](https://github.com/nextgis-borsch/lib_spatialiteindex) | yes | Windows | |
+|:-:|---|:-:|---|:---|
+|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present |
+|2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows |  |
+|3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows |  |
+|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows |  |
+|5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows |  |
+|6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows |  |
+|7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows |  |
+|8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows |  |
+|9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
+|10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows | tests present |
+|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows |  |
+|12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows | tests present |
+|13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present |
+|14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows |  |
+|15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows | tests present |
+|16| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
+|17| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
+|18| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Linux, Windows | tests present |
+|19| [lib_hdfeos2](https://github.com/nextgis-borsch/lib_hdfeos2) | yes | Linux, Windows | tests present, 7 failed |
+|20| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Linux, Windows |  |
+|21| lib_hdfeos5 | no | |  |
+|22| lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
+|23| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
+|24| lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
+|25| lib_cfitsio | no | | For GDAL FITS (.fits) driver |
+|26| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows | For GDAL GeoPackage and other drivers |
+|27| lib_gif | no | | For GDAL GIF driver |
+|28| lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
+|29| lib_grass | no | | For GDAL GRASS driver |
+|30| lib_gta | no | | For GDAL Generic Tagged Arrays (.gta) driver |
+|31| lib_jasper | no | | For GDAL JPEG2000 (.jp2, .j2k) driver |
+|32| lib_openjpeg | no | | For GDAL OpenJPEG driver |
+|33| lib_csf | no | | For GDAL PCRaster driver |
+|34| lib_pdfium | no | | For GDAL Geospatial PDF driver |
+|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Linux, Windows| For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
+|36| lib_ras | no | | For GDAL Rasdaman driver |
+|37| lib_webp | no | | For GDAL WEBP driver |
+|38| lib_xerces | no | | For GDAL INTERLIS driver |
+|39| lib_kml | no | | For GDAL LIBKML driver |
+|40| lib_mongo | no | | For GDAL MongoDB driver |
+|41| lib_mysql | no | | For GDAL MySQL driver |
+|42| lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
+|43| lib_podofo | no | | For GDAL Geospatial PDF driver |
+|44| [lib_freexl](https://github.com/nextgis-borsch/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
+|45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
+|46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows | |
+|47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux | |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
@@ -143,5 +144,4 @@ All scripts are licensed under GNU GPL v.2.
 # Notes
 
 * There is additional util.cmake file for pretty print of version information to the console. 
-
 * MSVC 2013 update 2 and later have enough C99 support to build under Windows.
