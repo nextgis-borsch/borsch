@@ -75,7 +75,7 @@ target_link_extlibraries(${LIB_NAME})
 
 This is a table of available libraries.
 
-| Repository | Cmaked  | OS tested | Notes |
+| # | Repository | Cmaked  | OS tested | Notes |
 |:-:|---|:-:|---|:---|
 |1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows |  |
