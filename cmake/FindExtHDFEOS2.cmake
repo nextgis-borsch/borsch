@@ -22,7 +22,7 @@
 
 set(repo_name lib_hdfeos2)
 
-if(BUILD_SHARED_LIBS)    
+if(find_extproject_SHARED)    
     set(repo_project hdfeos)
 else()
     set(repo_project hdfeosstatic)
@@ -30,7 +30,7 @@ endif()
 
 set(repo_include)
 
-if(BUILD_SHARED_LIBS)
+if(find_extproject_SHARED)
     add_definitions(-DHDFEOS_DLL_IMPORTS -DGCTP_DLL_IMPORTS)
 else()
     add_definitions(-DHDFEOS_STATIC -DGCTP_STATIC)

@@ -22,7 +22,7 @@
 
 set(repo_name lib_spatialite)
 
-if(BUILD_SHARED_LIBS)    
+if(find_extproject_SHARED)    
     set(repo_project spatialite)
 else()
     set(repo_project spatialitestatic)

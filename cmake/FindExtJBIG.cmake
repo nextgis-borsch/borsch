@@ -22,7 +22,7 @@
 
 set(repo_name lib_jbig)
 
-if(BUILD_SHARED_LIBS)    
+if(find_extproject_SHARED)    
     set(repo_project jbig)
 else()
     set(repo_project jbigstatic)
@@ -30,7 +30,7 @@ endif()
 
 set(repo_include "")
 
-if(BUILD_SHARED_LIBS)
+if(find_extproject_SHARED)
     add_definitions(-DJBIG_DLL_IMPORTS)
 else()
     add_definitions(-DJBIG_STATIC)

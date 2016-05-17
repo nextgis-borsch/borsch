@@ -22,7 +22,7 @@
 
 set(repo_name freexl)
 
-if(BUILD_SHARED_LIBS)    
+if(find_extproject_SHARED)    
     set(repo_project freexl)
 else()
     set(repo_project freexlstatic)

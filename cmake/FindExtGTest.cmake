@@ -22,7 +22,7 @@
 
 set(repo_name googletest)
 
-if(BUILD_SHARED_LIBS)    
+if(find_extproject_SHARED)    
     set(repo_project gtest)
 else()
     set(repo_project gteststatic)
