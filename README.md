@@ -124,6 +124,7 @@ This is a table of available libraries.
 |45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
 |46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows | |
 |47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux | |
+|48| [boost](https://github.com/nextgis-borsch/lib_boost) | no | | |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
