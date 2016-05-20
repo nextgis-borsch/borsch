@@ -28,4 +28,4 @@ else()
     set(repo_project gdalstatic)
 endif()
 
-set(repo_include)
+set(repo_include gdal)
