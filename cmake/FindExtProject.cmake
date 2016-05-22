@@ -177,7 +177,8 @@ function(find_extproject name)
         
     # get some properties from <cmakemodules>/findext${name}.cmake file
     include(FindExt${name})    
-        
+    include(util)
+            
     find_exthost_package(Git)
     if(NOT GIT_FOUND)
       message(FATAL_ERROR "git is required")
