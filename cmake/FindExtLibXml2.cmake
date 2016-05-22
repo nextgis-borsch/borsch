@@ -28,4 +28,4 @@ else()
     set(repo_project xml2static)
 endif()
 
-set(repo_include)
+set(repo_include xml2)

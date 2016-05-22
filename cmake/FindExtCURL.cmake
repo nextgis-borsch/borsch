@@ -28,5 +28,5 @@ else()
     set(repo_project curlstatic)
 endif()
 
-set(repo_include "")
+set(repo_include curl)
 

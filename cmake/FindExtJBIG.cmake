@@ -28,7 +28,7 @@ else()
     set(repo_project jbigstatic)
 endif()
 
-set(repo_include "")
+set(repo_include)
 
 if(find_extproject_SHARED)
     add_definitions(-DJBIG_DLL_IMPORTS)
