@@ -129,7 +129,7 @@ This is a table of available libraries.
 |50| [lib_uv](https://github.com/nextgis-borsch/lib_uv) | no | | |
 |51| [lib_jpegturbo](https://github.com/nextgis-borsch/lib_jpegturbo) | no | | |
 |52| [lib_variant](https://github.com/nextgis-borsch/lib_variant) | yes | | |
-|53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | no | | |
+|53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | yes | | |
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | no | | |
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | no | | |
 
