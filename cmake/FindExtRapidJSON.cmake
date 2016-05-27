@@ -28,4 +28,4 @@ else()
     set(repo_project librapidjsonstatic)
 endif()
 
-set(repo_include librapidjson)
+set(repo_include rapidjson)

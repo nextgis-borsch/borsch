@@ -28,4 +28,4 @@ else()
     set(repo_project libvariantstatic)
 endif()
 
-set(repo_include libvariant)
+set(repo_include)

@@ -28,4 +28,4 @@ else()
     set(repo_project libbooststatic)
 endif()
 
-set(repo_include libboost)
+set(repo_include boost)
