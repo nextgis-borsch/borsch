@@ -124,12 +124,12 @@ This is a table of available libraries.
 |45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
 |46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows | |
 |47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux | |
-|48| [lib_boost](https://github.com/nextgis-borsch/lib_boost) | no | | |
-|49| [lib_zip](https://github.com/nextgis-borsch/lib_zip) | no | | |
+|48| [lib_boost](https://github.com/nextgis-borsch/lib_boost) | yes | | Make only copies of headers from "boost/" without building libs |
+|49| [lib_zip](https://github.com/nextgis-borsch/lib_zip) | yes | | |
 |50| [lib_uv](https://github.com/nextgis-borsch/lib_uv) | no | | |
 |51| [lib_jpegturbo](https://github.com/nextgis-borsch/lib_jpegturbo) | no | | |
-|52| [lib_variant](https://github.com/nextgis-borsch/lib_variant) | no | | | 
-|53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | no | | |
+|52| [lib_variant](https://github.com/nextgis-borsch/lib_variant) | yes | | |
+|53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | yes | | |
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | no | | |
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | no | | |
 
