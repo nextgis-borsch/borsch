@@ -132,6 +132,7 @@ This is a table of available libraries.
 |53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | yes | | |
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | yes | | cmaked within the requirements of the mapbox |
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | no | | |
+|56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partialy cmaked (except tiger and cgal) |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
