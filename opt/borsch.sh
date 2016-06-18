@@ -45,11 +45,16 @@ BGCYAN='\033[46m'     #  ${BGCYAN}
 BGGRAY='\033[47m'     #  ${BGGRAY}
 BGDEF='\033[49m'      #  ${BGDEF}
 
+
+DIR_NONE="!_NONE_!"
+
+
 git_clone() {
     echo -e "${BOLD}${BGDEF}${LCYAN} clone $1 ${NORMAL}"
-    repo="git@github.com:nextgis-borsch/$1.git"    
+    repo="git@github.com:nextgis-borsch/$1.git"
     git clone $repo
 }
+
 
 git_push() {
     echo -e "${BOLD}${BGDEF}${LCYAN} push $1 ${NORMAL}"
@@ -57,6 +62,7 @@ git_push() {
     git add . && git commit -a -m "$2" && git push
     cd ..
 }
+
 
 git_pull() {
     echo -e "${BOLD}${BGDEF}${LYELLOW} pull $1 ${NORMAL}"
@@ -73,7 +79,150 @@ git_status() {
     cd ..
 }
 
-repos=("borsch" "lib_curl" "lib_openssl" "lib_tiff" "lib_lzma" "lib_hdf4" "lib_png" "lib_geotiff" "tests" "lib_xml2" "lib_hdfeos2" "lib_gdal" "lib_pq" "lib_spatialite" "lib_iconv" "lib_freexl" "lib_spatialindex" "postgis" "lib_geos" "lib_sqlite" "lib_proj" "lib_jsonc" "lib_szip" "lib_jpeg" "lib_z" "lib_jbig" "lib_expat" "googletest" "lib_boost" "lib_zip" "lib_uv" "lib_jpegturbo" "lib_variant" "lib_rapidjson" "lib_nunicode" "lib_geojsonvt")
+
+git_lastlog() {
+    echo -e "${BOLD}${BGDEF}${LGREEN} last log header for $1 ${NORMAL}"
+    cd $1
+    git log -1
+    cd ..
+}
+
+
+repo_cmd() {
+    CMDR="$1"
+    REPO=$2
+    REPO_DIR=$3
+
+    echo -e "${BOLD}${BGDEF}${LGREEN} perform cmd ${CMDR} for ${REPO} ${NORMAL}"
+    cd ${REPO}
+    ${CMDR}
+    cd ..
+}
+
+
+repo_copy() {
+    SRC_FILE=$1
+    REPO=$2
+    REPO_DIR=$3
+
+    echo -e "${BOLD}${BGDEF}${LGREEN} copy ${SRC_FILE} to ${REPO} ${NORMAL}"
+
+    DST_DIR="cmake"
+
+    if [[ ${REPO_DIR} != "" ]]
+    then
+        DST_DIR=${REPO_DIR}
+    fi
+
+    if [[ ${REPO_DIR} != ${DIR_NONE} ]]
+    then
+        cp -v ./borsch/cmake/${SRC_FILE} ./${REPO}/${DST_DIR}/${SRC_FILE}
+    else
+        echo -e "${BOLD}${BGDEF}${LYELLOW} Cmake dir does not exist ${NORMAL}"
+    fi
+}
+
+
+repo_update() {
+    SRC_FILE=$1
+    REPO=$2
+    REPO_DIR=$3
+
+    echo -e "${BOLD}${BGDEF}${LGREEN} update ${SRC_FILE} if exist in ${REPO} ${NORMAL}"
+
+    DST_DIR="cmake"
+
+    if [[ ${REPO_DIR} != "" ]]
+    then
+        DST_DIR=${REPO_DIR}
+    fi
+
+    SRC_FILE_PATH=./borsch/cmake/${SRC_FILE}
+    DST_FILE_PATH=./${REPO}/${DST_DIR}/${SRC_FILE}
+
+    if [[ -f ${DST_FILE_PATH} ]]
+    then
+        cp -v ${SRC_FILE_PATH} ${DST_FILE_PATH}
+    else
+        echo -e "${BOLD}${BGDEF}${LYELLOW} File ${SRC_FILE} does not exist, do not update it ${NORMAL}"
+    fi
+}
+
+
+repo_delete() {
+    SRC_FILE=$1
+    REPO=$2
+    REPO_DIR=$3
+
+    echo -e "${BOLD}${BGDEF}${LGREEN} delete ${SRC_FILE} in ${REPO} ${NORMAL}"
+
+    DST_DIR="cmake"
+
+    if [[ ${REPO_DIR} != "" ]]
+    then
+        DST_DIR=${REPO_DIR}
+    fi
+
+    DST_FILE_PATH=./${REPO}/${DST_DIR}/${SRC_FILE}
+
+    if [[ -f ${DST_FILE_PATH} ]]
+    then
+        rm -v -i ${DST_FILE_PATH}
+    else
+        echo -e "${BOLD}${BGDEF}${LYELLOW} File ${SRC_FILE} does not exist ${NORMAL}"
+    fi
+}
+
+
+repos=(
+ "borsch"
+ "lib_curl"
+ "lib_openssl"
+ "lib_tiff"
+ "lib_lzma"
+ "lib_hdf4"
+ "lib_png"
+ "lib_geotiff"
+ "tests"
+ "lib_xml2"
+ "lib_hdfeos2"
+ "lib_gdal"
+ "lib_pq"
+ "lib_spatialite"
+ "lib_iconv"
+ "lib_freexl"
+ "lib_spatialindex"
+ "postgis"
+ "lib_geos"
+ "lib_sqlite"
+ "lib_proj"
+ "lib_jsonc"
+ "lib_szip"
+ "lib_jpeg"
+ "lib_z"
+ "lib_jbig"
+ "lib_expat"
+ "googletest"
+ "lib_boost"
+ "lib_zip"
+ "lib_uv"
+ "lib_jpegturbo"
+ "lib_variant"
+ "lib_rapidjson"
+ "lib_nunicode"
+ "lib_geojsonvt"
+)
+
+
+declare -A cmake_dirs=(
+    ["lib_curl"]="CMake"
+    ["lib_zip"]="TODO_cmake"
+    ["lib_spatialindex"]=${DIR_NONE}
+    ["lib_uv"]=${DIR_NONE}
+    ["lib_jpegturbo"]=${DIR_NONE}
+    ["lib_geojsonvt"]=${DIR_NONE}
+)
+
 
 case "$1" in
         clone)
@@ -83,7 +232,7 @@ case "$1" in
                 git_clone "$repo"
             done
             ;;
-         
+
         push)
             cd ../..
             for repo in ${repos[@]}
@@ -91,7 +240,7 @@ case "$1" in
                 git_push "$repo" "$2"
             done
             ;;
-         
+
         pull)
             cd ../..
             for repo in ${repos[@]}
@@ -99,7 +248,7 @@ case "$1" in
                 git_pull "$repo"
             done
             ;;
-         
+
         status)
             cd ../..
             for repo in ${repos[@]}
@@ -107,10 +256,49 @@ case "$1" in
                 git_status "$repo"
             done
             ;;
-         
-        *)
-            echo $"Usage: $0 {clone|push|pull|status}"
-            exit 1
- 
-esac
 
+        lastlog)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                git_lastlog "$repo"
+            done
+            ;;
+
+        cmd)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                repo_cmd "$2" "$repo" "${cmake_dirs[${repo}]}"
+            done
+            ;;
+
+        copy)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                repo_copy $2 "$repo" "${cmake_dirs[${repo}]}"
+            done
+            ;;
+
+        update)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                repo_update $2 "$repo" "${cmake_dirs[${repo}]}"
+            done
+            ;;
+
+        delete)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                repo_delete $2 "$repo" "${cmake_dirs[${repo}]}"
+            done
+            ;;
+
+        *)
+            echo $"Usage: $0 {clone|push|pull|status|cmd|lastlog|copy|delete}"
+            exit 1
+
+esac
