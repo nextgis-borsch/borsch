@@ -56,6 +56,22 @@ git_clone() {
 }
 
 
+git_addall() {
+    echo -e "${BOLD}${BGDEF}${LCYAN} add all changes in $1 ${NORMAL}"
+    cd $1
+    git add -A
+    cd ..
+}
+
+
+git_commit() {
+    echo -e "${BOLD}${BGDEF}${LCYAN} commit "$2" in $1 ${NORMAL}"
+    cd $1
+    git commit -m "$2"
+    cd ..
+}
+
+
 git_push() {
     echo -e "${BOLD}${BGDEF}${LCYAN} push $1 ${NORMAL}"
     cd $1
@@ -233,6 +249,22 @@ case "$1" in
             done
             ;;
 
+        addall)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                git_addall "$repo"
+            done
+            ;;
+
+        commit)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                git_commit "$repo" "$2"
+            done
+            ;;
+
         push)
             cd ../..
             for repo in ${repos[@]}
@@ -298,7 +330,7 @@ case "$1" in
             ;;
 
         *)
-            echo $"Usage: $0 {clone|push|pull|status|cmd|lastlog|copy|delete}"
+            echo $"Usage: $0 {clone|addall|commit|push|pull|status|cmd|lastlog|copy|delete}"
             exit 1
 
 esac
