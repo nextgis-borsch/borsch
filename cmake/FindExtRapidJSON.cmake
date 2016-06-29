@@ -22,10 +22,6 @@
 
 set(repo_name lib_rapidjson)
 
-if(find_extproject_SHARED)
-    set(repo_project librapidjson)
-else()
-    set(repo_project librapidjsonstatic)
-endif()
+set(repo_project librapidjson)
 
 set(repo_include rapidjson)

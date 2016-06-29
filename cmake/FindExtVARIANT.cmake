@@ -22,10 +22,6 @@
 
 set(repo_name lib_variant)
 
-if(find_extproject_SHARED)
-    set(repo_project libvariant)
-else()
-    set(repo_project libvariantstatic)
-endif()
+set(repo_project libvariant)
 
 set(repo_include)
