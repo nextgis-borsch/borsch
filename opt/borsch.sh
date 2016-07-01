@@ -96,6 +96,14 @@ git_status() {
 }
 
 
+git_diff() {
+    echo -e "${BOLD}${BGDEF}${LGREEN} diff $1 ${NORMAL}"
+    cd $1
+    git diff
+    cd ..
+}
+
+
 git_lastlog() {
     echo -e "${BOLD}${BGDEF}${LGREEN} last log header for $1 ${NORMAL}"
     cd $1
@@ -289,6 +297,14 @@ case "$1" in
             done
             ;;
 
+        diff)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                git_diff "$repo"
+            done
+            ;;
+
         lastlog)
             cd ../..
             for repo in ${repos[@]}
@@ -330,7 +346,7 @@ case "$1" in
             ;;
 
         *)
-            echo $"Usage: $0 {clone|addall|commit|push|pull|status|cmd|lastlog|copy|delete}"
+            echo $"Usage: $0 {clone|addall|commit|push|pull|status|diff|cmd|lastlog|copy|delete}"
             exit 1
 
 esac
