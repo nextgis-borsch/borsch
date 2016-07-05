@@ -131,7 +131,7 @@ This is a table of available libraries.
 |52| [lib_variant](https://github.com/nextgis-borsch/lib_variant) | yes | | |
 |53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | yes | | |
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | yes | | cmaked within the requirements of the mapbox |
-|55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | no | | |
+|55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partialy cmaked (except tiger and cgal) |
 
 # Cmaked libraries requirements  
