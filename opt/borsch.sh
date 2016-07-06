@@ -23,7 +23,7 @@ MAGENTA='\033[0;35m'     #  ${MAGENTA}    # фиолетовый цвет зна
 CYAN='\033[0;36m'       #  ${CYAN}      # цвет морской волны знаков
 GRAY='\033[0;37m'       #  ${GRAY}      # серый цвет знаков
 
-# Цветом текста (жирным) (bold) :
+# Цвет текста (жирным) (bold) :
 DEF='\033[0;39m'       #  ${DEF}
 DGRAY='\033[1;30m'     #  ${DGRAY}
 LRED='\033[1;31m'       #  ${LRED}
@@ -47,19 +47,19 @@ BGDEF='\033[49m'      #  ${BGDEF}
 
 
 DIR_NONE="!_NONE_!"
-
+ALL_IS_OK_MSG="${BOLD}${BGDEF}${LMAGENTA} All is OK ${NORMAL}"
 
 git_clone() {
     echo -e "${BOLD}${BGDEF}${LCYAN} clone $1 ${NORMAL}"
     repo="git@github.com:nextgis-borsch/$1.git"
-    git clone $repo
+    git clone $repo && echo -e "${ALL_IS_OK_MSG}"
 }
 
 
 git_addall() {
     echo -e "${BOLD}${BGDEF}${LCYAN} add all changes in $1 ${NORMAL}"
     cd $1
-    git add -A
+    git add -A && echo -e "${ALL_IS_OK_MSG}"
     cd ..
 }
 
@@ -67,7 +67,7 @@ git_addall() {
 git_commit() {
     echo -e "${BOLD}${BGDEF}${LCYAN} commit "$2" in $1 ${NORMAL}"
     cd $1
-    git commit -m "$2"
+    git commit -m "$2" && echo -e "${ALL_IS_OK_MSG}"
     cd ..
 }
 
@@ -75,7 +75,7 @@ git_commit() {
 git_push() {
     echo -e "${BOLD}${BGDEF}${LCYAN} push $1 ${NORMAL}"
     cd $1
-    git add . && git commit -a -m "$2" && git push
+    git add . && git commit -a -m "$2" && git push && echo -e "${ALL_IS_OK_MSG}"
     cd ..
 }
 
@@ -83,7 +83,7 @@ git_push() {
 git_pull() {
     echo -e "${BOLD}${BGDEF}${LYELLOW} pull $1 ${NORMAL}"
     cd $1
-    git pull
+    git pull && echo -e "${ALL_IS_OK_MSG}"
     cd ..
 }
 
@@ -119,7 +119,7 @@ repo_cmd() {
 
     echo -e "${BOLD}${BGDEF}${LGREEN} perform cmd ${CMDR} for ${REPO} ${NORMAL}"
     cd ${REPO}
-    ${CMDR}
+    ${CMDR} && echo -e "${ALL_IS_OK_MSG}"
     cd ..
 }
 
