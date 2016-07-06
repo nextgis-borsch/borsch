@@ -240,11 +240,7 @@ repos=(
 
 declare -A cmake_dirs=(
     ["lib_curl"]="CMake"
-    ["lib_zip"]="TODO_cmake"
     ["lib_spatialindex"]=${DIR_NONE}
-    ["lib_uv"]=${DIR_NONE}
-    ["lib_jpegturbo"]=${DIR_NONE}
-    ["lib_geojsonvt"]=${DIR_NONE}
 )
 
 
