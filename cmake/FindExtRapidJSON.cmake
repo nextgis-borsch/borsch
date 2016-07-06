@@ -25,3 +25,4 @@ set(repo_name lib_rapidjson)
 set(repo_project librapidjson)
 
 set(repo_include rapidjson)
+set(repo_header_only ON)

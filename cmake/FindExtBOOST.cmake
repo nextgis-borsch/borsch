@@ -25,3 +25,4 @@ set(repo_name lib_boost)
 set(repo_project libboost)
 
 set(repo_include boost)
+set(repo_header_only ON)
