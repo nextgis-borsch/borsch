@@ -278,7 +278,7 @@ case "$1" in
             cd ../..
             for repo in ${repos[@]}
             do
-                git_push "$repo" "$2"
+                git_send "$repo" "$2"
             done
             ;;
 	
@@ -286,7 +286,7 @@ case "$1" in
 	    cd ../..
 	    for repo in ${repos[@]}
 	    do
-		git_push "$repo" "$2"
+		git_push "$repo"
 	    done
 	    ;;
 
