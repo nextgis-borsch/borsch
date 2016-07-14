@@ -83,6 +83,7 @@ git_push() {
     echo -e "${BOLD}${BGDEF}${LCYAN} push $1 ${NORMAL}"
     cd $1
     git push && echo -e "${ALL_IS_OK_MSG}"
+    cd ..
 }
 
 git_pull() {
