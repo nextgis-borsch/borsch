@@ -72,13 +72,18 @@ git_commit() {
 }
 
 
-git_push() {
+git_send() {
     echo -e "${BOLD}${BGDEF}${LCYAN} push $1 ${NORMAL}"
     cd $1
     git add . && git commit -a -m "$2" && git push && echo -e "${ALL_IS_OK_MSG}"
     cd ..
 }
 
+git_push() {
+    echo -e "${BOLD}${BGDEF}${LCYAN} push $1 ${NORMAL}"
+    cd $1
+    git push && echo -e "${ALL_IS_OK_MSG}"
+}
 
 git_pull() {
     echo -e "${BOLD}${BGDEF}${LYELLOW} pull $1 ${NORMAL}"
@@ -269,13 +274,21 @@ case "$1" in
             done
             ;;
 
-        push)
+        send)
             cd ../..
             for repo in ${repos[@]}
             do
                 git_push "$repo" "$2"
             done
             ;;
+	
+	push)
+	    cd ../..
+	    for repo in ${repos[@]}
+	    do
+		git_push "$repo" "$2"
+	    done
+	    ;;
 
         pull)
             cd ../..
@@ -342,7 +355,7 @@ case "$1" in
             ;;
 
         *)
-            echo $"Usage: $0 {clone|addall|commit|push|pull|status|diff|cmd|lastlog|copy|delete}"
+            echo $"Usage: $0 {clone|addall|commit|send|push|pull|status|diff|cmd|lastlog|copy|delete}"
             exit 1
 
 esac
