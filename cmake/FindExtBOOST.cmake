@@ -22,10 +22,7 @@
 
 set(repo_name lib_boost)
 
-if(find_extproject_SHARED)
-    set(repo_project libboost)
-else()
-    set(repo_project libbooststatic)
-endif()
+set(repo_project libboost)
 
 set(repo_include boost)
+set(repo_header_only ON)

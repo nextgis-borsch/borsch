@@ -20,9 +20,12 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_rapidjson)
+set(repo_name lib_geojsonvt)
 
-set(repo_project librapidjson)
+if(find_extproject_SHARED)
+    set(repo_project geojsonvtcpp)
+else()
+    set(repo_project geojsonvtcppstatic)
+endif()
 
-set(repo_include rapidjson)
-set(repo_header_only ON)
+set(repo_include mapbox)

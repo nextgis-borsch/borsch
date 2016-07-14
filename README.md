@@ -126,12 +126,12 @@ This is a table of available libraries.
 |47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux | |
 |48| [lib_boost](https://github.com/nextgis-borsch/lib_boost) | yes | | Make only copies of headers from "boost/" without building libs |
 |49| [lib_zip](https://github.com/nextgis-borsch/lib_zip) | yes | | |
-|50| [lib_uv](https://github.com/nextgis-borsch/lib_uv) | no | | |
+|50| [lib_uv](https://github.com/nextgis-borsch/lib_uv) | yes | | |
 |51| [lib_jpegturbo](https://github.com/nextgis-borsch/lib_jpegturbo) | no | | |
 |52| [lib_variant](https://github.com/nextgis-borsch/lib_variant) | yes | | |
 |53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | yes | | |
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | yes | | cmaked within the requirements of the mapbox |
-|55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | no | | |
+|55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partialy cmaked (except tiger and cgal) |
 
 # Cmaked libraries requirements  
