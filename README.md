@@ -91,7 +91,7 @@ This is a table of available libraries.
 |12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows | tests present |
 |13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present |
 |14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows |  |
-|15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows | tests present |
+|15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows, Mac OS X | tests present |
 |16| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
 |17| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 |18| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Linux, Windows | tests present |
