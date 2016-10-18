@@ -133,6 +133,7 @@ This is a table of available libraries.
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | yes | | cmaked within the requirements of the mapbox |
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partialy cmaked (except tiger and cgal) |
+|57| [lib_opencad](https://github.com/nextgis-borsch/lib_opencad) | yes | Linux | From GSoC2016 |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
