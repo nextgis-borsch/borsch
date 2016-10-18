@@ -1,15 +1,15 @@
 # Introduction
-Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. Enter NextGIS Borsch (http://nextgis.ru/en/borsch) - new build system that is a) easier to use, b) better solves depencies and c) provides more uniform way of building packages. Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows and Linux.
+Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. Enter NextGIS Borsch (http://nextgis.ru/en/borsch) - new build system that is a) easier to use, b) better solves dependencies and c) provides more uniform way of building packages. Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows and Linux.
 
 # Common cmake scripts
-This is common cmake scripts for building system. 
+This is common cmake scripts for building system.
 Now two main files created **FindAnyProject.cmake** and **FindExtProject.cmake**.
 
-FindAnyProject.cmake - have two main functions: find_anyproject and target_link_extlibraries. 
+FindAnyProject.cmake - have two main functions: find_anyproject and target_link_extlibraries.
 
 The first one try to find_package locally. If no package found user can select to use external project. The FindExtProject.cmake used for it.
 
-The second one used to link target libraries from both local or external packages. 
+The second one used to link target libraries from both local or external packages.
 
 There are set of FindExtxxx.cmake files for external repositories details and some additional logic.
 
@@ -68,7 +68,7 @@ find_anyproject(CURL REQUIRED CMAKE_ARGS
 The final step is to link target libraries:
 
 ```
-target_link_extlibraries(${LIB_NAME}) 
+target_link_extlibraries(${LIB_NAME})
 ```
 
 # Cmaked libraries
@@ -83,7 +83,7 @@ This is a table of available libraries.
 |4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows |  |
 |5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows |  |
 |6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows |  |
-|7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows |  |
+|7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
 |8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows |  |
 |9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
 |10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows | tests present |
@@ -132,7 +132,7 @@ This is a table of available libraries.
 |53| [lib_rapidjson](https://github.com/nextgis-borsch/lib_rapidjson) | yes | | |
 |54| [lib_nunicode](https://github.com/nextgis-borsch/lib_nunicode) | yes | | cmaked within the requirements of the mapbox |
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
-|56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partialy cmaked (except tiger and cgal) |
+|56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partially cmaked (except tiger and cgal) |
 |57| [lib_opencad](https://github.com/nextgis-borsch/lib_opencad) | yes | Linux | From GSoC2016 |
 
 # Cmaked libraries requirements  
@@ -149,9 +149,9 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 # License
 
-All scripts are licensed under GNU GPL v.2. 
+All scripts are licensed under GNU GPL v.2.
 
 # Notes
 
-* There is additional util.cmake file for pretty print of version information to the console. 
+* There is additional util.cmake file for pretty print of version information to the console.
 * MSVC 2013 update 2 and later have enough C99 support to build under Windows.
