@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_geojsonvt)
-
-if(find_extproject_SHARED)
-    set(repo_project geojsonvtcpp)
-else()
-    set(repo_project geojsonvtcppstatic)
-endif()
-
+set(repo_project geojsonvtcpp)
 set(repo_include mapbox)

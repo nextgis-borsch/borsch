@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_spatialite)
-
-if(find_extproject_SHARED)    
-    set(repo_project spatialite)
-else()
-    set(repo_project spatialitestatic)
-endif()
-
+set(repo_project spatialite)
 set(repo_include)

@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_gdal)
-
-if(find_extproject_SHARED)    
-    set(repo_project gdal)
-else()
-    set(repo_project gdalstatic)
-endif()
-
+set(repo_project gdal)
 set(repo_include gdal)

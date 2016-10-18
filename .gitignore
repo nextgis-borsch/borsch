@@ -6,3 +6,4 @@ install_manifest.txt
 
 # Tmp
 *~
+.DS_Store

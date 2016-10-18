@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_spatialindex)
-
-if(find_extproject_SHARED)    
-    set(repo_project spatialindex)
-else()
-    set(repo_project spatialindexstatic)
-endif()
-
+set(repo_project spatialindex)
 set(repo_include)
