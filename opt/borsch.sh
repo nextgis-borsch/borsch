@@ -241,6 +241,7 @@ repos=(
  "lib_rapidjson"
  "lib_nunicode"
  "lib_geojsonvt"
+ "lib_opencad"
 )
 
 
