@@ -242,6 +242,8 @@ repos=(
  "lib_nunicode"
  "lib_geojsonvt"
  "lib_opencad"
+ "lib_ecw"
+ "lib_mrsid"
 )
 
 
