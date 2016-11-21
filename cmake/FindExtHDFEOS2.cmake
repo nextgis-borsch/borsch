@@ -21,13 +21,7 @@
 ################################################################################
 
 set(repo_name lib_hdfeos2)
-
-if(find_extproject_SHARED)    
-    set(repo_project hdfeos)
-else()
-    set(repo_project hdfeosstatic)
-endif()
-
+set(repo_project hdfeos)
 set(repo_include)
 
 if(find_extproject_SHARED)

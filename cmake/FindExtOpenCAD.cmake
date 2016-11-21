@@ -20,6 +20,10 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_geotiff)
-set(repo_project geotiff)
-set(repo_include)
+set(repo_name lib_opencad)
+set(repo_project opencad)
+set(repo_include "opencad")
+
+if(NOT find_extproject_SHARED)
+    add_definitions(-DOCAD_STATIC)
+endif()

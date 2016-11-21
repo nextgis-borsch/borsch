@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_gsl)
-
-if(find_extproject_SHARED)    
-    set(repo_project gsl)
-else()
-    set(repo_project gslstatic)
-endif()
-
+set(repo_project gsl)
 set(repo_include gsl)

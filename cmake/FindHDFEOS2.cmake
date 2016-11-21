@@ -59,7 +59,8 @@ endif ()
 # all listed variables are TRUE
 include(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(HDFEOS2
-                                  REQUIRED_VARS HDFEOS2_LIBRARY HDFEOS2_INCLUDE_DIR)
+                                  REQUIRED_VARS HDFEOS2_LIBRARY HDFEOS2_INCLUDE_DIR
+                                  VERSION_VAR HDFEOS2_VERSION_STRING)
 
 # Copy the results to the output variables.
 if(HDFEOS2_FOUND)

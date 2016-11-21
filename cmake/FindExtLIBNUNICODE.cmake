@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_nunicode)
-
-if(find_extproject_SHARED)
-    set(repo_project libnu)
-else()
-    set(repo_project libnustatic)
-endif()
-
+set(repo_project libnu)
 set(repo_include libnu)

@@ -21,8 +21,6 @@
 ################################################################################
 
 set(repo_name lib_variant)
-
 set(repo_project libvariant)
-
 set(repo_include)
 set(repo_header_only ON)

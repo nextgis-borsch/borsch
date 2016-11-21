@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_freexl)
-
-if(find_extproject_SHARED)    
-    set(repo_project freexl)
-else()
-    set(repo_project freexlstatic)
-endif()
-
+set(repo_project freexl)
 set(repo_include freexl)

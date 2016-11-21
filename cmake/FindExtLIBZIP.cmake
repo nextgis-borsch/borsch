@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_zip)
-
-if(find_extproject_SHARED)
-    set(repo_project libzip)
-else()
-    set(repo_project libzipstatic)
-endif()
-
+set(repo_project libzip)
 set(repo_include)

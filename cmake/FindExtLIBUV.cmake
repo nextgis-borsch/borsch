@@ -21,11 +21,5 @@
 ################################################################################
 
 set(repo_name lib_uv)
-
-if(find_extproject_SHARED)
-    set(repo_project libuv)
-else()
-    set(repo_project libuvstatic)
-endif()
-
+set(repo_project libuv)
 set(repo_include)

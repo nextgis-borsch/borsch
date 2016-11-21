@@ -62,9 +62,6 @@ ELSE(WIN32)
           ENDIF (NOT GEOS_VERSION)
           STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\1" GEOS_VERSION_MAJOR "${GEOS_VERSION}")
           STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\2" GEOS_VERSION_MINOR "${GEOS_VERSION}")
-          IF (GEOS_VERSION_MAJOR LESS 3)
-            MESSAGE (FATAL_ERROR "GEOS version is too old (${GEOS_VERSION}). Use 3.0.0 or higher.")
-          ENDIF (GEOS_VERSION_MAJOR LESS 3)
         ENDIF (GEOS_LIBRARY)
         SET (CMAKE_FIND_FRAMEWORK ${CMAKE_FIND_FRAMEWORK_save} CACHE STRING "" FORCE)
       ENDIF ()
@@ -88,10 +85,6 @@ ELSE(WIN32)
         STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\1" GEOS_VERSION_MAJOR "${GEOS_VERSION}")
         STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\2" GEOS_VERSION_MINOR "${GEOS_VERSION}")
 
-        IF (GEOS_VERSION_MAJOR LESS 3)
-          MESSAGE (FATAL_ERROR "GEOS version is too old (${GEOS_VERSION}). Use 3.0.0 or higher.")
-        ENDIF (GEOS_VERSION_MAJOR LESS 3)
-     
         # set INCLUDE_DIR to prefix+include
         EXEC_PROGRAM(${GEOS_CONFIG}
             ARGS --prefix
@@ -160,25 +153,12 @@ ELSE(WIN32)
   ENDIF(UNIX)
 ENDIF(WIN32)
 
+# Handle the QUIETLY and REQUIRED arguments and set GEOS_FOUND to TRUE
+# if all listed variables are TRUE
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(GEOS 
+                                  REQUIRED_VARS GEOS_LIBRARY GEOS_INCLUDE_DIR 
+                                  VERSION_VAR GEOS_VERSION)
 
-IF (GEOS_INCLUDE_DIR AND GEOS_LIBRARY)
-   SET(GEOS_FOUND TRUE)
-ENDIF (GEOS_INCLUDE_DIR AND GEOS_LIBRARY)
-
-IF (GEOS_FOUND)
-
-   IF (NOT GEOS_FIND_QUIETLY)
-      MESSAGE(STATUS "Found GEOS: ${GEOS_LIBRARY}")
-   ENDIF (NOT GEOS_FIND_QUIETLY)
-
-ELSE (GEOS_FOUND)
-	IF (NOT GEOS_FIND_QUIETLY)
-		MESSAGE(STATUS "Could NOT find GEOS (missing:  GEOS_LIBRARY GEOS_INCLUDE_DIR)")
-	ENDIF (NOT GEOS_FIND_QUIETLY)
-	
-   # MESSAGE(GEOS_INCLUDE_DIR=${GEOS_INCLUDE_DIR})
-   # MESSAGE(GEOS_LIBRARY=${GEOS_LIBRARY})
-	if(REQUIRED_VARS)
-		MESSAGE(FATAL_ERROR "Could not find GEOS")
-	endif(REQUIRED_VARS)
-ENDIF (GEOS_FOUND)
+# Hide internal variables
+mark_as_advanced(GEOS_LIBRARY GEOS_INCLUDE_DIR)
