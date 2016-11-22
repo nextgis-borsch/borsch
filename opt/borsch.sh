@@ -241,6 +241,9 @@ repos=(
  "lib_rapidjson"
  "lib_nunicode"
  "lib_geojsonvt"
+ "lib_opencad"
+ "lib_ecw"
+ "lib_mrsid"
 )
 
 
@@ -282,7 +285,7 @@ case "$1" in
                 git_send "$repo" "$2"
             done
             ;;
-	
+
 	push)
 	    cd ../..
 	    for repo in ${repos[@]}
@@ -356,7 +359,7 @@ case "$1" in
             ;;
 
         *)
-            echo $"Usage: $0 {clone|addall|commit|send|push|pull|status|diff|cmd|lastlog|copy|delete}"
+            echo $"Usage: $0 {clone|addall|commit|send|push|pull|status|diff|cmd|lastlog|copy|update|delete}"
             exit 1
 
 esac

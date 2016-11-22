@@ -38,11 +38,12 @@ find_library(JPEG12_LIBRARY NAMES ${JPEG12_NAMES} )
 
 # handle the QUIETLY and REQUIRED arguments and set JPEG12_FOUND to TRUE if
 # all listed variables are TRUE
-include(${CMAKE_CURRENT_LIST_DIR}/FindPackageHandleStandardArgs.cmake)
+include(FindPackageHandleStandardArgs)
 FIND_PACKAGE_HANDLE_STANDARD_ARGS(JPEG12 DEFAULT_MSG JPEG12_LIBRARY JPEG12_INCLUDE_DIR)
 
 if(JPEG12_FOUND)
   set(JPEG12_LIBRARIES ${JPEG12_LIBRARY})
+  set(JPEG12_INCLUDE_DIRS ${JPEG12_INCLUDE_DIR})
 endif()
 
 # Deprecated declarations.

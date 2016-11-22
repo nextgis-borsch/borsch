@@ -34,7 +34,6 @@
 # To aid in finding HDF4 as part of a subproject set
 # HDF4_ROOT_DIR_HINT to the location where hdf4-config.cmake lies
 
-#include(${CMAKE_CURRENT_LIST_DIR}/SelectLibraryConfigurations.cmake)
 include(FindPackageHandleStandardArgs)
 
 # seed the initial lists of libraries to find with items we know we need
@@ -117,9 +116,15 @@ if (HDF4_INCLUDE_DIR)
         select_library_configurations( HDF4_${LIB} )
         list(APPEND HDF4_LIBRARIES ${HDF4_${LIB}_LIBRARY})
     endforeach()
-    find_package_handle_standard_args( HDF4 DEFAULT_MSG
-        HDF4_LIBRARIES
-        HDF4_INCLUDE_DIRS
-    )
     endif()  
 endif ()
+
+find_package_handle_standard_args( HDF4 DEFAULT_MSG HDF4_LIBRARIES HDF4_INCLUDE_DIRS)
+    
+IF(HDF4_FOUND)
+  set(HDF4_LIBRARY ${HDF4_LIBRARIES})
+  set(HDF4_INCLUDE_DIR ${HDF4_INCLUDE_DIRS})
+ENDIF()
+
+# Hide internal variables
+mark_as_advanced(HDF4_INCLUDE_DIR HDF4_LIBRARY)
