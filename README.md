@@ -78,15 +78,11 @@ This is a table of currently available libraries.
 | # | Repository | Cmaked  | OS tested | Notes |
 |:-:|---|:-:|---|:---|
 |1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present |
-|2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows |  |
+|2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
 |3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows |  |
 |4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows |  |
 |5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows |  |
-<<<<<<< HEAD
-|6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows |  |
-=======
 |6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows, Mac OS X |  |
->>>>>>> 9759ec016f0e64f00e61f1700656af1e6833caf9
 |7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
 |8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows |  |
 |9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
@@ -100,7 +96,7 @@ This is a table of currently available libraries.
 |17| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
 |18| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Linux, Windows | tests present |
 |19| [lib_hdfeos2](https://github.com/nextgis-borsch/lib_hdfeos2) | yes | Linux, Windows | tests present, 7 failed |
-|20| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Linux, Windows |  |
+|20| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Linux, Windows, Mac OS X |  |
 |21| lib_hdfeos5 | no | |  |
 |22| lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 |23| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
