@@ -165,7 +165,7 @@ def git_push():
 def git_commit(message):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        print color_print('commit to ' + repository['url'] + ' with messahe:' + message, True, 'LCYAN')
+        print color_print('commit to ' + repository['url'] + ' with message: ' + message, True, 'LCYAN')
         os.chdir(repository['url'])
         if run(('git', 'commit', '-a', '-m', message)):
             color_print('All is OK', True, 'LMAGENTA')
