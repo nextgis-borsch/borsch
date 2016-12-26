@@ -18,45 +18,45 @@ import sys
 import multiprocessing
 
 repositories = [
-    {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : [], "args" : ""},
-    {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : "-DWITH_ZLIB=ON -DWITH_JPEG=ON -DWITH_JPEG12=ON -DWITH_JBIG=ON -DWITH_LibLZMA=ON"},
-    {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ""},
-    {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ""},
-    {"url" : "lib_geotiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : "-DWITH_ZLIB=ON -DWITH_JPEG=ON"},
-    {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ""},
-    {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ""},
-    {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ""},
-    {"url" : "lib_z", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ""},
-    {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_nunicode", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : [], "args" : ""},
-    {"url" : "lib_mrsid", "cmake_dir" : "cmake", "build" : [], "args" : ""},
+    {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_z", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : [], "args" : []},
+    {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
+    {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_geotiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON']},
+    {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_nunicode", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_mrsid", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
 
 args = {}
@@ -99,7 +99,7 @@ def parse_arguments():
     args = parser.parse_args()
 
 def run(args):
-    #print 'calling ' + string.join(args)
+    print 'calling ' + string.join(args)
     try:
         subprocess.check_call(args)
         return True
@@ -107,7 +107,7 @@ def run(args):
         return False
 
 def color_print(text, bold, color):
-    if sys.platform == 'windows':
+    if sys.platform == 'win32':
         print text
     else:
         out_text = ''
@@ -175,14 +175,16 @@ def make_package():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
     for repository in repositories:
+        run_args = ['cmake']
         check_os = ''
-        cmake_args = '-DSUPPRESS_VERBOSE_OUTPUT=ON'
+        run_args.append('-DSUPPRESS_VERBOSE_OUTPUT=ON')
         build_args = ''
         if sys.platform == 'darwin':
             check_os = 'mac'
-            cmake_args += ' -DOSX_FRAMEWORK=ON -DREGISTER_PACKAGE=ON'
+            run_args.append('-DOSX_FRAMEWORK=ON')
+            run_args.append('-DREGISTER_PACKAGE=ON')
             build_args = '-j' + str(multiprocessing.cpu_count())
-        elif sys.platform == 'windows':
+        elif sys.platform == 'win32':
             check_os = 'win'
         else:
             check_os = 'nix'
@@ -192,14 +194,17 @@ def make_package():
             repo_dir = os.path.join(repo_root, repository['url'])
             repo_build_dir = os.path.join(repo_dir, 'build')
             repo_inst_dir = os.path.join(repo_dir, 'inst')
-            cmake_args += ' -DCMAKE_INSTALL_PREFIX=' + repo_inst_dir
+            run_args.append('-DCMAKE_INSTALL_PREFIX=' + repo_inst_dir)
             if not os.path.exists(repo_build_dir):
                 os.makedirs(repo_build_dir)
             if not os.path.exists(repo_inst_dir):
                 os.makedirs(repo_inst_dir)
             os.chdir(repo_build_dir)
+            for repo_build_arg in repository['args']:
+                run_args.append(repo_build_arg)
+            run_args.append('..')
             print color_print('configure ' + repository['url'], False, 'LBLUE')
-            if run(('cmake', cmake_args, repository['args'], '..')):
+            if run((run_args)):
                 print color_print('build ' + repository['url'], False, 'LBLUE')
                 if run(('cmake', '--build', '.', '--config', 'release', '--', build_args)):
                     print color_print('install ' + repository['url'], False, 'LBLUE')
@@ -212,11 +217,11 @@ def make_package():
                 repo_build_dir = os.path.join(repo_dir, 'build12')
                 if not os.path.exists(repo_build_dir):
                     os.makedirs(repo_build_dir)
-                cmake_args += '-DBUILD_JPEG_12=ON'
+                run_args.insert(5, '-DBUILD_JPEG_12=ON')
                 if not os.path.exists(repo_build_dir):
                     os.makedirs(repo_build_dir)
                 os.chdir(repo_build_dir)
-                if run(('cmake', cmake_args, repository['args'], '..')):
+                if run((run_args)):
                     if run(('cmake', '--build', '.', '--config', 'release', '--', build_args)):
                         run(('cmake', '--build', '.', '--config', 'release', '--target', 'install'))
 
