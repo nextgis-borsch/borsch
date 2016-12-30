@@ -39,7 +39,7 @@ repositories = [
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON']},
     {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : [], "args" : []},
