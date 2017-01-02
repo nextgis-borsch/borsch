@@ -22,7 +22,7 @@ repositories = [
     {"url" : "lib_z", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
