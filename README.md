@@ -134,6 +134,7 @@ This is a table of currently available libraries.
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partially cmaked (except tiger and cgal) |
 |57| [lib_opencad](https://github.com/nextgis-borsch/lib_opencad) | yes | Linux | From GSoC2016 |
+|58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Mac OS X | not a package but used for python dependency modules |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  

@@ -23,7 +23,7 @@ repositories = [
     {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
@@ -57,6 +57,7 @@ repositories = [
     {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_mrsid", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
 ]
 
 args = {}
