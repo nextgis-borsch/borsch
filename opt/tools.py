@@ -137,6 +137,12 @@ def color_print(text, bold, color):
         out_text += text + bcolors.ENDC
         print out_text
 
+def git_clone():
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    for repository in repositories:
+        print color_print('clone ' + repository['url'], True, 'LCYAN')
+        run(('git', 'clone', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
+
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -236,6 +242,8 @@ if args.command == 'git':
         git_pull()
     if args.push:
         git_push()
+    if args.clone:
+        git_clone()
     if args.message is not None and args.message != '':
         git_commit(args.message)
 elif args.command == 'make':
