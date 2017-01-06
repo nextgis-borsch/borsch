@@ -4,6 +4,7 @@
 ##
 ## Project: NextGIS Borsch build system
 ## Author: Dmitry Baryshnikov <dmitry.baryshnikov@nextgis.com>
+## Author: Maxim Dubinin <maim.dubinin@nextgis.com>
 ## Copyright (c) 2016 NextGIS <info@nextgis.com>
 ## License: GPL v.2
 ##
@@ -16,6 +17,8 @@ import string
 import subprocess
 import sys
 import multiprocessing
+import glob
+import csv
 
 repositories = [
     {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -61,6 +64,7 @@ repositories = [
 ]
 
 args = {}
+organize_file = 'folders.csv'
 
 class bcolors:
     HEADER = '\033[95m'
@@ -87,6 +91,8 @@ def parse_arguments():
     global args
 
     parser = argparse.ArgumentParser(description='NextGIS Borsch tools.')
+    parser.add_argument('-v', '--version', action='version', version='NextGIS Borsch tools version 1.0')
+
     subparsers = parser.add_subparsers(help='command help', dest='command')
     parser_git = subparsers.add_parser('git')
     parser_git.add_argument('--clone', dest='clone', action='store_true', help='clone all repositories')
@@ -96,6 +102,10 @@ def parse_arguments():
     parser_git.add_argument('--commit', dest='message', help='commit changes in repositories')
 
     parser_make = subparsers.add_parser('make')
+
+    parser_organize = subparsers.add_parser('organize')
+    parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal'], help='destination folder name')
 
     args = parser.parse_args()
 
@@ -234,6 +244,69 @@ def make_package():
 
         os.chdir(repo_root)
 
+def read_mappings(csv_path):
+    fieldnames_data = ('old','new','action','ext2keep')
+    f_csv = open(csv_path)
+    csvreader = csv.DictReader(f_csv, fieldnames=fieldnames_data)
+
+    return csvreader
+
+def copy_dir(src, dest, exts):
+    if not os.path.exists(dest):
+        os.makedirs(dest)
+
+    files = glob.glob(src + "/*")
+    for f in files:
+        if not os.path.isdir(f):
+            file_name = os.path.basename(f)
+            if file_name in exts:
+                shutil.copy(f, dest)
+            else:
+                file_extension = os.path.splitext(f)[1].replace('.','')
+                if file_extension != '' and file_extension in exts:
+                    shutil.copy(f, dest)
+
+def organize_sources(dst_name):
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    repo_root = os.getcwd()
+    dst_path = os.path.join(repo_root, dst_name)
+    if not os.path.exists(dst_path):
+        exit('Destination path ' + dst_path + ' not exists')
+    organize_file_path = os.path.join(dst_path, 'opt', organize_file)
+    if not os.path.exists(organize_file_path):
+        exit('Organize file ' + organize_file_path + ' not exists')
+
+    sources_dir = args.src
+    if not os.path.exists(sources_dir):
+        exit('Source path ' + sources_dir + ' not exists')
+
+    mappings = read_mappings(organize_file_path)
+
+    for row in mappings:
+        action = row['action']
+        exts = row['ext2keep']
+        if exts is not None:
+            exts = exts.split(',')
+
+        if row['old'] is None or row['old'] == '':
+            from_folder = sources_dir
+        else:
+            from_folder = os.path.join(sources_dir, row['old'])
+
+        if row['new'] is None or row['new'] == '':
+            to_folder = dst_path
+        else:
+            to_folder = os.path.join(dst_path, row['new'])
+
+        if os.path.exists(from_folder):
+            if action == 'skip':
+                color_print(from_folder + ' ... skip', False, 'LBLUE' )
+                continue
+            else:
+                copy_dir(from_folder, to_folder, exts)
+                color_print(from_folder + ' ... processed', False, 'LYELLOW' )
+
+
 parse_arguments()
 if args.command == 'git':
     if args.status:
@@ -248,5 +321,7 @@ if args.command == 'git':
         git_commit(args.message)
 elif args.command == 'make':
     make_package()
+elif args.command == 'organize':
+    organize_sources(args.dst_name)
 else:
     exit('Unsupported command')
