@@ -81,16 +81,16 @@ This is a table of currently available libraries.
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
 |3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows |  |
 |4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows |  |
-|5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows |  |
+|5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows, Mac OS X |  |
 |6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows, Mac OS X |  |
 |7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
 |8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows, Mac OS X |  |
 |9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
-|10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows | tests present |
-|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows |  |
-|12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows | tests present |
+|10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows, Mac OS X | tests present |
+|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows, Mac OS X |  |
+|12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows, Mac OS X | tests present |
 |13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present |
-|14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows |  |
+|14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows, Mac OS X |  |
 |15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows, Mac OS X | tests present |
 |16| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
 |17| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
@@ -111,7 +111,7 @@ This is a table of currently available libraries.
 |32| lib_openjpeg | no | | For GDAL OpenJPEG driver |
 |33| lib_csf | no | | For GDAL PCRaster driver |
 |34| lib_pdfium | no | | For GDAL Geospatial PDF driver |
-|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Linux, Windows| For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
+|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Linux, Windows | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
 |36| lib_ras | no | | For GDAL Rasdaman driver |
 |37| lib_webp | no | | For GDAL WEBP driver |
 |38| lib_xerces | no | | For GDAL INTERLIS driver |
@@ -147,6 +147,20 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
 5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExtxxx.cmake with library repository name and some optional variables
+
+# Update library sources
+Then new version of a library released, borsch need to be updated too.
+1. Create tag for current version in repository and send it to server:
+
+```bash
+git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
+git push origin --tags
+```
+
+2. Copy sources from original to borsch repository (don't copy build scripts).
+One can use some diff utility to check changes (i.e. meld).
+
+3. Check if everything build successfully
 
 # License
 

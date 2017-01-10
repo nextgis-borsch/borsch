@@ -27,7 +27,7 @@ repositories = [
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DOPENSSL_NO_DYNAMIC_ENGINE=ON']},
     {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
