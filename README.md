@@ -135,6 +135,10 @@ This is a table of currently available libraries.
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partially cmaked (except tiger and cgal) |
 |57| [lib_opencad](https://github.com/nextgis-borsch/lib_opencad) | yes | Linux | From GSoC2016 |
 |58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Mac OS X | not a package but used for python dependency modules |
+|59| [lib_ecw](https://github.com/nextgis-borsch/lib_ecw) | | | |
+|60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | | | |
+|61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | | | |
+|62| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  

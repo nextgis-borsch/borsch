@@ -206,32 +206,30 @@ repo_delete() {
 
 repos=(
  "borsch"
- "lib_curl"
- "lib_openssl"
- "lib_tiff"
+ "lib_z"
  "lib_lzma"
- "lib_hdf4"
- "lib_png"
- "lib_geotiff"
- "tests"
  "lib_xml2"
- "lib_hdfeos2"
- "lib_gdal"
- "lib_pq"
- "lib_spatialite"
+ "lib_curl"
+ "lib_geotiff"
+ "lib_tiff"
+ "lib_jpeg"
+ "lib_jbig"
  "lib_iconv"
- "lib_freexl"
- "lib_spatialindex"
- "postgis"
+ "lib_gdal"
+ "lib_openssl"
+ "lib_jsonc"
+ "lib_expat"
+ "lib_proj"
+ "lib_png"
+ "lib_hdf4"
+ "lib_szip"
+ "lib_hdfeos2"
  "lib_geos"
  "lib_sqlite"
- "lib_proj"
- "lib_jsonc"
- "lib_szip"
- "lib_jpeg"
- "lib_z"
- "lib_jbig"
- "lib_expat"
+ "lib_pq"
+ "lib_freexl"
+ "lib_spatialite"
+ "lib_spatialindex"
  "googletest"
  "lib_boost"
  "lib_zip"
@@ -241,9 +239,13 @@ repos=(
  "lib_rapidjson"
  "lib_nunicode"
  "lib_geojsonvt"
+ "postgis"
  "lib_opencad"
+ "numpy"
  "lib_ecw"
  "lib_mrsid"
+ "lib_gsl"
+ "tests"
 )
 
 
@@ -286,13 +288,13 @@ case "$1" in
             done
             ;;
 
-	push)
-	    cd ../..
-	    for repo in ${repos[@]}
-	    do
-		git_push "$repo"
-	    done
-	    ;;
+        push)
+            cd ../..
+            for repo in ${repos[@]}
+            do
+                git_push "$repo"
+            done
+            ;;
 
         pull)
             cd ../..
