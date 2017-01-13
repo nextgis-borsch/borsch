@@ -79,17 +79,17 @@ This is a table of currently available libraries.
 |:-:|---|:-:|---|:---|
 |1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present, not needed on Mac OS |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
-|3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows |  |
-|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows |  |
+|3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows | not needed on Mac OS |
+|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows | not needed on Mac OS |
 |5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows, Mac OS X |  |
 |6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows, Mac OS X |  |
 |7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
 |8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows, Mac OS X |  |
-|9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows |  |
+|9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows | not needed on Mac OS |
 |10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows, Mac OS X | tests present |
 |11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows, Mac OS X |  |
 |12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows, Mac OS X | tests present |
-|13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present |
+|13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows | tests present, not needed on Mac OS |
 |14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows, Mac OS X |  |
 |15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows, Mac OS X | tests present |
 |16| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
@@ -150,6 +150,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 # Update library sources
 Then new version of a library released, borsch need to be updated too.
+
 1. Create tag for current version in repository and send it to server:
 
 ```bash
