@@ -33,7 +33,7 @@ repositories = [
     {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : [], "args" : []},
+    {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : ["mac"], "args" : ['-DWITH_OpenSSL=ON', '-DWITH_ZLIB=ON']},
     {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
