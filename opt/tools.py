@@ -48,6 +48,7 @@ repositories = [
     {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -151,7 +152,7 @@ def git_clone():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
         print color_print('clone ' + repository['url'], True, 'LCYAN')
-        run(('git', 'clone', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
+        run(('git', 'clone', '--depth', '1', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
 
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
