@@ -260,10 +260,10 @@ def copy_dir(src, dest, exts):
     for f in files:
         if not os.path.isdir(f):
             file_name = os.path.basename(f)
-            if file_name in exts:
+            if '*' in exts or file_name in exts: # Check file name or if * mask
                 shutil.copy(f, dest)
             else:
-                file_extension = os.path.splitext(f)[1].replace('.','')
+                file_extension = os.path.splitext(f)[1].replace('.','') # Check extension
                 if file_extension != '' and file_extension in exts:
                     shutil.copy(f, dest)
 
