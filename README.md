@@ -166,10 +166,10 @@ Then new version of a library released, borsch need to be updated too.
 
 1. Create tag for current version in repository and send it to server:
 
-```bash
-git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
-git push origin --tags
-```
+  ```bash
+  git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
+  git push origin --tags
+  ```
 
 2. Copy sources from original to borsch repository (don't copy build scripts).
 One can use some diff utility to check changes (i.e. meld).
