@@ -143,13 +143,13 @@ This is a table of currently available libraries.
 
 # Cmaked libraries requirements  
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks:
-```
-<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework
-```
-for applications:
-```
-<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app
-```
+   ```
+   <CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework
+   ```
+   for applications:
+   ```
+   <CMAKE_INSTALL_PREFIX>/Applications/<app name>.app
+   ```
 2. Add export instruction:  
 export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
