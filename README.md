@@ -145,12 +145,18 @@ This is a table of currently available libraries.
 
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ```<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework``` and for applications:
 ```<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app```
-2. Add export instruction:  
-export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
+2. Add export instruction: 
+
+   ```cmake
+   export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)
+   ```
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
 3.1. You need to add the relevant scripts from borsch to 'cmake' directory  
-3.2. Add cmake instruction (if it is not present):  
-SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})  
+3.2. Add cmake instruction (if it is not present):
+
+   ```cmake
+   SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+   ```
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
 5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExtxxx.cmake with library repository name and some optional variables
