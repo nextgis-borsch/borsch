@@ -138,10 +138,11 @@ This is a table of currently available libraries.
 |59| [lib_ecw](https://github.com/nextgis-borsch/lib_ecw) | | | |
 |60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | | | |
 |61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | | | |
-|62| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using theirs own build system |
+|63| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # Cmaked libraries requirements  
-1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
+1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be: for frameworks <CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework, for applications <CMAKE_INSTALL_PREFIX>/Applications/<app name>.app.  
 2. Add export instruction:  
 export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
@@ -151,6 +152,7 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
 5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExtxxx.cmake with library repository name and some optional variables
+7. Add REGISTER_PACKAGE block to register libraries in CMake global repository on target system.
 
 # Update library sources
 Then new version of a library released, borsch need to be updated too.
