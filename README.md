@@ -17,14 +17,15 @@ Finally, there are sets of FindExtxxx.cmake files for external repositories deta
 
 To use this scripts one have to add cmake folder to the sources.
 Than the folder needs to be added to modules path:
-```
+
+```cmake
 # set path to additional CMake modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 ```
 
 Add external project with few lines of code:
 
-```
+```cmake
 include(FindAnyProject)
 
 # TIFF support - required, default=ON
@@ -42,7 +43,7 @@ Version can be specified via VERSION ```<version>```
 
 Any other parameters will be forwarded to the external project. The important parameter is **CMAKE_ARGS**. Note: do not pass WITH_X options with CMAKE_ARGS, use set(WITH_X ...) instead.
 
-```
+```cmake
 find_anyproject(CURL REQUIRED CMAKE_ARGS
       -DBUILD_CURL_EXE=OFF
       -DCURL_DISABLE_FTP=ON
@@ -67,7 +68,7 @@ find_anyproject(CURL REQUIRED CMAKE_ARGS
 
 The final step is to link target libraries:
 
-```
+```cmake
 target_link_extlibraries(${LIB_NAME})
 ```
 
