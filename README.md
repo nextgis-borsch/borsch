@@ -1,7 +1,7 @@
 # Introduction
 Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. NextGIS Borsch (http://nextgis.com/borsch) is a new build system that is a) easier to use, b) better solves dependencies and c) provides more uniform way of building packages. Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows and Linux.
 
-# Common cmake scripts
+# Common CMake scripts
 These are common cmake scripts for building system.
 Now two main files created **FindAnyProject.cmake** and **FindExtProject.cmake**.
 
@@ -38,7 +38,7 @@ Some additional parameters are supported. From find_project support:
 * REQUIRED
 * COMPONENTS
 
-Version can be specified via VERSION <version>
+Version can be specified via VERSION ```<version>```
 
 Any other parameters will be forwarded to the external project. The important parameter is **CMAKE_ARGS**. Note: do not pass WITH_X options with CMAKE_ARGS, use set(WITH_X ...) instead.
 
@@ -141,15 +141,10 @@ This is a table of currently available libraries.
 |62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
 |63| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
-# Cmaked libraries requirements  
-1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks:
-   ```
-   <CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework
-   ```
-   for applications:
-   ```
-   <CMAKE_INSTALL_PREFIX>/Applications/<app name>.app
-   ```
+# CMaked libraries requirements  
+
+1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ```<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework``` and for applications:
+```<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app```
 2. Add export instruction:  
 export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
