@@ -1,7 +1,7 @@
 # Introduction
 Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. NextGIS Borsch (http://nextgis.com/borsch) is a new build system that is a) easier to use, b) better solves dependencies and c) provides more uniform way of building packages. Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows and Linux.
 
-# Common cmake scripts
+# Common CMake scripts
 These are common cmake scripts for building system.
 Now two main files created **FindAnyProject.cmake** and **FindExtProject.cmake**.
 
@@ -17,14 +17,15 @@ Finally, there are sets of FindExtxxx.cmake files for external repositories deta
 
 To use this scripts one have to add cmake folder to the sources.
 Than the folder needs to be added to modules path:
-```
+
+```cmake
 # set path to additional CMake modules
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 ```
 
 Add external project with few lines of code:
 
-```
+```cmake
 include(FindAnyProject)
 
 # TIFF support - required, default=ON
@@ -38,11 +39,11 @@ Some additional parameters are supported. From find_project support:
 * REQUIRED
 * COMPONENTS
 
-Version can be specified via VERSION <version>
+Version can be specified via VERSION ```<version>```
 
 Any other parameters will be forwarded to the external project. The important parameter is **CMAKE_ARGS**. Note: do not pass WITH_X options with CMAKE_ARGS, use set(WITH_X ...) instead.
 
-```
+```cmake
 find_anyproject(CURL REQUIRED CMAKE_ARGS
       -DBUILD_CURL_EXE=OFF
       -DCURL_DISABLE_FTP=ON
@@ -67,7 +68,7 @@ find_anyproject(CURL REQUIRED CMAKE_ARGS
 
 The final step is to link target libraries:
 
-```
+```cmake
 target_link_extlibraries(${LIB_NAME})
 ```
 
@@ -80,7 +81,7 @@ This is a table of currently available libraries.
 |1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present, not needed on Mac OS |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
 |3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows | not needed on Mac OS |
-|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows | not needed on Mac OS |
+|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows, Mac OS X | |
 |5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows, Mac OS X |  |
 |6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows, Mac OS X |  |
 |7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
@@ -102,7 +103,7 @@ This is a table of currently available libraries.
 |23| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
 |24| lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
 |25| lib_cfitsio | no | | For GDAL FITS (.fits) driver |
-|26| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows | For GDAL GeoPackage and other drivers |
+|26| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows, Mac OS X | For GDAL GeoPackage and other drivers |
 |27| lib_gif | no | | For GDAL GIF driver |
 |28| lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
 |29| lib_grass | no | | For GDAL GRASS driver |
@@ -111,7 +112,7 @@ This is a table of currently available libraries.
 |32| lib_openjpeg | no | | For GDAL OpenJPEG driver |
 |33| lib_csf | no | | For GDAL PCRaster driver |
 |34| lib_pdfium | no | | For GDAL Geospatial PDF driver |
-|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Linux, Windows | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
+|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Linux, Windows, Mac OS X | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
 |36| lib_ras | no | | For GDAL Rasdaman driver |
 |37| lib_webp | no | | For GDAL WEBP driver |
 |38| lib_xerces | no | | For GDAL INTERLIS driver |
@@ -123,7 +124,7 @@ This is a table of currently available libraries.
 |44| [lib_freexl](https://github.com/nextgis-borsch/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
 |45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
 |46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows | |
-|47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux | |
+|47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux, Mac OS X | |
 |48| [lib_boost](https://github.com/nextgis-borsch/lib_boost) | yes | | Make only copies of headers from "boost/" without building libs |
 |49| [lib_zip](https://github.com/nextgis-borsch/lib_zip) | yes | | |
 |50| [lib_uv](https://github.com/nextgis-borsch/lib_uv) | yes | | |
@@ -134,33 +135,43 @@ This is a table of currently available libraries.
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partially cmaked (except tiger and cgal) |
 |57| [lib_opencad](https://github.com/nextgis-borsch/lib_opencad) | yes | Linux | From GSoC2016 |
-|58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Mac OS X | not a package but used for python dependency modules |
-|59| [lib_ecw](https://github.com/nextgis-borsch/lib_ecw) | | | |
-|60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | | | |
+|58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Mac OS X | Not a package but used for python dependency modules |
+|59| [lib_ecw](https://github.com/nextgis-borsch/lib_ecw) | yes | Windows | Prebuild libraries for specific compiler and OS |
+|60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | | | |
-|62| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
+|63| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
-# Cmaked libraries requirements  
-1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs)  
-2. Add export instruction:  
-export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)  
+# CMaked libraries requirements  
+
+1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ```<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework``` and for applications:
+```<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app```
+2. Add export instruction: 
+
+   ```cmake
+   export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)
+   ```
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
 3.1. You need to add the relevant scripts from borsch to 'cmake' directory  
-3.2. Add cmake instruction (if it is not present):  
-SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})  
+3.2. Add cmake instruction (if it is not present):
+
+   ```cmake
+   set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+   ```
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
 5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExtxxx.cmake with library repository name and some optional variables
+7. Add REGISTER_PACKAGE block to register libraries in CMake global repository on target system.
 
 # Update library sources
 Then new version of a library released, borsch need to be updated too.
 
 1. Create tag for current version in repository and send it to server:
 
-```bash
-git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
-git push origin --tags
-```
+  ```bash
+  git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
+  git push origin --tags
+  ```
 
 2. Copy sources from original to borsch repository (don't copy build scripts).
 One can use some diff utility to check changes (i.e. meld).
