@@ -10,6 +10,8 @@
 ##
 ################################################################################
 
+#TODO: Add qt fix @rpath and plugins fix
+
 import argparse
 import os
 import shutil
@@ -49,6 +51,7 @@ repositories = [
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF', '-DBUILD_TOOLS=OFF', '-DQT4_BUILD=ON']},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -66,6 +69,7 @@ repositories = [
 
 args = {}
 organize_file = 'folders.csv'
+install_dir = 'inst'
 
 class bcolors:
     HEADER = '\033[95m'
@@ -103,6 +107,7 @@ def parse_arguments():
     parser_git.add_argument('--commit', dest='message', help='commit changes in repositories')
 
     parser_make = subparsers.add_parser('make')
+    parser_make.add_argument('--fixqtinst', dest='qt_dir', help='qt sources folder')
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
@@ -211,7 +216,7 @@ def make_package():
             print color_print('make ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
             repo_build_dir = os.path.join(repo_dir, 'build')
-            repo_inst_dir = os.path.join(repo_dir, 'inst')
+            repo_inst_dir = os.path.join(repo_dir, install_dir)
             run_args.append('-DCMAKE_INSTALL_PREFIX=' + repo_inst_dir)
             if not os.path.exists(repo_build_dir):
                 os.makedirs(repo_build_dir)
@@ -307,6 +312,39 @@ def organize_sources(dst_name):
                 copy_dir(from_folder, to_folder, exts)
                 color_print(from_folder + ' ... processed', False, 'LYELLOW' )
 
+def fix_qt_inst(qt_dir):
+    if sys.platform != 'darwin':
+        exit('Mac OS X only supported')
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    repo_root = os.getcwd()
+    qt_path = os.path.join(repo_root, qt_dir, install_dir)
+    qt_install_lib_path = os.path.join(qt_path, 'lib')
+    files = glob.glob(qt_install_lib_path + "/*.framework")
+    lib_rpaths = []
+    for f in files:
+        if os.path.isdir(f):
+            lib_name = os.path.splitext(os.path.basename(f))[0]
+            lib_path = os.path.realpath(os.path.join(f, lib_name))
+            lib_rpath = os.path.join(lib_name + '.framework', os.path.relpath(lib_path, start=f))
+            run(('install_name_tool', '-id', '@rpath/' + lib_rpath, lib_path))
+            lib_rpaths.append(lib_rpath)
+
+    for f in files:
+        if os.path.isdir(f):
+            lib_name = os.path.splitext(os.path.basename(f))[0]
+            lib_path = os.path.realpath(os.path.join(f, lib_name))
+            for rpath in lib_rpaths:
+                run(('install_name_tool', '-change', rpath, '@rpath/' + rpath, lib_path))
+    # plugins
+    qt_install_plg_path = os.path.join(qt_path, 'plugins')
+    files = glob.glob(qt_install_plg_path + "/*/*.dylib")
+    for f in files:
+        if not os.path.isdir(f):
+            lib_name = os.path.basename(f)
+            run(('install_name_tool', '-id', '@rpath/' + lib_name, f))
+            run(('install_name_tool', '-add_rpath', '@loader_path/../../../Frameworks/', f)) #/plugins/4/crypto
+            for rpath in lib_rpaths:
+                run(('install_name_tool', '-change', rpath, '@rpath/' + rpath, f))
 
 parse_arguments()
 if args.command == 'git':
@@ -321,7 +359,10 @@ if args.command == 'git':
     if args.message is not None and args.message != '':
         git_commit(args.message)
 elif args.command == 'make':
-    make_package()
+    if args.qt_dir:
+        fix_qt_inst(args.qt_dir)
+    else:
+        make_package()
 elif args.command == 'organize':
     organize_sources(args.dst_name)
 else:
