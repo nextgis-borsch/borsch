@@ -22,37 +22,38 @@ import csv
 
 repositories = [
     {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_z", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DOPENSSL_NO_DYNAMIC_ENGINE=ON']},
+    {"url" : "lib_z", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOPENSSL_NO_DYNAMIC_ENGINE=ON']},
     {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : ["mac"], "args" : ['-DWITH_OpenSSL=ON', '-DWITH_ZLIB=ON', '-DENABLE_THREADED_RESOLVER=ON', '-DCMAKE_USE_GSSAPI=ON', '-DCMAKE_USE_LIBSSH2=OFF']},
-    {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
-    {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_geotiff", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON']},
-    {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : ["mac", "win"], "args" : ['-DWITH_OpenSSL=ON', '-DWITH_ZLIB=ON', '-DENABLE_THREADED_RESOLVER=ON', '-DCMAKE_USE_GSSAPI=ON', '-DCMAKE_USE_LIBSSH2=OFF']},
+    {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
+    {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_geotiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON']},
+    {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON']},
-    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON']},
+    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_cgal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -60,8 +61,8 @@ repositories = [
     {"url" : "lib_nunicode", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_mrsid", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_mrsid", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
 ]
 
@@ -105,6 +106,7 @@ def parse_arguments():
     parser_git.add_argument('--commit', dest='message', help='commit changes in repositories')
 
     parser_make = subparsers.add_parser('make')
+    parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
@@ -191,9 +193,10 @@ def git_commit(message):
             color_print('All is OK', True, 'LMAGENTA')
         os.chdir(os.path.join(os.getcwd(), os.pardir))
 
-def make_package():
+def make_package(repositories):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
+
     for repository in repositories:
         run_args = ['cmake']
         check_os = ''
@@ -205,6 +208,8 @@ def make_package():
             run_args.append('-DREGISTER_PACKAGE=ON')
             build_args = '-j' + str(multiprocessing.cpu_count())
         elif sys.platform == 'win32':
+            run_args.append('-DREGISTER_PACKAGE=ON')
+            run_args.append('-DBUILD_SHARED_LIBS=TRUE')
             check_os = 'win'
         else:
             check_os = 'nix'
@@ -322,7 +327,9 @@ if args.command == 'git':
     if args.message is not None and args.message != '':
         git_commit(args.message)
 elif args.command == 'make':
-    make_package()
+    if args.only_repos is not None:
+        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split()]
+    make_package(repositories)
 elif args.command == 'organize':
     organize_sources(args.dst_name)
 else:

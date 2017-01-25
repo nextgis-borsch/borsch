@@ -232,6 +232,7 @@ repos=(
  "lib_spatialindex"
  "googletest"
  "lib_boost"
+ "lib_cgal"
  "lib_zip"
  "lib_uv"
  "lib_jpegturbo"
