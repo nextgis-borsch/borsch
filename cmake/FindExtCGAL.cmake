@@ -20,11 +20,6 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_boost)
-<<<<<<< HEAD
-set(repo_project libboost)
-=======
-set(repo_project boost)
->>>>>>> e171e88442546b9a4a9486886f835b528329b4e2
-set(repo_include boost)
-set(repo_header_only ON)
+set(repo_name lib_cgal)
+set(repo_project CGAL)
+set(repo_include CGAL)

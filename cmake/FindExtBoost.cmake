@@ -1,10 +1,10 @@
 ################################################################################
 # Project:  external projects
 # Purpose:  CMake build scripts
-# Author:   Alexander Lisovenko, alexander.lisovenko@gmail.com
+# Author:   Dmitry Baryshnikov, polimax@mail.ru
 ################################################################################
-# Copyright (C) 2016, NextGIS <info@nextgis.com>
-# Copyright (C) 2016 Alexander Lisovenko
+# Copyright (C) 2015, NextGIS <info@nextgis.com>
+# Copyright (C) 2015 Dmitry Baryshnikov
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_ecw)
-set(repo_project ecw)
-set(repo_include ecw)
-set(repo_interface ON)
+set(repo_name lib_boost)
+set(repo_project boost)
+set(repo_include boost)
+set(repo_header_only ON)
