@@ -140,13 +140,14 @@ This is a table of currently available libraries.
 |60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | | | |
 |62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
-|63| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|63| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
+|64| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # CMaked libraries requirements  
 
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ```<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework``` and for applications:
 ```<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app```
-2. Add export instruction: 
+2. Add export instruction:
 
    ```cmake
    export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)
