@@ -53,7 +53,7 @@ repositories = [
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_cgal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_cgal", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
