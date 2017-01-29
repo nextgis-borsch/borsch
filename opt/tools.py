@@ -45,7 +45,7 @@ repositories = [
     {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON']},
-    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
