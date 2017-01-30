@@ -50,6 +50,8 @@ repositories = [
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
+    {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -110,7 +112,7 @@ def parse_arguments():
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
-    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal'], help='destination folder name')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt'], help='destination folder name')
 
     args = parser.parse_args()
 
@@ -201,6 +203,7 @@ def make_package(repositories):
         run_args = ['cmake']
         check_os = ''
         run_args.append('-DSUPPRESS_VERBOSE_OUTPUT=ON')
+        run_args.append('-DCMAKE_BUILD_TYPE=Release')
         build_args = ''
         if sys.platform == 'darwin':
             check_os = 'mac'
@@ -313,6 +316,11 @@ def organize_sources(dst_name):
             else:
                 copy_dir(from_folder, to_folder, exts)
                 color_print(from_folder + ' ... processed', False, 'LYELLOW' )
+
+    postprocess_path =  os.path.join(dst_path, 'opt', 'postprocess.py')
+    if os.path.exists(postprocess_path):
+        os.chdir(os.path.join(dst_path, 'opt'))
+        run(('python', 'postprocess.py', sources_dir))
 
 parse_arguments()
 if args.command == 'git':
