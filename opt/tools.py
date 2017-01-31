@@ -50,8 +50,8 @@ repositories = [
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
-    {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
+    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : [], "args" : ['-DQT4_BUILD=ON']},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -112,7 +112,7 @@ def parse_arguments():
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
-    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt'], help='destination folder name')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
 
     args = parser.parse_args()
 
