@@ -51,7 +51,7 @@ repositories = [
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
     {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : [], "args" : ['-DQT4_BUILD=ON']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
     {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
