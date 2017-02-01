@@ -144,7 +144,8 @@ This is a table of currently available libraries.
 |64| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
 |65| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Mac OS X |  |
 |66| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
-|67| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|67| [lib_cgal](https://github.com/nextgis-borsch/lib_cgal) | yes | | |
+|68| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # CMaked libraries requirements  
 
