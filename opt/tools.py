@@ -117,10 +117,14 @@ def parse_arguments():
     args = parser.parse_args()
 
 def run(args):
-    print 'calling ' + string.join(args)
+    # print 'calling ' + string.join(args)
     try:
-        subprocess.check_call(args)
-        return True
+        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
+        if 'nothing to commit' in output or 'Already up-to-date' in output or 'Everything up-to-date' in output:
+            return True
+        else:
+            print output
+            return True
     except subprocess.CalledProcessError, e:
         return False
 
@@ -157,13 +161,13 @@ def color_print(text, bold, color):
 def git_clone():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        print color_print('clone ' + repository['url'], True, 'LCYAN')
+        color_print('clone ' + repository['url'], True, 'LCYAN')
         run(('git', 'clone', '--depth', '1', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
 
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        print color_print('status ' + repository['url'], True, 'LGREEN')
+        color_print('status ' + repository['url'], True, 'LGREEN')
         os.chdir(repository['url'])
         run(('git', 'status'))
         os.chdir(os.path.join(os.getcwd(), os.pardir))
@@ -171,25 +175,23 @@ def git_status():
 def git_pull():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        print color_print('pull ' + repository['url'], True, 'LYELLOW')
+        color_print('pull ' + repository['url'], True, 'LYELLOW')
         os.chdir(repository['url'])
-        if run(('git', 'pull')):
-            color_print('All is OK', True, 'LMAGENTA')
+        run(('git', 'pull'))
         os.chdir(os.path.join(os.getcwd(), os.pardir))
 
 def git_push():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        print color_print('push ' + repository['url'], True, 'LCYAN')
+        color_print('push ' + repository['url'], True, 'LCYAN')
         os.chdir(repository['url'])
-        if run(('git', 'push')):
-            color_print('All is OK', True, 'LMAGENTA')
+        run(('git', 'push'))
         os.chdir(os.path.join(os.getcwd(), os.pardir))
 
 def git_commit(message):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        print color_print('commit to ' + repository['url'] + ' with message: ' + message, True, 'LCYAN')
+        color_print('commit to ' + repository['url'] + ' with message: ' + message, True, 'LCYAN')
         os.chdir(repository['url'])
         if run(('git', 'commit', '-a', '-m', message)):
             color_print('All is OK', True, 'LMAGENTA')
@@ -218,7 +220,7 @@ def make_package(repositories):
             check_os = 'nix'
 
         if check_os in repository['build']:
-            print color_print('make ' + repository['url'], True, 'LRED')
+            color_print('make ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
             repo_build_dir = os.path.join(repo_dir, 'build')
             repo_inst_dir = os.path.join(repo_dir, install_dir)
@@ -231,17 +233,17 @@ def make_package(repositories):
             for repo_build_arg in repository['args']:
                 run_args.append(repo_build_arg)
             run_args.append('..')
-            print color_print('configure ' + repository['url'], False, 'LBLUE')
+            color_print('configure ' + repository['url'], False, 'LBLUE')
             if run((run_args)):
-                print color_print('build ' + repository['url'], False, 'LBLUE')
+                color_print('build ' + repository['url'], False, 'LBLUE')
                 if run(('cmake', '--build', '.', '--config', 'release', '--', build_args)):
-                    print color_print('install ' + repository['url'], False, 'LBLUE')
+                    color_print('install ' + repository['url'], False, 'LBLUE')
                     run(('cmake', '--build', '.', '--config', 'release', '--target', 'install'))
 
             # Special case to build JPEG12 package
             if  repository['url'] == 'lib_jpeg':
-                print color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
-                print color_print('make ' + repository['url'] + '12', True, 'LRED')
+                color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
+                color_print('make ' + repository['url'] + '12', True, 'LRED')
                 repo_build_dir = os.path.join(repo_dir, 'build12')
                 if not os.path.exists(repo_build_dir):
                     os.makedirs(repo_build_dir)
