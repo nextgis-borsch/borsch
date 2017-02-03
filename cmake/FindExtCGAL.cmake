@@ -22,4 +22,4 @@
 
 set(repo_name lib_cgal)
 set(repo_project CGAL)
-set(repo_include CGAL)
+set(repo_include)

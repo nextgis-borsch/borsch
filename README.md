@@ -140,10 +140,12 @@ This is a table of currently available libraries.
 |60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | | | |
 |62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
-|63| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
-|64| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Mac OS X |  |
-|65| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
-|66| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|63| [lib_qt5](https://github.com/nextgis-borsch/lib_qt5) | | | |
+|64| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
+|65| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Mac OS X |  |
+|66| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
+|67| [lib_cgal](https://github.com/nextgis-borsch/lib_cgal) | yes | | |
+|68| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # CMaked libraries requirements  
 
