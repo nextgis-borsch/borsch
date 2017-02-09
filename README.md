@@ -138,7 +138,7 @@ This is a table of currently available libraries.
 |58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Mac OS X | Not a package but used for python dependency modules |
 |59| [lib_ecw](https://github.com/nextgis-borsch/lib_ecw) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | yes | Windows | Prebuild libraries for specific compiler and OS |
-|61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | | | |
+|61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | yes | Mac OS X | |
 |62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
 |63| [lib_qt5](https://github.com/nextgis-borsch/lib_qt5) | | | |
 |64| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
