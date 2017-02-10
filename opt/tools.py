@@ -66,6 +66,8 @@ repositories = [
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
