@@ -30,7 +30,7 @@ repositories = [
     {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOPENSSL_NO_DYNAMIC_ENGINE=ON']},
     {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : ["mac", "win"], "args" : ['-DWITH_OpenSSL=ON', '-DWITH_ZLIB=ON', '-DENABLE_THREADED_RESOLVER=ON', '-DCMAKE_USE_GSSAPI=ON', '-DCMAKE_USE_LIBSSH2=OFF']},
     {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
-    {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_tools=ON']},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
