@@ -122,8 +122,8 @@ This is a table of currently available libraries.
 |42| lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 |43| lib_podofo | no | | For GDAL Geospatial PDF driver |
 |44| [lib_freexl](https://github.com/nextgis-borsch/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
-|45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows | For GDAL spatialite/sqlite format driver |
-|46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows | |
+|45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows, Mac OS X | For GDAL spatialite/sqlite format driver |
+|46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows, Mac OS X | |
 |47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux, Mac OS X | |
 |48| [lib_boost](https://github.com/nextgis-borsch/lib_boost) | yes | | Make only copies of headers from "boost/" without building libs |
 |49| [lib_zip](https://github.com/nextgis-borsch/lib_zip) | yes | | |
