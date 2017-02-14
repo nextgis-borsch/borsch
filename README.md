@@ -147,7 +147,10 @@ This is a table of currently available libraries.
 |67| [lib_cgal](https://github.com/nextgis-borsch/lib_cgal) | yes | | |
 |68| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |69| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
-|70| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|70| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|71| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|72| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|73| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # CMaked libraries requirements  
 

@@ -69,6 +69,8 @@ repositories = [
     {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_psycopg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_dateutil", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_pygments", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
