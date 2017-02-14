@@ -251,6 +251,9 @@ repos=(
  "lib_zip"
  "numpy"
  "postgis"
+ "py_psycopg"
+ "py_qt4"
+ "py_sip"
  "tests"
 )
 
