@@ -150,7 +150,14 @@ This is a table of currently available libraries.
 |70| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |71| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |72| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
-|73| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|73| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|74| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|75| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|76| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|77| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|78| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|79| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|80| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # CMaked libraries requirements  
 
