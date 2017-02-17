@@ -82,6 +82,7 @@ repositories = [
     {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
 

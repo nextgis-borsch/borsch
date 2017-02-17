@@ -159,7 +159,9 @@ This is a table of currently available libraries.
 |79| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
 |80| [py_spatialite](https://github.com/nextgis-borsch/py_spatialite) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
 |81| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|82| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|82| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|83| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes |  |  |
+|84| [tests](https://github.com/nextgis-borsch/tests) | | | |
 
 # CMaked libraries requirements  
 
