@@ -79,6 +79,8 @@ repositories = [
     {"url" : "py_nose", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_pytz", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_six", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
