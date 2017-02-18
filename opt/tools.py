@@ -127,6 +127,7 @@ def parse_arguments():
 
     parser_make = subparsers.add_parser('make')
     parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
+    parser_make.add_argument('--versions', dest='versions', action='store_true', help='print libraries version')
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
@@ -214,6 +215,20 @@ def git_commit(message):
         if run(('git', 'commit', '-a', '-m', message)):
             color_print('All is OK', True, 'LMAGENTA')
         os.chdir(os.path.join(os.getcwd(), os.pardir))
+
+def make_versions():
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    root_dir = os.getcwd()
+    for repository in repositories:
+        repo_build_dir = os.path.join(root_dir, repository['url'], 'build')
+        version_file_path = os.path.join(repo_build_dir, 'version.str')
+        if not os.path.exists(version_file_path):
+            color_print(repository['url'] + ' - unknown', False, 'LRED')
+        else:
+            with open(version_file_path) as f:
+                content = f.readlines()
+                version_str = content[0].rstrip()
+                color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
 
 def make_package(repositories):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -355,6 +370,9 @@ if args.command == 'git':
     if args.message is not None and args.message != '':
         git_commit(args.message)
 elif args.command == 'make':
+    if args.versions:
+        make_versions()
+        exit(0)
     if args.only_repos is not None:
         repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split()]
     make_package(repositories)
