@@ -377,7 +377,7 @@ elif args.command == 'make':
         make_versions()
         exit(0)
     if args.only_repos is not None:
-        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split()]
+        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
     make_package(repositories)
 elif args.command == 'organize':
     organize_sources(args.dst_name)
