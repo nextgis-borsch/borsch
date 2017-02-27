@@ -181,7 +181,10 @@ def git_clone():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
         color_print('clone ' + repository['url'], True, 'LCYAN')
-        run(('git', 'clone', '--depth', '1', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
+        if sys.platform == 'win32':
+            run(('git', 'clone', '--depth', '1', 'https://github.com/nextgis-borsch/' + repository['url'] + '.git'))
+        else:
+            run(('git', 'clone', '--depth', '1', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
 
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
