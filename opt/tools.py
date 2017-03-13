@@ -23,8 +23,8 @@ import csv
 repositories = [
     {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_cgal", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_cgal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTING=OFF', '-DWITH_CPACK=OFF']},
     {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_z", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_openssl", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOPENSSL_NO_DYNAMIC_ENGINE=ON']},
