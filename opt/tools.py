@@ -38,7 +38,7 @@ repositories = [
     {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
-    {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -51,11 +51,11 @@ repositories = [
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON']},
-    {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
-    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DQT4_BUILD=ON', '-DWITH_BINDINGS=ON']},
+    {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
+    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_BINDINGS=ON']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
+    {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
     {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
@@ -66,9 +66,9 @@ repositories = [
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "py_psycopg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "py_psycopg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_dateutil", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_pygments", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_ows", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
@@ -78,9 +78,9 @@ repositories = [
     {"url" : "py_markupsafe", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_nose", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_pytz", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "py_six", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_six", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -132,6 +132,9 @@ def parse_arguments():
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
     parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
+    
+    parser_install_all = subparsers.add_parser('install_all')
+    parser_install_all.add_argument(dest='install_dst', default=None, help='the names of the packages separated by comma')
 
     args = parser.parse_args()
 
@@ -360,6 +363,34 @@ def organize_sources(dst_name):
         os.chdir(os.path.join(dst_path, 'opt'))
         run(('python', 'postprocess.py', sources_dir))
 
+def install_all(install_dst):
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    repo_root = os.getcwd()
+    
+    if not os.path.exists(install_dst):
+        os.mkdir(install_dst)
+
+    def copytree(src, dst):
+        if not os.path.exists(dst):
+            os.makedirs(dst)
+        for item in os.listdir(src):
+            s = os.path.join(src, item)
+            d = os.path.join(dst, item)
+            if os.path.isdir(s):
+                copytree(s, d)
+            else:
+                if not os.path.exists(d) or os.stat(s).st_mtime - os.stat(d).st_mtime > 1:
+                    try:
+                        shutil.copy2(s, d)
+                    except:
+                        print "Error with copy ", s
+
+    for f in os.listdir('.'):
+        for_copy = os.path.join(repo_root, f, "inst")
+        print "Copy %s" % for_copy
+        if os.path.exists(for_copy):
+            copytree(for_copy, install_dst)
+
 parse_arguments()
 if args.command == 'git':
     if args.status:
@@ -377,9 +408,11 @@ elif args.command == 'make':
         make_versions()
         exit(0)
     if args.only_repos is not None:
-        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split()]
+        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
     make_package(repositories)
 elif args.command == 'organize':
     organize_sources(args.dst_name)
+elif args.command == 'install_all':
+    install_all(args.install_dst)
 else:
     exit('Unsupported command')
