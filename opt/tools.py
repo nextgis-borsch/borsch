@@ -73,7 +73,7 @@ repositories = [
     {"url" : "py_pygments", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_ows", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_httplib", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "py_yaml", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_yaml", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_jinja", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_markupsafe", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_nose", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
@@ -82,7 +82,7 @@ repositories = [
     {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
 
