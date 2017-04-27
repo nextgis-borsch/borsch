@@ -50,26 +50,27 @@ repositories = [
     {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF']},
+    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
+    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON']},
-    {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
-    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_BINDINGS=ON']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
     {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
     {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
-    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
     {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "python2", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
     {"url" : "py_setuptools", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_qscintilla", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_BINDINGS=ON']},
     {"url" : "py_psycopg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_dateutil", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_pygments", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
@@ -84,7 +85,6 @@ repositories = [
     {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
 
@@ -130,6 +130,7 @@ def parse_arguments():
     parser_make = subparsers.add_parser('make')
     parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
     parser_make.add_argument('--versions', dest='versions', action='store_true', help='print libraries version')
+    parser_make.add_argument('--clean', dest='clean',  action='store_true', default=False, help='clean packages separated by comma')
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
@@ -143,12 +144,16 @@ def parse_arguments():
 def run(args):
     # print 'calling ' + string.join(args)
     try:
-        output = subprocess.check_output(args, stderr=subprocess.STDOUT)
-        if 'nothing to commit' in output or 'Already up-to-date' in output or 'Everything up-to-date' in output:
-            return True
+        if args[0] == "git":
+            output = subprocess.check_output(args, stderr=subprocess.STDOUT)
+            if 'nothing to commit' in output or 'Already up-to-date' in output or 'Everything up-to-date' in output:
+                return True
+            else:
+                print output
+                return True
         else:
-            print output
-            return True
+            output_code = subprocess.call(args, stderr=subprocess.STDOUT)
+            return output_code == 0
     except subprocess.CalledProcessError, e:
         return False
 
@@ -257,6 +262,7 @@ def make_package(repositories):
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DBUILD_SHARED_LIBS=TRUE')
             check_os = 'win'
+            build_args = '/m:' + str(multiprocessing.cpu_count())
         else:
             check_os = 'nix'
 
@@ -295,6 +301,28 @@ def make_package(repositories):
                 if run((run_args)):
                     if run(('cmake', '--build', '.', '--config', 'release', '--', build_args)):
                         run(('cmake', '--build', '.', '--config', 'release', '--target', 'install'))
+
+        os.chdir(repo_root)
+
+def clean_all(repositories):
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    repo_root = os.getcwd()
+
+    for repository in repositories:
+        check_os = ''
+        if sys.platform == 'darwin':
+            check_os = 'mac'
+        elif sys.platform == 'win32':
+            check_os = 'win'
+        else:
+            check_os = 'nix'
+
+        if check_os in repository['build']:
+            color_print('remove build for ' + repository['url'], True, 'LRED')
+            repo_dir = os.path.join(repo_root, repository['url'])
+            repo_build_dir = os.path.join(repo_dir, 'build')
+            
+            shutil.rmtree(repo_build_dir)
 
         os.chdir(repo_root)
 
@@ -411,7 +439,11 @@ elif args.command == 'make':
         exit(0)
     if args.only_repos is not None:
         repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
-    make_package(repositories)
+    
+    if not args.clean:
+        make_package(repositories)
+    else:
+        clean_all(repositories)
 elif args.command == 'organize':
     organize_sources(args.dst_name)
 elif args.command == 'install_all':
