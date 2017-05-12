@@ -52,7 +52,8 @@ repositories = [
     {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
     {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON']},
+    {"url" : "lib_openjpeg", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OPENJPEG=ON']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
@@ -135,7 +136,7 @@ def parse_arguments():
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
     parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
-    
+
     parser_install_all = subparsers.add_parser('install_all')
     parser_install_all.add_argument(dest='install_dst', default=None, help='the names of the packages separated by comma')
 
@@ -252,6 +253,7 @@ def make_package(repositories):
         check_os = ''
         run_args.append('-DSUPPRESS_VERBOSE_OUTPUT=ON')
         run_args.append('-DCMAKE_BUILD_TYPE=Release')
+        run_args.append('-DSKIP_DEFAULTS=ON')
         build_args = ''
         if sys.platform == 'darwin':
             check_os = 'mac'
@@ -321,7 +323,7 @@ def clean_all(repositories):
             color_print('remove build for ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
             repo_build_dir = os.path.join(repo_dir, 'build')
-            
+
             shutil.rmtree(repo_build_dir)
 
         os.chdir(repo_root)
@@ -396,7 +398,7 @@ def organize_sources(dst_name):
 def install_all(install_dst):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
-    
+
     if not os.path.exists(install_dst):
         os.mkdir(install_dst)
 
@@ -439,7 +441,7 @@ elif args.command == 'make':
         exit(0)
     if args.only_repos is not None:
         repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
-    
+
     if not args.clean:
         make_package(repositories)
     else:
