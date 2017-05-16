@@ -262,7 +262,7 @@ def make_package(repositories, generator):
             run_args.append('-DREGISTER_PACKAGE=ON')
             build_args = '-j' + str(multiprocessing.cpu_count())
         elif sys.platform == 'win32':
-            if generator is ot None:
+            if generator is not None:
                 run_args.append('-G')
                 run_args.append(generator)
             run_args.append('-DREGISTER_PACKAGE=ON')
