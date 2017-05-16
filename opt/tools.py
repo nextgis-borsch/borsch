@@ -129,6 +129,7 @@ def parse_arguments():
     parser_git.add_argument('--commit', dest='message', help='commit changes in repositories')
 
     parser_make = subparsers.add_parser('make')
+    parser_make.add_argument('--generator', dest='generator_name', default=None, help='specify a build system generator')
     parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
     parser_make.add_argument('--versions', dest='versions', action='store_true', help='print libraries version')
     parser_make.add_argument('--clean', dest='clean',  action='store_true', default=False, help='clean packages separated by comma')
@@ -244,7 +245,7 @@ def make_versions():
                 version_str = content[0].rstrip()
                 color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
 
-def make_package(repositories):
+def make_package(repositories, generator):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
 
@@ -261,6 +262,9 @@ def make_package(repositories):
             run_args.append('-DREGISTER_PACKAGE=ON')
             build_args = '-j' + str(multiprocessing.cpu_count())
         elif sys.platform == 'win32':
+            if generator is ot None:
+                run_args.append('-G')
+                run_args.append(generator)
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DBUILD_SHARED_LIBS=TRUE')
             check_os = 'win'
@@ -443,7 +447,7 @@ elif args.command == 'make':
         repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
 
     if not args.clean:
-        make_package(repositories)
+        make_package(repositories, args.generator_name)
     else:
         clean_all(repositories)
 elif args.command == 'organize':
