@@ -31,15 +31,16 @@ repositories = [
     {"url" : "lib_curl", "cmake_dir" : "CMake", "build" : ["mac", "win"], "args" : ['-DWITH_OpenSSL=ON', '-DWITH_ZLIB=ON', '-DENABLE_THREADED_RESOLVER=ON', '-DCMAKE_USE_GSSAPI=ON', '-DCMAKE_USE_LIBSSH2=OFF']},
     {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_tools=ON']},
+    {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
     {"url" : "lib_geotiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON']},
+    {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
-    {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_jsonc", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -50,7 +51,6 @@ repositories = [
     {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF']},
-    {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
     {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_openjpeg", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OPENJPEG=ON']},
@@ -292,7 +292,10 @@ def make_package(repositories, generator):
                 if run(('cmake', '--build', '.', '--config', 'release', '--', build_args)):
                     color_print('install ' + repository['url'], False, 'LBLUE')
                     run(('cmake', '--build', '.', '--config', 'release', '--target', 'install'))
-
+                else:
+                    sys.exit("Build %s error!" % repository['url'])
+            else:
+                sys.exit("Configure %s error!" % repository['url'])
             # Special case to build JPEG12 package
             if  repository['url'] == 'lib_jpeg':
                 color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
@@ -300,7 +303,7 @@ def make_package(repositories, generator):
                 repo_build_dir = os.path.join(repo_dir, 'build12')
                 if not os.path.exists(repo_build_dir):
                     os.makedirs(repo_build_dir)
-                run_args.insert(5, '-DBUILD_JPEG_12=ON')
+                run_args.insert(4, '-DBUILD_JPEG_12=ON')
                 if not os.path.exists(repo_build_dir):
                     os.makedirs(repo_build_dir)
                 os.chdir(repo_build_dir)
