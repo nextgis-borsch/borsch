@@ -54,13 +54,13 @@ repositories = [
     {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_openjpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OpenJPEG=ON']},
+    {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
+    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
     {"url" : "lib_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
     {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
-    {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
-    {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
     {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -92,6 +92,8 @@ repositories = [
 args = {}
 organize_file = 'folders.csv'
 install_dir = 'inst'
+max_os_min_version = '10.11'
+mac_os_sdks_path = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs'
 
 class bcolors:
     HEADER = '\033[95m'
@@ -260,6 +262,8 @@ def make_package(repositories, generator):
             check_os = 'mac'
             run_args.append('-DOSX_FRAMEWORK=ON')
             run_args.append('-DREGISTER_PACKAGE=ON')
+            run_args.append('-DCMAKE_OSX_SYSROOT=' + mac_os_sdks_path + '/MacOSX10.12.sdk')
+            run_args.append('-DCMAKE_OSX_DEPLOYMENT_TARGET=' + max_os_min_version)
             build_args = '-j' + str(multiprocessing.cpu_count())
         elif sys.platform == 'win32':
             if generator is not None:
