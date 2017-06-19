@@ -143,6 +143,9 @@ def parse_arguments():
     parser_install_all = subparsers.add_parser('install_all')
     parser_install_all.add_argument(dest='install_dst', default=None, help='the names of the packages separated by comma')
 
+    parser_update = subparsers.add_parser('update')
+    parser_update.add_argument('--script', dest='script', required=True, help='the name of updated script')
+
     args = parser.parse_args()
 
 def run(args):
@@ -246,6 +249,21 @@ def make_versions():
                 content = f.readlines()
                 version_str = content[0].rstrip()
                 color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
+
+def update_scripts(script):
+    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+    repo_root = os.getcwd()
+    script_path = os.path.join(repo_root, 'borsch', 'cmake', script)
+
+    for repository in repositories:
+        color_print('update ' + repository['url'], False, 'LYELLOW')
+        if repository['url'] == 'borsch':
+            continue
+        repo_cmake_path = os.path.join(repo_root, repository['url'], repository['cmake_dir'], script)
+        if os.path.exists(repo_cmake_path):
+            shutil.copyfile(script_path, repo_cmake_path)
+            color_print('OK', True, 'LCYAN')
+
 
 def make_package(repositories, generator):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -461,5 +479,7 @@ elif args.command == 'organize':
     organize_sources(args.dst_name)
 elif args.command == 'install_all':
     install_all(args.install_dst)
+elif args.command == 'update':
+    update_scripts(args.script)
 else:
     exit('Unsupported command')
