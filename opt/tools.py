@@ -280,7 +280,7 @@ def make_package(repositories, generator):
             check_os = 'mac'
             run_args.append('-DOSX_FRAMEWORK=ON')
             run_args.append('-DREGISTER_PACKAGE=ON')
-            run_args.append('-DCMAKE_OSX_SYSROOT=' + mac_os_sdks_path + '/MacOSX10.12.sdk')
+            run_args.append('-DCMAKE_OSX_SYSROOT=' + mac_os_sdks_path + '/MacOSX.sdk')
             run_args.append('-DCMAKE_OSX_DEPLOYMENT_TARGET=' + max_os_min_version)
             build_args = '-j' + str(multiprocessing.cpu_count())
         elif sys.platform == 'win32':
