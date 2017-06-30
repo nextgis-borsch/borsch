@@ -46,7 +46,7 @@ repositories = [
     {"url" : "lib_lzma", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_mrsid", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_nunicode", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
