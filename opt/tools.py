@@ -68,6 +68,7 @@ repositories = [
     {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "python2", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
     {"url" : "py_setuptools", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "py_future", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -139,6 +140,7 @@ def parse_arguments():
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
     parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
+    parser_organize.add_argument('--dst_path', dest='dst_path', required=False, help='Specify destination folder path')
 
     parser_install_all = subparsers.add_parser('install_all')
     parser_install_all.add_argument(dest='install_dst', default=None, help='the names of the packages separated by comma')
@@ -379,10 +381,12 @@ def copy_dir(src, dest, exts):
                 if file_extension != '' and file_extension in exts:
                     shutil.copy(f, dest)
 
-def organize_sources(dst_name):
-    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
-    repo_root = os.getcwd()
-    dst_path = os.path.join(repo_root, dst_name)
+def organize_sources(dst_name, dst_path=None):
+    if dst_path is None:
+        os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+        repo_root = os.getcwd()
+        dst_path = os.path.join(repo_root, dst_name)
+
     if not os.path.exists(dst_path):
         exit('Destination path ' + dst_path + ' not exists')
     organize_file_path = os.path.join(dst_path, 'opt', organize_file)
@@ -476,7 +480,7 @@ elif args.command == 'make':
     else:
         clean_all(repositories)
 elif args.command == 'organize':
-    organize_sources(args.dst_name)
+    organize_sources(args.dst_name, args.dst_path)
 elif args.command == 'install_all':
     install_all(args.install_dst)
 elif args.command == 'update':
