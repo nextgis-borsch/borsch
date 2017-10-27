@@ -217,4 +217,4 @@ All scripts are licensed under GNU GPL v.2.
 #Links:
 
 * [FOSS4G 2016 Presentation (video)](https://ftp.gwdg.de/pub/misc/openstreetmap/FOSS4G-2016/foss4g-2016-1231-borsch_modern_build_system_for_c_c_gis_projects-hd.webm)
-* [FOSS4G 2016 Presentation (slides)](http://nextgis.ru/wp-content/uploads/2016/08/GDAL-2.1-FOSS4G-Bonn-2016.pdf)
+* [FOSS4G 2016 Presentation (slides)](http://nextgis.ru/wp-content/uploads/2016/08/NextGIS-Borsh-presentation.pdf)
