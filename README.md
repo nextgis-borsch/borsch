@@ -1,5 +1,11 @@
 # Introduction
-Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. NextGIS Borsch (http://nextgis.com/borsch) is a new build system that is a) easier to use, b) better solves dependencies and c) provides more uniform way of building packages. Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows, Linux and MacOS.
+Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. NextGIS Borsch (http://nextgis.com/borsch) is a new build system that is 
+
+* a) easier to use, 
+* b) better solves dependencies and 
+* c) provides more uniform way of building packages. 
+
+Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows, Linux and MacOS.
 
 # Common CMake scripts
 These are common cmake scripts for building system.
@@ -211,4 +217,4 @@ All scripts are licensed under GNU GPL v.2.
 #Links:
 
 * [FOSS4G 2016 Presentation (video)](https://ftp.gwdg.de/pub/misc/openstreetmap/FOSS4G-2016/foss4g-2016-1231-borsch_modern_build_system_for_c_c_gis_projects-hd.webm)
-* [FOSS4G 2016 Presentation (slides)](http://nextgis.ru/wp-content/uploads/2016/08/GDAL-2.1-FOSS4G-Bonn-2016.pdf)
+* [FOSS4G 2016 Presentation (slides)](http://nextgis.ru/wp-content/uploads/2016/08/NextGIS-Borsh-presentation.pdf)

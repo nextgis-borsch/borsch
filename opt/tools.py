@@ -52,10 +52,10 @@ repositories = [
     {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF']},
+    {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac","win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_openjpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OpenJPEG=ON']},
+    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OpenJPEG=ON', '-DENABLE_HDF4=ON']},
     {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
@@ -72,6 +72,7 @@ repositories = [
     {"url" : "lib_opencv", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "python2", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
     {"url" : "py_setuptools", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "py_future", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_sip", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_qt4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -144,7 +145,8 @@ def parse_arguments():
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
-    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, help='destination folder name')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
+    parser_organize.add_argument('--dst_path', dest='dst_path', required=False, help='Specify destination folder path')
 
     parser_install_all = subparsers.add_parser('install_all')
     parser_install_all.add_argument(dest='install_dst', default=None, help='the names of the packages separated by comma')
@@ -385,10 +387,12 @@ def copy_dir(src, dest, exts):
                 if file_extension != '' and file_extension in exts:
                     shutil.copy(f, dest)
 
-def organize_sources(dst_name):
-    os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
-    repo_root = os.getcwd()
-    dst_path = os.path.join(repo_root, dst_name)
+def organize_sources(dst_name, dst_path=None):
+    if dst_path is None:
+        os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
+        repo_root = os.getcwd()
+        dst_path = os.path.join(repo_root, dst_name)
+
     if not os.path.exists(dst_path):
         exit('Destination path ' + dst_path + ' not exists')
     organize_file_path = os.path.join(dst_path, 'opt', organize_file)
@@ -482,7 +486,7 @@ elif args.command == 'make':
     else:
         clean_all(repositories)
 elif args.command == 'organize':
-    organize_sources(args.dst_name)
+    organize_sources(args.dst_name, args.dst_path)
 elif args.command == 'install_all':
     install_all(args.install_dst)
 elif args.command == 'update':
