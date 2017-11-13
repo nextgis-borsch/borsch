@@ -32,6 +32,8 @@ repositories = [
     {"url" : "lib_ecw", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_tools=ON']},
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_gif", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_qhull", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -66,6 +68,8 @@ repositories = [
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_yaml", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_freetype", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_opencv", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "python2", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
     {"url" : "py_setuptools", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "numpy", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -85,6 +89,8 @@ repositories = [
     {"url" : "py_six", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "py_exifread", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "py_matplotlib", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
@@ -138,7 +144,7 @@ def parse_arguments():
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
-    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, help='destination folder name')
 
     parser_install_all = subparsers.add_parser('install_all')
     parser_install_all.add_argument(dest='install_dst', default=None, help='the names of the packages separated by comma')
