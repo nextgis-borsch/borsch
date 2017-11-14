@@ -40,7 +40,8 @@ repositories = [
     {"url" : "lib_tiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON']},
     {"url" : "lib_geotiff", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG=ON']},
     {"url" : "lib_jpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTS=OFF']},
+    {"url" : "lib_hdf4", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_SZIP=ON']},
     {"url" : "lib_hdfeos2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_jbig", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_jpegturbo", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -55,7 +56,7 @@ repositories = [
     {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac","win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_openjpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OpenJPEG=ON', '-DENABLE_HDF4=ON']},
+    {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OpenJPEG=ON', '-DENABLE_HDF4=ON', '-DWITH_QHULL=ON']},
     {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_spatialindex", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF']},
     {"url" : "lib_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DOMIT_FREEXL=ON', '-DENABLE_LWGEOM=OFF', '-DGEOS_TRUNK=ON']},
@@ -63,7 +64,6 @@ repositories = [
     {"url" : "lib_qt5", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_qca", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_TESTS=OFF', '-DQT4_BUILD=ON']},
     {"url" : "lib_qwt", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DQT4_BUILD=ON', '-DWITH_QWTMATHML=OFF', '-DWITH_QWTDESIGNER=OFF', '-DWITH_QWTPLAYGROUND=OFF', '-DWITH_QWTEXAMPLES=OFF']},
-    {"url" : "lib_szip", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_uv", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_variant", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_zip", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
@@ -141,11 +141,11 @@ def parse_arguments():
     parser_make.add_argument('--generator', dest='generator_name', default=None, help='specify a build system generator')
     parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
     parser_make.add_argument('--versions', dest='versions', action='store_true', help='print libraries version')
-    parser_make.add_argument('--clean', dest='clean',  action='store_true', default=False, help='clean packages separated by comma')
+    parser_make.add_argument('--clean', dest='clean', action='store_true', default=False, help='clean packages')
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
-    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, choices=['qgis', 'lib_gdal', 'lib_qwt', 'lib_qscintilla'], help='destination folder name')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, help='destination folder name')
     parser_organize.add_argument('--dst_path', dest='dst_path', required=False, help='Specify destination folder path')
 
     parser_install_all = subparsers.add_parser('install_all')
