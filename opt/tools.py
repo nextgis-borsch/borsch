@@ -95,7 +95,7 @@ repositories = [
     {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_exifread", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_matplotlib", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "postgis", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "postgis", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
 ]
 
