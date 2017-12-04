@@ -94,9 +94,14 @@ repositories = [
     {"url" : "py_requests", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_spatialite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_exifread", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
-    {"url" : "py_matplotlib", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "py_matplotlib", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_parsing", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_cycler", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_subprocess32", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_functools_lru_cache", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    # {"url" : "qgis", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
 ]
 
 args = {}
