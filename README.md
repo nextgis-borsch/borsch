@@ -260,7 +260,7 @@ git push origin --tags
 ```
 
 Also see ``github_release.py`` script to upload zip archive from CPack generator
-to the release marked by tag.
+to the release marked by tag. This prebuild files will use in building process.
 
 2. Copy sources from original to borsch repository (don't copy build scripts).
 One can use some diff utility to check changes (i.e. meld).
