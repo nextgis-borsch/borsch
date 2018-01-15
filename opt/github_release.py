@@ -139,7 +139,10 @@ if __name__ == "__main__":
 
     login = args.login
     key = args.key
-    repo_path = args.repo
+    if args.repo:
+        repo_path = args.repo
+    else:
+        repo_path = os.getcwd()
     build_path = args.build
 
     with open(os.path.join(build_path, 'version.str')) as f:
