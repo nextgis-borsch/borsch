@@ -234,7 +234,7 @@ install(TARGETS ${TARGETS}
 ```    
 
    This will export targets for build-tree use and for install-tree use.
-   
+
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
 3.1. You need to add the relevant scripts from borsch to 'cmake' directory  
 3.2. Add cmake instruction (if it is not present):
@@ -258,9 +258,12 @@ git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
 git push origin --tags
 ```
 
+    Also see ``github_release.py`` script to upload zip archive from CPack generator
+    to the release marked by tag.
+
 2. Copy sources from original to borsch repository (don't copy build scripts).
    One can use some diff utility to check changes (i.e. meld).
-   If ``opt/files.csv`` exist use following command line utility:
+   If ``opt/folders.csv`` exist use following command line utility:
 
 ```bash
 python tools.py organize --src <path to sources> --dst_name <borsch repository name>
