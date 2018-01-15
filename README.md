@@ -188,48 +188,60 @@ This is a table of currently available libraries.
 
 1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ``<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework`` and for applications:
 ``<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app``
-2. Add export instruction:
+2. Add export instructions:
 
-   ```cmake
-   # Add path to includes to build-tree export
-   target_include_directories(${TARGETS} PUBLIC
-     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-   )
+```cmake
+# Add path to includes to build-tree export
+target_include_directories(${TARGETS} PUBLIC
+ $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+ $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+)
 
-   # Add all targets to the build-tree export set
-   export(TARGETS ${TARGETS}
-       FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake)
+# Add all targets to the build-tree export set
+export(TARGETS ${TARGETS}
+   FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake)
 
-   if(REGISTER_PACKAGE)
-       # Export the package for use from the build-tree
-       # (this registers the build-tree with a global CMake-registry)
-       export(PACKAGE ${PACKAGE_UPPER_NAME})
-   endif()
+if(REGISTER_PACKAGE)
+   # Export the package for use from the build-tree
+   # (this registers the build-tree with a global CMake-registry)
+   export(PACKAGE ${PACKAGE_UPPER_NAME})
+endif()
 
-   # Create the ZLIBConfig.cmake file
-   configure_file(cmake/PackageConfig.cmake.in
-       ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
+# Create the ZLIBConfig.cmake file
+configure_file(cmake/PackageConfig.cmake.in
+   ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
 
-   if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
-       # Install the <Package>Config.cmake
-       install(FILES
-         ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake
-         DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev)
+if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
+   # Install the <Package>Config.cmake
+   install(FILES
+     ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake
+     DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev)
 
-       # Install the export set for use with the install-tree
-       install(EXPORT ${PACKAGE_UPPER_NAME}Targets DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev)
-   endif()
-   ```
+   # Install the export set for use with the install-tree
+   install(EXPORT ${PACKAGE_UPPER_NAME}Targets DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev)
+endif()
+```
+
+    Also check install instruction has ``EXPORT`` and ``INCLUDES`` tags:
+```cmake
+install(TARGETS ${TARGETS}
+    EXPORT ${PACKAGE_UPPER_NAME}Targets
+    RUNTIME DESTINATION ${INSTALL_BIN_DIR}
+    LIBRARY DESTINATION ${INSTALL_LIB_DIR}
+    ARCHIVE DESTINATION ${INSTALL_LIB_DIR}
+    INCLUDES DESTINATION ${INSTALL_INC_DIR}
+    FRAMEWORK DESTINATION ${INSTALL_LIB_DIR} )
+```    
 
    This will export targets for build-tree use and for install-tree use.
+   
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
 3.1. You need to add the relevant scripts from borsch to 'cmake' directory  
 3.2. Add cmake instruction (if it is not present):
 
-   ```cmake
-   set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
-   ```
+```cmake
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
+```
 
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
 5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
@@ -241,18 +253,18 @@ Then new version of a library released, borsch need to be updated too.
 
 1. Create tag for current version in repository and send it to server:
 
-  ```bash
-  git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
-  git push origin --tags
-  ```
+```bash
+git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
+git push origin --tags
+```
 
 2. Copy sources from original to borsch repository (don't copy build scripts).
    One can use some diff utility to check changes (i.e. meld).
    If ``opt/files.csv`` exist use following command line utility:
 
-   ```bash
-   python tools.py organize --src <path to sources> --dst_name <borsch repository name>
-   ```
+```bash
+python tools.py organize --src <path to sources> --dst_name <borsch repository name>
+```
 
 3. Check if everything build successfully
 
