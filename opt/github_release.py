@@ -118,7 +118,7 @@ def upload_release(url, release_file, username, password):
     color_print('Upload release file ' + release_file, True, 'LGREEN')
     file_name = os.path.basename(release_file)
     post_url = url.replace('{?name,label}', '?name=') + file_name
-    args = ['curl', '-u', username + ':' + password, '-H', 'Content-Type: application/zip', '-s','--data-binary', '@' + release_file, post_url]
+    args = ['curl', '-u', username + ':' + password, '-H', 'Content-Type: application/zip', '-s', '--data-binary', '@' + release_file, post_url]
 
     load_response = subprocess.check_output(args)
 
