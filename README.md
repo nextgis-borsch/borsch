@@ -84,7 +84,7 @@ target_link_extlibraries(${LIB_NAME})
 
 This is a table of currently available libraries.
 
-| # | Repository | Cmaked  | OS tested | Notes |
+| # | Repository | Cmaked | OS tested | Notes |
 |:-:|---|:-:|---|:---|
 |1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows, Mac OS X | tests present |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
@@ -172,16 +172,16 @@ This is a table of currently available libraries.
 |84| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
 |85| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
 |86| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes |  |  |
-|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes |  |  |
-|88| [py_subprocess32](https://github.com/nextgis-borsch/py_subprocess32) | yes |  |  |
-|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes |  |  |
-|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes |  |  |
-|91| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes |  |  |
-|92| [py_matplotlib](https://github.com/nextgis-borsch/py_matplotlib) | yes |  |  |
-|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes |  |  |
-|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes |  |  |
-|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes |  |  |
-|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes |  |  |
+|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes |  | Sources received from pip download site and build using their own build system |
+|88| [py_subprocess32](https://github.com/nextgis-borsch/py_subprocess32) | yes |  | Sources received from pip download site and build using their own build system |
+|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes |  | Sources received from pip download site and build using their own build system |
+|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes |  | Sources received from pip download site and build using their own build system |
+|91| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes |  | Sources received from pip download site and build using their own build system |
+|92| [py_matplotlib](https://github.com/nextgis-borsch/py_matplotlib) | yes |  | Sources received from pip download site and build using their own build system |
+|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes |  | Sources received from pip download site and build using their own build system |
+|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes |  | Sources received from pip download site and build using their own build system |
+|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes |  | Sources received from pip download site and build using their own build system |
+|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes |  | Sources received from pip download site and build using their own build system |
 |97| [tests](https://github.com/nextgis-borsch/tests) | | | Deprecated. Tests should moved to their repositories |
 
 # CMaked libraries requirements  
