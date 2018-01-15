@@ -1,13 +1,15 @@
 # Introduction
-Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. NextGIS Borsch (http://nextgis.com/borsch) is a new build system that is 
 
-* a) easier to use, 
-* b) better solves dependencies and 
-* c) provides more uniform way of building packages. 
+Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While this is valid approach, we believe there is a better new alternative - CMake. NextGIS Borsch (http://nextgis.com/borsch) is a new build system that is
+
+* a) easier to use,
+* b) better solves dependencies and
+* c) provides more uniform way of building packages.
 
 Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows, Linux and MacOS.
 
 # Common CMake scripts
+
 These are common cmake scripts for building system.
 Now two main files created **FindAnyProject.cmake** and **FindExtProject.cmake**.
 
@@ -45,7 +47,7 @@ Some additional parameters are supported. From find_project support:
 * REQUIRED
 * COMPONENTS
 
-Version can be specified via VERSION ```<version>```
+Version can be specified via VERSION ``<version>``
 
 Any other parameters will be forwarded to the external project. The important parameter is **CMAKE_ARGS**. Note: do not pass WITH_X options with CMAKE_ARGS, use set(WITH_X ...) instead.
 
@@ -84,7 +86,7 @@ This is a table of currently available libraries.
 
 | # | Repository | Cmaked  | OS tested | Notes |
 |:-:|---|:-:|---|:---|
-|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows | tests present, not needed on Mac OS |
+|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows, Mac OS X | tests present |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
 |3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows | not needed on Mac OS |
 |4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows, Mac OS X | |
@@ -146,38 +148,81 @@ This is a table of currently available libraries.
 |60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | yes | Mac OS X | |
 |62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
-|63| [lib_qt5](https://github.com/nextgis-borsch/lib_qt5) | | | |
+|63| [lib_qt5](https://github.com/nextgis-borsch/lib_qt5) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
 |64| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
 |65| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Mac OS X |  |
 |66| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
 |67| [lib_cgal](https://github.com/nextgis-borsch/lib_cgal) | yes | | |
-|68| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
-|69| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
-|70| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|71| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|72| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|73| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|74| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|75| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|76| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|77| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|78| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|79| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|80| [py_spatialite](https://github.com/nextgis-borsch/py_spatialite) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|81| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|82| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|83| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes |  |  |
-|84| [tests](https://github.com/nextgis-borsch/tests) | | | |
+|68| [lib_agg](https://github.com/nextgis-borsch/lib_agg) | yes | Mac OS X | |
+|69| [lib_freetype](https://github.com/nextgis-borsch/lib_freetype) | yes | Mac OS X | |
+|70| [lib_qhull](https://github.com/nextgis-borsch/lib_qhull) | yes | Mac OS X | |
+|71| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|72| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
+|73| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|74| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|75| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|76| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|77| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|78| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|79| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|80| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|81| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|82| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|83| [py_spatialite](https://github.com/nextgis-borsch/py_spatialite) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|84| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|85| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|86| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes |  |  |
+|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes |  |  |
+|88| [py_subprocess32](https://github.com/nextgis-borsch/py_subprocess32) | yes |  |  |
+|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes |  |  |
+|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes |  |  |
+|91| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes |  |  |
+|92| [py_matplotlib](https://github.com/nextgis-borsch/py_matplotlib) | yes |  |  |
+|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes |  |  |
+|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes |  |  |
+|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes |  |  |
+|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes |  |  |
+|97| [tests](https://github.com/nextgis-borsch/tests) | | | Deprecated. Tests should moved to their repositories |
 
 # CMaked libraries requirements  
 
-1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ```<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework``` and for applications:
-```<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app```
+1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ``<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework`` and for applications:
+``<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app``
 2. Add export instruction:
 
    ```cmake
-   export(TARGETS ${EXPORT_TARGETS} FILE ${EXPORT_NAME}-exports.cmake EXPORT_LINK_INTERFACE_LIBRARIES)
+   # Add path to includes to build-tree export
+   target_include_directories(${TARGETS} PUBLIC
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+     $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+   )
+
+   # Add all targets to the build-tree export set
+   export(TARGETS ${TARGETS}
+       FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake)
+
+   if(REGISTER_PACKAGE)
+       # Export the package for use from the build-tree
+       # (this registers the build-tree with a global CMake-registry)
+       export(PACKAGE ${PACKAGE_UPPER_NAME})
+   endif()
+
+   # Create the ZLIBConfig.cmake file
+   configure_file(cmake/PackageConfig.cmake.in
+       ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
+
+   if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
+       # Install the <Package>Config.cmake
+       install(FILES
+         ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake
+         DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev)
+
+       # Install the export set for use with the install-tree
+       install(EXPORT ${PACKAGE_UPPER_NAME}Targets DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev)
+   endif()
    ```
+
+   This will export targets for build-tree use and for install-tree use.
 3. All dependencies must be connected via find_anyproject (see "Borsch scripts").  
 3.1. You need to add the relevant scripts from borsch to 'cmake' directory  
 3.2. Add cmake instruction (if it is not present):
@@ -185,12 +230,13 @@ This is a table of currently available libraries.
    ```cmake
    set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
    ```
+
 4. Preferably cmake via include(util) should extract version from header file or another files and report it colored
 5. Preferably add Findxxx.cmake with version check (see. [FindGEOS](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindGEOS.cmake) and [FindPROJ4](https://github.com/nextgis-borsch/borsch/blob/master/cmake/FindPROJ4.cmake))
 6. Create FindExtxxx.cmake with library repository name and some optional variables
-7. Add REGISTER_PACKAGE block to register libraries in CMake global repository on target system.
 
 # Update library sources
+
 Then new version of a library released, borsch need to be updated too.
 
 1. Create tag for current version in repository and send it to server:
@@ -201,7 +247,12 @@ Then new version of a library released, borsch need to be updated too.
   ```
 
 2. Copy sources from original to borsch repository (don't copy build scripts).
-One can use some diff utility to check changes (i.e. meld).
+   One can use some diff utility to check changes (i.e. meld).
+   If ``opt/files.csv`` exist use following command line utility:
+
+   ```bash
+   python tools.py organize --src <path to sources> --dst_name <borsch repository name>
+   ```
 
 3. Check if everything build successfully
 
@@ -212,7 +263,7 @@ All scripts are licensed under GNU GPL v.2.
 # Notes
 
 * There is additional util.cmake file for pretty print of version information to the console.
-* MSVC 2013 update 2 and later have enough C99 support to build under Windows.
+* MSVC 2015 and later have enough C99 support to build under Windows.
 
 #Links:
 
