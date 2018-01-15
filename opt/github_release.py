@@ -146,7 +146,7 @@ if __name__ == "__main__":
         repo_path = os.getcwd()
         build_path = os.path.join(repo_path, args.build)
 
-    color_print('Repo: ' + repo_path + ', Build dir: ' + build_dir, True, 'OKGRAY')    
+    color_print('Repo: ' + repo_path + ', Build dir: ' + build_path, True, 'OKGRAY')    
 
     with open(os.path.join(build_path, 'version.str')) as f:
         content = f.readlines()
