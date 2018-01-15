@@ -272,6 +272,16 @@ python tools.py organize --src <path to sources> --dst_name <borsch repository n
 
 3. Check if everything build successfully
 
+# Badge
+
+Use special badge to mark repository supported NextGIS Borsch building system.
+
+[![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch)
+
+```md
+[![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch)
+```
+
 # License
 
 All scripts are licensed under GNU GPL v.2.
