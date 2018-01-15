@@ -124,14 +124,6 @@ def upload_release(url, release_file, username, password):
 
     response = json.loads(load_response)
 
-    # with open(release_file, 'rb') as f:
-    #     data = base64.b64encode(f.read())
-    #     clen = len(data)
-    #     base64string = base64.b64encode('%s:%s' % (username, password))
-    #     auth = "Basic " + base64string
-    #     request = urllib2.Request(post_url, data=data, headers={'Content-Type': 'application/json', 'Content-Length': clen, 'Authorization' : auth})
-    #     response = urllib2.urlopen(request)
-
     color_print('Uploaded. Get it: ' + response['browser_download_url'], True, 'LGREEN')
 
 
