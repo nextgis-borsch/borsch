@@ -419,6 +419,19 @@ def organize_sources(dst_name, dst_path=None):
         if exts is not None:
             exts = exts.split(',')
 
+        # Process name with [a-c]
+        append_values = []
+        for i, val in enumerate(exts):
+            beg = val.find('[')
+            end = val.find(']')
+            if beg != -1 and end != -1:
+                name_range = val[beg + 1:end]
+                range_values = name_range.split('-')
+                for i in range(int(range_values[0]), int(range_values[1])):
+                    append_values.append(val[:beg] + str(i) + val[end + 1:])
+
+        exts.extend(append_values)
+
         if row['old'] is None or row['old'] == '':
             from_folder = sources_dir
         else:

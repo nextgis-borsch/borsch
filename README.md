@@ -23,8 +23,8 @@ Finally, there are sets of FindExtxxx.cmake files for external repositories deta
 
 # Use cases
 
-To use this scripts one have to add cmake folder to the sources.
-Than the folder needs to be added to modules path:
+To use this scripts need to add cmake folder to the sources.
+Then the folder needs to be added to modules path:
 
 ```cmake
 # set path to additional CMake modules
@@ -86,7 +86,7 @@ This is a table of currently available libraries.
 
 | # | Repository | Cmaked | OS tested | Notes |
 |:-:|---|:-:|---|:---|
-|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows, Mac OS X | tests present |
+|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows, Mac OS X | tests present, Borsch v.2 |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
 |3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows | not needed on Mac OS |
 |4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows, Mac OS X | |
@@ -96,7 +96,7 @@ This is a table of currently available libraries.
 |8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows, Mac OS X |  |
 |9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows | not needed on Mac OS |
 |10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows, Mac OS X | tests present |
-|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows, Mac OS X |  |
+|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows, Mac OS X | tests present, Borsch v.2 |
 |12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows, Mac OS X | tests present |
 |13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows, Mac OS X | tests present |
 |14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows, Mac OS X |  |
@@ -182,11 +182,11 @@ This is a table of currently available libraries.
 |94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes |  | Sources received from pip download site and build using their own build system |
 |95| [py_future](https://github.com/nextgis-borsch/py_future) | yes |  | Sources received from pip download site and build using their own build system |
 |96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes |  | Sources received from pip download site and build using their own build system |
-|97| [tests](https://github.com/nextgis-borsch/tests) | | | Deprecated. Tests should moved to their repositories |
+|97| [tests](https://github.com/nextgis-borsch/tests) | | | **Deprecated**. Tests should moved to their repositories |
 
 # CMaked libraries requirements  
 
-1. Make install instructions according to the GNU standard installation directories. Use include(GNUInstallDirs). For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ``<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework`` and for applications:
+1. Make install instructions according to the GNU standard installation directories. Use ``include(GNUInstallDirs)``. For Mac OS X use option key OSX_FRAMEWORK=ON. Installation directories should be for frameworks: ``<CMAKE_INSTALL_PREFIX>/Library/Frameworks/<lib name in lower case without lib prefix>.framework`` and for applications:
 ``<CMAKE_INSTALL_PREFIX>/Applications/<app name>.app``
 2. Add export instructions:
 
@@ -255,7 +255,7 @@ Then new version of a library released, borsch need to be updated too.
 1. Create tag for current version in repository and send it to server:
 
 ```bash
-git tag -a v1.0.2 -m 'version 1.0.2a from 22 Jan 2015'
+git tag -a v1.0.2.1 -m 'version 1.0.2a from 22 Jan 2015'
 git push origin --tags
 ```
 
