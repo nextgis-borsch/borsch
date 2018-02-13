@@ -86,17 +86,17 @@ This is a table of currently available libraries.
 
 | # | Repository | Cmaked | OS tested | Notes |
 |:-:|---|:-:|---|:---|
-|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows, Mac OS X | tests present, Borsch v.2 |
+|1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Linux, Windows, Mac OS X | tests present, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
 |3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows | not needed on Mac OS |
-|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows, Mac OS X | |
+|4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Linux, Windows, Mac OS X, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) | |
 |5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows, Mac OS X |  |
 |6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows, Mac OS X |  |
 |7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
 |8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows, Mac OS X |  |
 |9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows | not needed on Mac OS |
 |10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows, Mac OS X | tests present |
-|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows, Mac OS X | tests present, Borsch v.2 |
+|11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Linux, Windows, Mac OS X | tests present, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows, Mac OS X | tests present |
 |13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Linux, Windows, Mac OS X | tests present |
 |14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows, Mac OS X |  |
@@ -111,7 +111,7 @@ This is a table of currently available libraries.
 |23| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
 |24| lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
 |25| lib_cfitsio | no | | For GDAL FITS (.fits) driver |
-|26| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows, Mac OS X | For GDAL GeoPackage and other drivers |
+|26| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows, Mac OS X | For GDAL GeoPackage and other drivers, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |27| lib_gif | no | | For GDAL GIF driver |
 |28| lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
 |29| lib_grass | no | | For GDAL GRASS driver |
@@ -159,29 +159,29 @@ This is a table of currently available libraries.
 |71| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |72| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |73| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|74| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|75| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|76| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|77| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|78| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|74| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|75| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|76| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|77| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|78| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
 |79| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|80| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|81| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|82| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|80| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|81| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|82| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
 |83| [py_spatialite](https://github.com/nextgis-borsch/py_spatialite) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|84| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
+|84| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
 |85| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
 |86| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes |  |  |
-|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes |  | Sources received from pip download site and build using their own build system |
+|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
 |88| [py_subprocess32](https://github.com/nextgis-borsch/py_subprocess32) | yes |  | Sources received from pip download site and build using their own build system |
-|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes |  | Sources received from pip download site and build using their own build system |
-|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes |  | Sources received from pip download site and build using their own build system |
+|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
 |91| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes |  | Sources received from pip download site and build using their own build system |
 |92| [py_matplotlib](https://github.com/nextgis-borsch/py_matplotlib) | yes |  | Sources received from pip download site and build using their own build system |
-|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes |  | Sources received from pip download site and build using their own build system |
-|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes |  | Sources received from pip download site and build using their own build system |
-|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes |  | Sources received from pip download site and build using their own build system |
-|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes |  | Sources received from pip download site and build using their own build system |
+|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
 |97| [tests](https://github.com/nextgis-borsch/tests) | | | **Deprecated**. Tests should moved to their repositories |
 
 # CMaked libraries requirements  
