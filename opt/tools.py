@@ -223,34 +223,46 @@ def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
         color_print('status ' + repository['url'], True, 'LGREEN')
-        os.chdir(repository['url'])
-        run(('git', 'status'))
-        os.chdir(os.path.join(os.getcwd(), os.pardir))
+        try:
+            os.chdir(repository['url'])
+            run(('git', 'status'))
+            os.chdir(os.path.join(os.getcwd(), os.pardir))
+        except:
+            pass
 
 def git_pull():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
         color_print('pull ' + repository['url'], True, 'LYELLOW')
-        os.chdir(repository['url'])
-        run(('git', 'pull'))
-        os.chdir(os.path.join(os.getcwd(), os.pardir))
-
+        try:
+            os.chdir(repository['url'])
+            run(('git', 'pull'))
+            os.chdir(os.path.join(os.getcwd(), os.pardir))
+        except:
+            pass
+            
 def git_push():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
         color_print('push ' + repository['url'], True, 'LCYAN')
-        os.chdir(repository['url'])
-        run(('git', 'push'))
-        os.chdir(os.path.join(os.getcwd(), os.pardir))
+        try:
+            os.chdir(repository['url'])
+            run(('git', 'push'))
+            os.chdir(os.path.join(os.getcwd(), os.pardir))
+        except:
+            pass
 
 def git_commit(message):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
         color_print('commit to ' + repository['url'] + ' with message: ' + message, True, 'LCYAN')
-        os.chdir(repository['url'])
-        if run(('git', 'commit', '-a', '-m', message)):
-            color_print('All is OK', True, 'LMAGENTA')
-        os.chdir(os.path.join(os.getcwd(), os.pardir))
+        try:
+            os.chdir(repository['url'])
+            if run(('git', 'commit', '-a', '-m', message)):
+                color_print('All is OK', True, 'LMAGENTA')
+            os.chdir(os.path.join(os.getcwd(), os.pardir))
+        except:
+            pass
 
 def make_versions():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
