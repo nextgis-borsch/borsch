@@ -112,7 +112,7 @@ This is a table of currently available libraries.
 |24| lib_epsilon | no | | For GDAL Epsilon - Wavelet compressed images driver |
 |25| lib_cfitsio | no | | For GDAL FITS (.fits) driver |
 |26| [lib_sqlite3](https://github.com/nextgis-borsch/lib_sqlite) | yes | Linux, Windows, Mac OS X | For GDAL GeoPackage and other drivers, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|27| lib_gif | no | | For GDAL GIF driver |
+|27| lib_gif | yes | Windows, Mac OS X | For GDAL GIF driver, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |28| lib_netcdf | no | | For GDAL GMT Compatible netCDF driver |
 |29| lib_grass | no | | For GDAL GRASS driver |
 |30| lib_gta | no | | For GDAL Generic Tagged Arrays (.gta) driver |
@@ -153,9 +153,9 @@ This is a table of currently available libraries.
 |65| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Mac OS X |  |
 |66| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
 |67| [lib_cgal](https://github.com/nextgis-borsch/lib_cgal) | yes | | |
-|68| [lib_agg](https://github.com/nextgis-borsch/lib_agg) | yes | Mac OS X | |
-|69| [lib_freetype](https://github.com/nextgis-borsch/lib_freetype) | yes | Mac OS X | |
-|70| [lib_qhull](https://github.com/nextgis-borsch/lib_qhull) | yes | Mac OS X | |
+|68| [lib_agg](https://github.com/nextgis-borsch/lib_agg) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|69| [lib_freetype](https://github.com/nextgis-borsch/lib_freetype) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|70| [lib_qhull](https://github.com/nextgis-borsch/lib_qhull) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |71| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |72| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
 |73| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
