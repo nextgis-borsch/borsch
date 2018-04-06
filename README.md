@@ -87,25 +87,25 @@ This is a table of currently available libraries.
 | # | Repository | Cmaked | OS tested | Notes |
 |:-:|---|:-:|---|:---|
 |1| [lib_z](https://github.com/nextgis-borsch/lib_z)  | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Linux, Windows, Mac OS X |  |
-|3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Linux, Windows | not needed on Mac OS |
+|2| [lib_lzma](https://github.com/nextgis-borsch/lib_lzma) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|3| [lib_xml2](https://github.com/nextgis-borsch/lib_xml2) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |4| [lib_curl](https://github.com/nextgis-borsch/lib_curl) | yes | Windows, Mac OS X |  [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Linux, Windows, Mac OS X |  |
-|6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Linux, Windows, Mac OS X |  |
-|7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Linux, Windows, Mac OS X |  |
-|8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Linux, Windows, Mac OS X |  |
-|9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Linux, Windows | not needed on Mac OS |
-|10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Linux, Windows, Mac OS X | tests present |
+|5| [lib_geotiff](https://github.com/nextgis-borsch/lib_geotiff) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|6| [lib_tiff](https://github.com/nextgis-borsch/lib_tiff) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|7| [lib_jpeg](https://github.com/nextgis-borsch/lib_jpeg) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|8| [lib_jbig](https://github.com/nextgis-borsch/lib_jbig) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|9| [lib_iconv](https://github.com/nextgis-borsch/lib_iconv) | yes | Windows | not needed on Mac OS, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|10| [lib_gdal](https://github.com/nextgis-borsch/lib_gdal) | yes | Windows, Mac OS X | tests present |
 |11| [lib_openssl](https://github.com/nextgis-borsch/lib_openssl) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Linux, Windows, Mac OS X | tests present |
-|13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Windows, Mac OS X | tests present, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Linux, Windows, Mac OS X |  |
-|15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Linux, Windows, Mac OS X | tests present |
-|16| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Linux, Windows |  |
+|12| [lib_jsonc](https://github.com/nextgis-borsch/lib_jsonc) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|13| [lib_expat](https://github.com/nextgis-borsch/lib_expat) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|14| [lib_proj](https://github.com/nextgis-borsch/lib_proj) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|15| [lib_png](https://github.com/nextgis-borsch/lib_png) | yes | Windows, Mac OS X | tests present |
+|16| [lib_hdf4](https://github.com/nextgis-borsch/lib_hdf4) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |17| lib_hdf5 | no |  | For GDAL Hierarchical Data Format Release 5 (HDF5) driver |
-|18| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Linux, Windows | tests present |
-|19| [lib_hdfeos2](https://github.com/nextgis-borsch/lib_hdfeos2) | yes | Linux, Windows | tests present, 7 failed |
-|20| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Linux, Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|18| [lib_szip](https://github.com/nextgis-borsch/lib_szip) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|19| [lib_hdfeos2](https://github.com/nextgis-borsch/lib_hdfeos2) | yes | Windows | tests present, 7 failed |
+|20| [lib_geos](https://github.com/nextgis-borsch/lib_geos) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |21| lib_hdfeos5 | no | |  |
 |22| lib_bpg | no | | For GDAL BPG (Better Portable Graphics) driver |
 |23| lib_dap | no | | For GDAL DODS / OPeNDAP driver |
@@ -117,10 +117,10 @@ This is a table of currently available libraries.
 |29| lib_grass | no | | For GDAL GRASS driver |
 |30| lib_gta | no | | For GDAL Generic Tagged Arrays (.gta) driver |
 |31| lib_jasper | no | | For GDAL JPEG2000 (.jp2, .j2k) driver |
-|32| lib_openjpeg | no | | For GDAL OpenJPEG driver |
+|32| [lib_openjpeg](https://github.com/nextgis-borsch/lib_openjpeg) | yes | Windows, Mac OS X | For GDAL GeoPackage and other drivers, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |33| lib_csf | no | | For GDAL PCRaster driver |
 |34| lib_pdfium | no | | For GDAL Geospatial PDF driver |
-|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Linux, Windows, Mac OS X | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt)|
+|35| [lib_pq](https://github.com/nextgis-borsch/lib_pq) | yes | Windows, Mac OS X | For GDAL PostGIS Raster driver. [libpq CMakeLists.txt]( https://github.com/stalkerg/postgres_cmake/blob/cmake/src/interfaces/libpq/CMakeLists.txt) [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |36| lib_ras | no | | For GDAL Rasdaman driver |
 |37| lib_webp | no | | For GDAL WEBP driver |
 |38| lib_xerces | no | | For GDAL INTERLIS driver |
@@ -130,9 +130,9 @@ This is a table of currently available libraries.
 |42| lib_pcidsk | no | | For GDAL PCI Geomatics Database File driver |
 |43| lib_podofo | no | | For GDAL Geospatial PDF driver |
 |44| [lib_freexl](https://github.com/nextgis-borsch/lib_freexl) | yes | Windows | For GDAL MS Excel format driver |
-|45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows, Mac OS X | For GDAL spatialite/sqlite format driver |
-|46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows, Mac OS X | |
-|47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux, Mac OS X | |
+|45| [lib_spatialite](https://github.com/nextgis-borsch/lib_spatialite) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|46| [lib_spatialindex](https://github.com/nextgis-borsch/lib_spatialindex) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|47| [googletest](https://github.com/nextgis-borsch/googletest) | yes | Linux, Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |48| [lib_boost](https://github.com/nextgis-borsch/lib_boost) | yes | | Make only copies of headers from "boost/" without building libs |
 |49| [lib_zip](https://github.com/nextgis-borsch/lib_zip) | yes | | |
 |50| [lib_uv](https://github.com/nextgis-borsch/lib_uv) | yes | | |
@@ -143,45 +143,45 @@ This is a table of currently available libraries.
 |55| [lib_geojsonvt](https://github.com/nextgis-borsch/lib_geojsonvt) | yes | | |
 |56| [postgis](https://github.com/nextgis-borsch/postgis) | yes | Linux | partially cmaked (except tiger and cgal) |
 |57| [lib_opencad](https://github.com/nextgis-borsch/lib_opencad) | yes | Linux, Windows, Mac OS X | From GSoC2016, [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Mac OS X | Not a package but used for python dependency modules |
+|58| [numpy](https://github.com/nextgis-borsch/numpy) | yes | Windows, Mac OS X | Not a package but used for python dependency modules. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |59| [lib_ecw](https://github.com/nextgis-borsch/lib_ecw) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |60| [lib_mrsid](https://github.com/nextgis-borsch/lib_mrsid) | yes | Windows | Prebuild libraries for specific compiler and OS |
 |61| [lib_gsl](https://github.com/nextgis-borsch/lib_gsl) | yes | Mac OS X | |
-|62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
-|63| [lib_qt5](https://github.com/nextgis-borsch/lib_qt5) | yes | Mac OS X | Sources received from Qt download site and build using their own build system |
-|64| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
-|65| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Mac OS X |  |
-|66| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Mac OS X |  |
+|62| [lib_qt4](https://github.com/nextgis-borsch/lib_qt4) | yes | Windows, Mac OS X | Sources received from Qt download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|63| [lib_qt5](https://github.com/nextgis-borsch/lib_qt5) | yes | Windows, Mac OS X | Sources received from Qt download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|64| [lib_qca](https://github.com/nextgis-borsch/lib_qca) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|65| [lib_qwt](https://github.com/nextgis-borsch/lib_qwt) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|66| [lib_qscintilla](https://github.com/nextgis-borsch/lib_qca) | yes | Windows, Mac OS X |  |
 |67| [lib_cgal](https://github.com/nextgis-borsch/lib_cgal) | yes | | |
 |68| [lib_agg](https://github.com/nextgis-borsch/lib_agg) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |69| [lib_freetype](https://github.com/nextgis-borsch/lib_freetype) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |70| [lib_qhull](https://github.com/nextgis-borsch/lib_qhull) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
-|71| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
-|72| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Mac OS X | Sources received from Riverbank download site and build using their own build system |
-|73| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|74| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|75| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|76| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|77| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|78| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|79| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|80| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|81| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|82| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|83| [py_spatialite](https://github.com/nextgis-borsch/py_spatialite) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|84| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|85| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Mac OS X | Sources received from pip download site and build using their own build system |
-|86| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes |  |  |
-|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|88| [py_subprocess32](https://github.com/nextgis-borsch/py_subprocess32) | yes |  | Sources received from pip download site and build using their own build system |
-|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|91| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes |  | Sources received from pip download site and build using their own build system |
-|92| [py_matplotlib](https://github.com/nextgis-borsch/py_matplotlib) | yes |  | Sources received from pip download site and build using their own build system |
-|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
-|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system |
+|71| [py_qt4](https://github.com/nextgis-borsch/py_qt4) | yes | Windows, Mac OS X | Sources received from Riverbank download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|72| [py_sip](https://github.com/nextgis-borsch/py_sip) | yes | Windows, Mac OS X | Sources received from Riverbank download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|73| [py_psycopg](https://github.com/nextgis-borsch/py_psycopg) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|74| [py_dateutil](https://github.com/nextgis-borsch/py_dateutil) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|75| [py_pygments](https://github.com/nextgis-borsch/py_pygments) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|76| [py_ows](https://github.com/nextgis-borsch/py_ows) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|77| [py_httplib](https://github.com/nextgis-borsch/py_httplib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|78| [py_jinja](https://github.com/nextgis-borsch/py_jinja) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|79| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|80| [py_nose](https://github.com/nextgis-borsch/py_nose) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|81| [py_pytz](https://github.com/nextgis-borsch/py_pytz) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|82| [py_six](https://github.com/nextgis-borsch/py_six) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|83| [py_spatialite](https://github.com/nextgis-borsch/py_spatialite) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|84| [py_requests](https://github.com/nextgis-borsch/py_requests) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|85| [py_yaml](https://github.com/nextgis-borsch/py_yaml) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|86| [lib_yaml](https://github.com/nextgis-borsch/lib_yaml) | yes | Windows, Mac OS X | [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|87| [py_functools_lru_cache](https://github.com/nextgis-borsch/py_functools_lru_cache) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|88| [py_subprocess32](https://github.com/nextgis-borsch/py_subprocess32) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|89| [py_cycler](https://github.com/nextgis-borsch/py_cycler) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|90| [py_parsing](https://github.com/nextgis-borsch/py_parsing) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|91| [py_markupsafe](https://github.com/nextgis-borsch/py_markupsafe) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|92| [py_matplotlib](https://github.com/nextgis-borsch/py_matplotlib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|93| [py_contextlib](https://github.com/nextgis-borsch/py_contextlib) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|94| [py_raven](https://github.com/nextgis-borsch/py_raven) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|95| [py_future](https://github.com/nextgis-borsch/py_future) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
+|96| [py_exifread](https://github.com/nextgis-borsch/py_exifread) | yes | Windows, Mac OS X | Sources received from pip download site and build using their own build system. [![Borsch compatible](https://img.shields.io/badge/Borsch-compatible-orange.svg?style=flat)](https://github.com/nextgis-borsch/borsch) |
 |97| [tests](https://github.com/nextgis-borsch/tests) | | | **Deprecated**. Tests should moved to their repositories |
 
 # CMaked libraries requirements  

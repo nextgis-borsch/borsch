@@ -122,6 +122,9 @@ def upload_release(url, release_file, username, password):
 
     load_response = subprocess.check_output(args)
 
+    # For debug
+    print load_response
+
     response = json.loads(load_response)
 
     color_print('Uploaded. Get it: ' + response['browser_download_url'], True, 'LGREEN')
@@ -146,7 +149,7 @@ if __name__ == "__main__":
         repo_path = os.getcwd()
         build_path = os.path.join(repo_path, args.build)
 
-    color_print('Repo: ' + repo_path + ', Build dir: ' + build_path, True, 'OKGRAY')    
+    color_print('Repo: ' + repo_path + ', Build dir: ' + build_path, True, 'OKGRAY')
 
     with open(os.path.join(build_path, 'version.str')) as f:
         content = f.readlines()

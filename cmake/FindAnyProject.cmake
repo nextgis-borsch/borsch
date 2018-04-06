@@ -37,7 +37,7 @@ function(find_anyproject name)
 
     set(options OPTIONAL REQUIRED QUIET EXACT MODULE)
     set(oneValueArgs DEFAULT VERSION SHARED)
-    set(multiValueArgs CMAKE_ARGS COMPONENTS)
+    set(multiValueArgs CMAKE_ARGS COMPONENTS NAMES)
     cmake_parse_arguments(find_anyproject "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
     if(find_anyproject_REQUIRED OR find_anyproject_DEFAULT)
@@ -91,8 +91,13 @@ function(find_anyproject name)
                 set(FIND_PROJECT_ARG ${FIND_PROJECT_ARG} COMPONENTS ${find_anyproject_COMPONENTS})
             endif()
 
+            set(FIND_PROJECT_CONFIG_ARG ${FIND_PROJECT_ARG})
+            if(find_anyproject_NAMES)
+                set(FIND_PROJECT_CONFIG_ARG ${FIND_PROJECT_CONFIG_ARG} NAMES ${find_anyproject_NAMES})
+            endif()
+
             if(NOT CMAKE_CROSSCOMPILING)
-                find_package(${name} ${FIND_PROJECT_ARG} CONFIG QUIET)
+                find_package(${name} ${FIND_PROJECT_CONFIG_ARG} CONFIG QUIET)
                 if(${name}_FOUND AND (${name}_RUN_IN_MODULE_MODE OR ${UPPER_NAME}_RUN_IN_MODULE_MODE))
                     find_package(${name} ${FIND_PROJECT_ARG} MODULE QUIET)
                 endif()

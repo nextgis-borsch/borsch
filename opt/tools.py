@@ -71,7 +71,7 @@ repositories = [
     {"url" : "lib_freetype", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_opencv", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_agg", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "python2", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
+    {"url" : "python", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
     {"url" : "py_setuptools", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "py_future", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "py_raven", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
@@ -99,6 +99,7 @@ repositories = [
     {"url" : "py_cycler", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_subprocess32", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "py_functools_lru_cache", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "py_kiwisolver", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "postgis", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "tests", "cmake_dir" : "cmake", "build" : [], "args" : []},
     # {"url" : "qgis", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
@@ -240,7 +241,7 @@ def git_pull():
             os.chdir(os.path.join(os.getcwd(), os.pardir))
         except:
             pass
-            
+
 def git_push():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
