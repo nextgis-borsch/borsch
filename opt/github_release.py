@@ -69,7 +69,13 @@ def check_release(tag, repo, release_file, username, password):
     color_print('Check release ' + tag, True, 'OKGRAY')
     remote_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'], cwd=repo)
     remote_repo = os.path.splitext(os.path.basename(remote_url))[0]
-    url =  github_endpoint + '/repos/nextgis-borsch/' + remote_repo + '/releases'
+
+    org = remote_url.replace('git@github.com:', '')
+    org = org.replace('https://github.com/', '')
+    org = org.replace('.git', '')
+    org = org.replace('/' + remote_repo, '')
+
+    url =  github_endpoint + '/repos/' + org + '/' + remote_repo + '/releases'
     request = urllib2.Request(url)
     response = urllib2.urlopen(request)
     releases = json.loads(response.read())
@@ -96,7 +102,12 @@ def create_release(tag, repo, username, password):
     color_print('Create release ' + tag, False, 'LGREEN')
     remote_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'], cwd=repo)
     remote_repo = os.path.splitext(os.path.basename(remote_url))[0]
-    url =  github_endpoint + '/repos/nextgis-borsch/' + remote_repo + '/releases'
+    org = remote_url.replace('git@github.com:', '')
+    org = org.replace('https://github.com/', '')
+    org = org.replace('.git', '')
+    org = org.replace('/' + remote_repo, '')
+
+    url =  github_endpoint + '/repos/' + org + '/' + remote_repo + '/releases'
     data = json.dumps({
         "tag_name": tag,
         "target_commitish": "master",
