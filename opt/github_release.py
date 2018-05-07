@@ -70,7 +70,8 @@ def check_release(tag, repo, release_file, username, password):
     remote_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'], cwd=repo)
     # remote_repo = os.path.splitext(os.path.basename(remote_url))[0]
 
-    org = remote_url.replace('git@github.com:', '')
+    org = remote_url.strip()
+    org = org.replace('git@github.com:', '')
     org = org.replace('https://github.com/', '')
     org = org.replace('.git', '')
     # org = org.replace('/' + remote_repo, '')
@@ -103,7 +104,9 @@ def create_release(tag, repo, username, password):
     color_print('Create release ' + tag, False, 'LGREEN')
     remote_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'], cwd=repo)
     # remote_repo = os.path.splitext(os.path.basename(remote_url))[0]
-    org = remote_url.replace('git@github.com:', '')
+
+    org = remote_url.strip()
+    org = org.replace('git@github.com:', '')
     org = org.replace('https://github.com/', '')
     org = org.replace('.git', '')
     # org = org.replace('/' + remote_repo, '')
