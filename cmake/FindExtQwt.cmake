@@ -4,6 +4,7 @@
 # Author:   Dmitry Baryshnikov, polimax@mail.ru
 ################################################################################
 # Copyright (C) 2017, NextGIS <info@nextgis.com>
+# Copyright (C) 2018, Dmitry Baryshnikov, <dmitry.baryshnikov@nextgis.com>
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,6 +20,6 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-set(repo_name lib_qwt)
-set(repo_project qwt)
-set(repo_include qwt)
+set(repo nextgis-borsch/lib_qwt)
+set(repo_type github)
+# set(repo_branch master) # No need to set as master is default value

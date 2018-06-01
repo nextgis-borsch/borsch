@@ -21,6 +21,12 @@ The second one is used to link target libraries from both local or external pack
 
 Finally, there are sets of FindExtxxx.cmake files for external repositories details and additional logic.
 
+Two additional files are mandatory for Borsch v2 functionality: **JSONParser.cmake** and **util.cmake**:
+
+JSONParser.cmake - functions needed for parse github REST API request results.
+
+util.cmake - function need for form binary artifacts names and for use in  toolchains.
+
 # Use cases
 
 To use this scripts need to add cmake folder to the sources.
