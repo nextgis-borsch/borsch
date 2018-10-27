@@ -1,6 +1,14 @@
 #!/usr/bin/python
-
-# Script to create/recreate tag/release in repo
+# -*- coding: utf-8 -*-
+################################################################################
+##
+## Project: NextGIS Borsch build system
+## Purpose: Script to create/recreate tag/release in repo
+## Author: Dmitry Baryshnikov <dmitry.baryshnikov@nextgis.com>
+## Copyright (c) 2018 NextGIS <info@nextgis.com>
+## License: GPL v.2
+##
+################################################################################
 
 import os
 import subprocess, shlex
@@ -106,7 +114,7 @@ def check_release(tag, repo, release_file, username, password):
 def create_release(tag, repo, username, password):
     color_print('Create release ' + tag, False, 'LGREEN')
     remote_url = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'], cwd=repo)
-    
+
     org = get_repository(remote_url)
 
     url =  github_endpoint + '/repos/' + org + '/releases'

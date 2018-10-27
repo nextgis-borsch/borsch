@@ -20,6 +20,7 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
+
 set(repo nextgis-borsch/lib_szip)
 set(repo_type github)
 # set(repo_branch master) # No need to set as master is default value

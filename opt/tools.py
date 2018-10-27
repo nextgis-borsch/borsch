@@ -3,6 +3,7 @@
 ################################################################################
 ##
 ## Project: NextGIS Borsch build system
+## Purpose: Various tools
 ## Author: Dmitry Baryshnikov <dmitry.baryshnikov@nextgis.com>
 ## Author: Maxim Dubinin <maim.dubinin@nextgis.com>
 ## Copyright (c) 2016 NextGIS <info@nextgis.com>

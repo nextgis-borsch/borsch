@@ -36,11 +36,19 @@ function(get_binary_package repo repo_type exact_version download_url name)
 
     if(repo_type STREQUAL "github") # TODO: Add gitlab here.
         if(NOT EXISTS ${CMAKE_BINARY_DIR}/${repo}_latest.json)
-            file(DOWNLOAD
-                https://api.github.com/repos/${repo}/releases/latest
-                ${CMAKE_BINARY_DIR}/${repo}_latest.json
-                TLS_VERIFY OFF
-            )
+            if(exact_version)
+                file(DOWNLOAD
+                    https://api.github.com/repos/${repo}/releases/tags/v${exact_version}
+                    ${CMAKE_BINARY_DIR}/${repo}_latest.json
+                    TLS_VERIFY OFF
+                )
+            else()
+                file(DOWNLOAD
+                    https://api.github.com/repos/${repo}/releases/latest
+                    ${CMAKE_BINARY_DIR}/${repo}_latest.json
+                    TLS_VERIFY OFF
+                )
+            endif()
         endif()
         # Get assets files.
         file(READ ${CMAKE_BINARY_DIR}/${repo}_latest.json _JSON_CONTENTS)
@@ -55,7 +63,7 @@ function(get_binary_package repo repo_type exact_version download_url name)
             if(exact_version)
                 string(FIND ${api_request.assets_${asset_id}.browser_download_url} "${STATIC_PREFIX}${exact_version}-${COMPILER}.zip" IS_FOUND)
             else()
-                string(FIND ${api_request.assets_${asset_id}.browser_download_url} "${STATIC_PREFIX}${COMPILER}.zip" IS_FOUND)
+                string(FIND ${api_request.assets_${asset_id}.browser_download_url} "${COMPILER}.zip" IS_FOUND)
             endif()
             if(IS_FOUND GREATER 0)
                 color_message("Found binary package ${api_request.assets_${asset_id}.browser_download_url}")
@@ -144,7 +152,7 @@ function(find_extproject name)
             if(TARGET ${TARGETG})
                 set_target_properties(${TARGETG} PROPERTIES IMPORTED_GLOBAL TRUE)
             endif()
-        endforeach() 
+        endforeach()
         return()
     endif()
 
@@ -175,6 +183,7 @@ function(find_extproject name)
     list(APPEND find_extproject_CMAKE_ARGS -DEXT_DOWNLOAD_DIR=${EXT_DOWNLOAD_DIR})
     list(APPEND find_extproject_CMAKE_ARGS -DEXT_INSTALL_DIR=${EXT_INSTALL_DIR})
     list(APPEND find_extproject_CMAKE_ARGS -DSUPPRESS_VERBOSE_OUTPUT=${SUPPRESS_VERBOSE_OUTPUT})
+    list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH})
     if(CMAKE_TOOLCHAIN_FILE)
         list(APPEND find_extproject_CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE})
     endif()
@@ -437,9 +446,9 @@ function(find_extproject name)
 
     # On static build we need all targets in TARGET_LINK_LIB
     if(ALT_UPPER_NAME)
-        set(EXPORTS_PATHS "${EXPORTS_PATHS} ${EXT_BINARY_DIR}/${ALT_UPPER_NAME}Targets.cmake" PARENT_SCOPE)
+        set(EXPORTS_PATHS ${EXPORTS_PATHS} ${EXT_BINARY_DIR}/${ALT_UPPER_NAME}Targets.cmake PARENT_SCOPE)
     else()
-        set(EXPORTS_PATHS "${EXPORTS_PATHS} ${EXT_BINARY_DIR}/${UPPER_NAME}Targets.cmake" PARENT_SCOPE)
+        set(EXPORTS_PATHS ${EXPORTS_PATHS} ${EXT_BINARY_DIR}/${UPPER_NAME}Targets.cmake PARENT_SCOPE)
     endif()
 
     # For static builds we need all libraries list in main project.
