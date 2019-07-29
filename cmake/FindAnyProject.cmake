@@ -24,6 +24,11 @@ set(TARGET_LINK_LIB)
 set(WITHOPT ${WITHOPT} "")
 set(EXPORTS_PATHS)
 
+if(ANDROID)
+    # Workaround for Android studio android.toolchain.cmake
+    set(CMAKE_FIND_ROOT_PATH "${ANDROID_TOOLCHAIN_ROOT}/bin" "${ANDROID_TOOLCHAIN_ROOT}/${ANDROID_TOOLCHAIN_MACHINE_NAME}" "${ANDROID_SYSROOT}" "${CMAKE_INSTALL_PREFIX}" "${CMAKE_INSTALL_PREFIX}/share")
+endif()
+
 include(CMakeParseArguments)
 
 function(find_anyproject name)
@@ -162,11 +167,11 @@ function(find_anyproject name)
 
             if(${UPPER_NAME}_LIBRARIES)
                 set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARIES} CACHE INTERNAL "library ${name}")
-                set(${UPPER_NAME}_LIBRARY ${${UPPER_NAME}_LIBRARIES} CACHE INTERNAL "library ${name}")
+                set(${UPPER_NAME}_LIBRARY ${${UPPER_NAME}_LIBRARIES})
             endif()
             if(${UPPER_NAME}_LIBRARY)
                 set(${UPPER_NAME}_LIBRARY ${${UPPER_NAME}_LIBRARY} CACHE INTERNAL "library ${name}")
-                set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARY} CACHE INTERNAL "library ${name}")
+                set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARY})
             endif()
             if(${UPPER_NAME}_VERSION)
                 set(${UPPER_NAME}_VERSION ${${UPPER_NAME}_VERSION} CACHE INTERNAL "library ${name} version")

@@ -184,7 +184,7 @@ if __name__ == "__main__":
 # 1. Check if tag created in repo
     if(not check_tag_exist(tag, repo_path)):
 # 2. If not create - exit with error
-        color_print('Tag {} is not created in repositry'.format(tag), True, 'LRED')
+        color_print('Tag {} is not created in repository'.format(tag), True, 'LRED')
         exit(1)
 # 3. Check if release created from tag
     upload_url = check_release(tag, repo_path, release_file, login, key)
