@@ -17,10 +17,11 @@ import argparse
 import urllib2, json
 import base64
 
-# repka_endpoint = 'https://rm.nextgis.com'
-# repo_id = 2
-repka_endpoint = 'http://localhost:8088'
-repo_id = 1
+repka_endpoint = 'https://rm.nextgis.com'
+repo_id = 2
+# Debug
+# repka_endpoint = 'http://localhost:8088'
+# repo_id = 1
 
 class PutRequest(urllib2.Request):
     '''class to handling putting with urllib2'''
