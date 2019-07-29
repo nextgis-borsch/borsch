@@ -17,8 +17,10 @@ import argparse
 import urllib2, json
 import base64
 
-repka_endpoint = 'https://rm.nextgis.com'
-repo_id = 2
+# repka_endpoint = 'https://rm.nextgis.com'
+# repo_id = 2
+repka_endpoint = 'http://localhost:8088'
+repo_id = 1
 
 class PutRequest(urllib2.Request):
     '''class to handling putting with urllib2'''
@@ -168,11 +170,24 @@ def create_release(packet_id, name, description, tag, file_uid, file_name, usern
 def update_release(release, file_uid, file_name, username, password):
     url = repka_endpoint + '/api/release/{}'.format(release['id'])
     color_print('Update release url: ' + url, False, 'OKGRAY')
+
+    # Check if file exists
+    is_exists = False
     for file in release['files']:
         if file['name'] == file_name:
+            is_exists = True
             file['id'] = None
             file['upload_name'] = file_uid
             file['name'] = file_name
+    if is_exists == False:
+        file = {
+            'name': file_name,
+            'upload_name': file_uid
+        }
+        if release['files']:
+            release['files'].append(file)
+        else:
+            release = [file]      
 
     data = json.dumps(release)
 
