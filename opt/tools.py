@@ -149,6 +149,7 @@ def parse_arguments():
 
     parser_make = subparsers.add_parser('make')
     parser_make.add_argument('--generator', dest='generator_name', default=None, help='specify a build system generator')
+    parser_make.add_argument('--toolset', dest='toolset_name', default=None, help='specify a toolset name if supported by generator')
     parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
     parser_make.add_argument('--versions', dest='versions', action='store_true', help='print libraries version')
     parser_make.add_argument('--clean', dest='clean', action='store_true', default=False, help='clean packages')
@@ -295,7 +296,7 @@ def update_scripts(script):
             color_print('OK', True, 'LCYAN')
 
 
-def make_package(repositories, generator):
+def make_package(repositories, generator, toolset):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
 
@@ -317,6 +318,9 @@ def make_package(repositories, generator):
             if generator is not None:
                 run_args.append('-G')
                 run_args.append(generator)
+                if toolset is not None:
+                    run_args.append('-T')
+                    run_args.append(toolset)
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DBUILD_SHARED_LIBS=TRUE')
             check_os = 'win'
@@ -517,7 +521,7 @@ elif args.command == 'make':
         repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
 
     if not args.clean:
-        make_package(repositories, args.generator_name)
+        make_package(repositories, args.generator_name, args.toolset_name)
     else:
         clean_all(repositories)
 elif args.command == 'organize':
