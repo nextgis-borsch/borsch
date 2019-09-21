@@ -112,6 +112,7 @@ install_dir = 'inst'
 max_os_min_version = '10.11'
 mac_os_sdks_path = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs'
 
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -132,6 +133,7 @@ class bcolors:
     WHITE='\033[1;37m'
 
 #print bcolors.WARNING + "Warning: No active frommets remain. Continue?" + bcolors.ENDC
+
 
 def parse_arguments():
     global args
@@ -167,6 +169,7 @@ def parse_arguments():
 
     args = parser.parse_args()
 
+
 def run(args):
     # print 'calling ' + string.join(args)
     try:
@@ -182,6 +185,7 @@ def run(args):
             return output_code == 0
     except subprocess.CalledProcessError, e:
         return False
+
 
 def color_print(text, bold, color):
     if sys.platform == 'win32':
@@ -213,6 +217,7 @@ def color_print(text, bold, color):
         out_text += text + bcolors.ENDC
         print out_text
 
+
 def git_clone():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -221,6 +226,7 @@ def git_clone():
             run(('git', 'clone', '--depth', '1', 'https://github.com/nextgis-borsch/' + repository['url'] + '.git'))
         else:
             run(('git', 'clone', '--depth', '1', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
+
 
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -233,6 +239,7 @@ def git_status():
         except:
             pass
 
+
 def git_pull():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -243,6 +250,7 @@ def git_pull():
             os.chdir(os.path.join(os.getcwd(), os.pardir))
         except:
             pass
+
 
 def git_push():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -255,6 +263,7 @@ def git_push():
         except:
             pass
 
+
 def git_commit(message):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -266,6 +275,7 @@ def git_commit(message):
             os.chdir(os.path.join(os.getcwd(), os.pardir))
         except:
             pass
+
 
 def make_versions():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -281,6 +291,7 @@ def make_versions():
                 version_str = content[0].rstrip()
                 color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
 
+
 def update_scripts(script):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
@@ -295,6 +306,7 @@ def update_scripts(script):
             shutil.copyfile(script_path, repo_cmake_path)
             color_print('OK', True, 'LCYAN')
 
+
 def get_os():
     result = ''
     if sys.platform == 'darwin':
@@ -304,6 +316,7 @@ def get_os():
     else:
         result = 'nix'
     return result
+
 
 def make_package(repositories, generator, toolset):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -358,7 +371,7 @@ def make_package(repositories, generator, toolset):
             else:
                 sys.exit("Configure %s error!" % repository['url'])
             # Special case to build JPEG12 package
-            if  repository['url'] == 'lib_jpeg':
+            if repository['url'] == 'lib_jpeg':
                 color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
                 color_print('make ' + repository['url'] + '12', True, 'LRED')
                 repo_build_dir = os.path.join(repo_dir, 'build12')
@@ -373,6 +386,7 @@ def make_package(repositories, generator, toolset):
                         run(('cmake', '--build', '.', '--config', 'release', '--target', 'install'))
 
         os.chdir(repo_root)
+
 
 def clean_all(repositories):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -390,12 +404,14 @@ def clean_all(repositories):
 
         os.chdir(repo_root)
 
+
 def read_mappings(csv_path):
     fieldnames_data = ('old','new','action','ext2keep')
     f_csv = open(csv_path)
     csvreader = csv.DictReader(f_csv, fieldnames=fieldnames_data)
 
     return csvreader
+
 
 def copy_dir(src, dest, exts):
     if not os.path.exists(dest):
@@ -411,6 +427,7 @@ def copy_dir(src, dest, exts):
                 file_extension = os.path.splitext(f)[1].replace('.','') # Check extension
                 if file_extension != '' and file_extension in exts:
                     shutil.copy(f, dest)
+
 
 def organize_sources(dst_name, dst_path=None):
     if dst_path is None:
@@ -467,10 +484,11 @@ def organize_sources(dst_name, dst_path=None):
                 copy_dir(from_folder, to_folder, exts)
                 color_print(from_folder + ' ... processed', False, 'LYELLOW' )
 
-    postprocess_path =  os.path.join(dst_path, 'opt', 'postprocess.py')
+    postprocess_path = os.path.join(dst_path, 'opt', 'postprocess.py')
     if os.path.exists(postprocess_path):
         os.chdir(os.path.join(dst_path, 'opt'))
         run(('python', 'postprocess.py', sources_dir))
+
 
 def install_all(install_dst):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -500,34 +518,36 @@ def install_all(install_dst):
         if os.path.exists(for_copy):
             copytree(for_copy, install_dst)
 
-parse_arguments()
-if args.command == 'git':
-    if args.status:
-        git_status()
-    if args.pull:
-        git_pull()
-    if args.push:
-        git_push()
-    if args.clone:
-        git_clone()
-    if args.message is not None and args.message != '':
-        git_commit(args.message)
-elif args.command == 'make':
-    if args.versions:
-        make_versions()
-        exit(0)
-    if args.only_repos is not None:
-        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
 
-    if not args.clean:
-        make_package(repositories, args.generator_name, args.toolset_name)
+if __name__ == "__main__":
+    parse_arguments()
+    if args.command == 'git':
+        if args.status:
+            git_status()
+        if args.pull:
+            git_pull()
+        if args.push:
+            git_push()
+        if args.clone:
+            git_clone()
+        if args.message is not None and args.message != '':
+            git_commit(args.message)
+    elif args.command == 'make':
+        if args.versions:
+            make_versions()
+            exit(0)
+        if args.only_repos is not None:
+            repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
+
+        if not args.clean:
+            make_package(repositories, args.generator_name, args.toolset_name)
+        else:
+            clean_all(repositories)
+    elif args.command == 'organize':
+        organize_sources(args.dst_name, args.dst_path)
+    elif args.command == 'install_all':
+        install_all(args.install_dst)
+    elif args.command == 'update':
+        update_scripts(args.script)
     else:
-        clean_all(repositories)
-elif args.command == 'organize':
-    organize_sources(args.dst_name, args.dst_path)
-elif args.command == 'install_all':
-    install_all(args.install_dst)
-elif args.command == 'update':
-    update_scripts(args.script)
-else:
-    exit('Unsupported command')
+        exit('Unsupported command')
