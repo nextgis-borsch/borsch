@@ -295,6 +295,15 @@ def update_scripts(script):
             shutil.copyfile(script_path, repo_cmake_path)
             color_print('OK', True, 'LCYAN')
 
+def get_os():
+    result = ''
+    if sys.platform == 'darwin':
+        result = 'mac'
+    elif sys.platform == 'win32':
+        result = 'win'
+    else:
+        result = 'nix'
+    return result
 
 def make_package(repositories, generator, toolset):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -302,13 +311,11 @@ def make_package(repositories, generator, toolset):
 
     for repository in repositories:
         run_args = ['cmake']
-        check_os = ''
         run_args.append('-DSUPPRESS_VERBOSE_OUTPUT=ON')
         run_args.append('-DCMAKE_BUILD_TYPE=Release')
         run_args.append('-DSKIP_DEFAULTS=ON')
         build_args = ''
         if sys.platform == 'darwin':
-            check_os = 'mac'
             run_args.append('-DOSX_FRAMEWORK=ON')
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DCMAKE_OSX_SYSROOT=' + mac_os_sdks_path + '/MacOSX.sdk')
@@ -323,11 +330,9 @@ def make_package(repositories, generator, toolset):
                     run_args.append(toolset)
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DBUILD_SHARED_LIBS=TRUE')
-            check_os = 'win'
             build_args = '/m:' + str(multiprocessing.cpu_count())
-        else:
-            check_os = 'nix'
 
+        check_os = get_os()
         if check_os in repository['build']:
             color_print('make ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
@@ -374,13 +379,7 @@ def clean_all(repositories):
     repo_root = os.getcwd()
 
     for repository in repositories:
-        check_os = ''
-        if sys.platform == 'darwin':
-            check_os = 'mac'
-        elif sys.platform == 'win32':
-            check_os = 'win'
-        else:
-            check_os = 'nix'
+        check_os = get_os()
 
         if check_os in repository['build']:
             color_print('remove build for ' + repository['url'], True, 'LRED')
