@@ -34,7 +34,7 @@ repositories = [
     {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_tools=ON']},
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_gif", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_qhull", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_qhull", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
