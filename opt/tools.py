@@ -23,7 +23,7 @@ import csv
 
 repositories = [
     {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : []},
-    {"url" : "googletest", "cmake_dir" : "cmake", "build" : [], "args" : []},
+    {"url" : "googletest", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_boost", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
     {"url" : "lib_cgal", "cmake_dir" : "cmake", "build" : ["mac"], "args" : ['-DBUILD_TESTING=OFF', '-DWITH_CPACK=OFF']},
     {"url" : "lib_xml2", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
@@ -34,7 +34,7 @@ repositories = [
     {"url" : "lib_expat", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DBUILD_tools=ON']},
     {"url" : "lib_iconv", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_gif", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
-    {"url" : "lib_qhull", "cmake_dir" : "cmake", "build" : ["mac"], "args" : []},
+    {"url" : "lib_qhull", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_freexl", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_geojsonvt", "cmake_dir" : "cmake", "build" : [], "args" : []},
     {"url" : "lib_geos", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
@@ -53,9 +53,9 @@ repositories = [
     {"url" : "lib_opencad", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_png", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_pq", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
+    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_proj", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gsl", "cmake_dir" : "cmake", "build" : ["mac","win"], "args" : ['-DBUILD_TESTS=OFF']},
-    {"url" : "lib_sqlite", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_openjpeg", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
     {"url" : "lib_gdal", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : ['-DWITH_EXPAT=ON', '-DWITH_GeoTIFF=ON', '-DWITH_ICONV=ON', '-DWITH_JSONC=ON', '-DWITH_LibXml2=ON', '-DWITH_TIFF=ON', '-DWITH_ZLIB=ON', '-DWITH_JBIG=ON', '-DWITH_JPEG=ON', '-DWITH_JPEG12=ON', '-DWITH_LibLZMA=ON', '-DWITH_PYTHON=ON', '-DWITH_PYTHON3=OFF', '-DWITH_PNG=ON', '-DWITH_OpenSSL=ON', '-DENABLE_OZI=ON', '-DENABLE_NITF_RPFTOC_ECRGTOC=ON', '-DGDAL_ENABLE_GNM=ON', '-DWITH_SQLite3=ON', '-DWITH_PostgreSQL=ON', '-DGDAL_BUILD_APPS=ON', '-DENABLE_OPENJPEG=ON', '-DWITH_OpenJPEG=ON', '-DENABLE_HDF4=ON', '-DWITH_QHULL=ON']},
     {"url" : "lib_rapidjson", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -112,6 +112,7 @@ install_dir = 'inst'
 max_os_min_version = '10.11'
 mac_os_sdks_path = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs'
 
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -133,6 +134,7 @@ class bcolors:
 
 #print bcolors.WARNING + "Warning: No active frommets remain. Continue?" + bcolors.ENDC
 
+
 def parse_arguments():
     global args
 
@@ -149,6 +151,7 @@ def parse_arguments():
 
     parser_make = subparsers.add_parser('make')
     parser_make.add_argument('--generator', dest='generator_name', default=None, help='specify a build system generator')
+    parser_make.add_argument('--toolset', dest='toolset_name', default=None, help='specify a toolset name if supported by generator')
     parser_make.add_argument('--only', dest='only_repos', default=None, help='the names of the packages separated by comma')
     parser_make.add_argument('--versions', dest='versions', action='store_true', help='print libraries version')
     parser_make.add_argument('--clean', dest='clean', action='store_true', default=False, help='clean packages')
@@ -166,6 +169,7 @@ def parse_arguments():
 
     args = parser.parse_args()
 
+
 def run(args):
     # print 'calling ' + string.join(args)
     try:
@@ -181,6 +185,7 @@ def run(args):
             return output_code == 0
     except subprocess.CalledProcessError, e:
         return False
+
 
 def color_print(text, bold, color):
     if sys.platform == 'win32':
@@ -212,6 +217,7 @@ def color_print(text, bold, color):
         out_text += text + bcolors.ENDC
         print out_text
 
+
 def git_clone():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -220,6 +226,7 @@ def git_clone():
             run(('git', 'clone', '--depth', '1', 'https://github.com/nextgis-borsch/' + repository['url'] + '.git'))
         else:
             run(('git', 'clone', '--depth', '1', 'git@github.com:nextgis-borsch/' + repository['url'] + '.git'))
+
 
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -232,6 +239,7 @@ def git_status():
         except:
             pass
 
+
 def git_pull():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -242,6 +250,7 @@ def git_pull():
             os.chdir(os.path.join(os.getcwd(), os.pardir))
         except:
             pass
+
 
 def git_push():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -254,6 +263,7 @@ def git_push():
         except:
             pass
 
+
 def git_commit(message):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
@@ -265,6 +275,7 @@ def git_commit(message):
             os.chdir(os.path.join(os.getcwd(), os.pardir))
         except:
             pass
+
 
 def make_versions():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -279,6 +290,7 @@ def make_versions():
                 content = f.readlines()
                 version_str = content[0].rstrip()
                 color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
+
 
 def update_scripts(script):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -295,19 +307,28 @@ def update_scripts(script):
             color_print('OK', True, 'LCYAN')
 
 
-def make_package(repositories, generator):
+def get_os():
+    result = ''
+    if sys.platform == 'darwin':
+        result = 'mac'
+    elif sys.platform == 'win32':
+        result = 'win'
+    else:
+        result = 'nix'
+    return result
+
+
+def make_package(repositories, generator, toolset):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
 
     for repository in repositories:
         run_args = ['cmake']
-        check_os = ''
         run_args.append('-DSUPPRESS_VERBOSE_OUTPUT=ON')
         run_args.append('-DCMAKE_BUILD_TYPE=Release')
         run_args.append('-DSKIP_DEFAULTS=ON')
         build_args = ''
         if sys.platform == 'darwin':
-            check_os = 'mac'
             run_args.append('-DOSX_FRAMEWORK=ON')
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DCMAKE_OSX_SYSROOT=' + mac_os_sdks_path + '/MacOSX.sdk')
@@ -317,13 +338,14 @@ def make_package(repositories, generator):
             if generator is not None:
                 run_args.append('-G')
                 run_args.append(generator)
+                if toolset is not None:
+                    run_args.append('-T')
+                    run_args.append(toolset)
             run_args.append('-DREGISTER_PACKAGE=ON')
             run_args.append('-DBUILD_SHARED_LIBS=TRUE')
-            check_os = 'win'
             build_args = '/m:' + str(multiprocessing.cpu_count())
-        else:
-            check_os = 'nix'
 
+        check_os = get_os()
         if check_os in repository['build']:
             color_print('make ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
@@ -349,7 +371,7 @@ def make_package(repositories, generator):
             else:
                 sys.exit("Configure %s error!" % repository['url'])
             # Special case to build JPEG12 package
-            if  repository['url'] == 'lib_jpeg':
+            if repository['url'] == 'lib_jpeg':
                 color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
                 color_print('make ' + repository['url'] + '12', True, 'LRED')
                 repo_build_dir = os.path.join(repo_dir, 'build12')
@@ -365,18 +387,13 @@ def make_package(repositories, generator):
 
         os.chdir(repo_root)
 
+
 def clean_all(repositories):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     repo_root = os.getcwd()
 
     for repository in repositories:
-        check_os = ''
-        if sys.platform == 'darwin':
-            check_os = 'mac'
-        elif sys.platform == 'win32':
-            check_os = 'win'
-        else:
-            check_os = 'nix'
+        check_os = get_os()
 
         if check_os in repository['build']:
             color_print('remove build for ' + repository['url'], True, 'LRED')
@@ -387,12 +404,14 @@ def clean_all(repositories):
 
         os.chdir(repo_root)
 
+
 def read_mappings(csv_path):
     fieldnames_data = ('old','new','action','ext2keep')
     f_csv = open(csv_path)
     csvreader = csv.DictReader(f_csv, fieldnames=fieldnames_data)
 
     return csvreader
+
 
 def copy_dir(src, dest, exts):
     if not os.path.exists(dest):
@@ -408,6 +427,7 @@ def copy_dir(src, dest, exts):
                 file_extension = os.path.splitext(f)[1].replace('.','') # Check extension
                 if file_extension != '' and file_extension in exts:
                     shutil.copy(f, dest)
+
 
 def organize_sources(dst_name, dst_path=None):
     if dst_path is None:
@@ -464,10 +484,11 @@ def organize_sources(dst_name, dst_path=None):
                 copy_dir(from_folder, to_folder, exts)
                 color_print(from_folder + ' ... processed', False, 'LYELLOW' )
 
-    postprocess_path =  os.path.join(dst_path, 'opt', 'postprocess.py')
+    postprocess_path = os.path.join(dst_path, 'opt', 'postprocess.py')
     if os.path.exists(postprocess_path):
         os.chdir(os.path.join(dst_path, 'opt'))
         run(('python', 'postprocess.py', sources_dir))
+
 
 def install_all(install_dst):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -497,34 +518,36 @@ def install_all(install_dst):
         if os.path.exists(for_copy):
             copytree(for_copy, install_dst)
 
-parse_arguments()
-if args.command == 'git':
-    if args.status:
-        git_status()
-    if args.pull:
-        git_pull()
-    if args.push:
-        git_push()
-    if args.clone:
-        git_clone()
-    if args.message is not None and args.message != '':
-        git_commit(args.message)
-elif args.command == 'make':
-    if args.versions:
-        make_versions()
-        exit(0)
-    if args.only_repos is not None:
-        repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
 
-    if not args.clean:
-        make_package(repositories, args.generator_name)
+if __name__ == "__main__":
+    parse_arguments()
+    if args.command == 'git':
+        if args.status:
+            git_status()
+        if args.pull:
+            git_pull()
+        if args.push:
+            git_push()
+        if args.clone:
+            git_clone()
+        if args.message is not None and args.message != '':
+            git_commit(args.message)
+    elif args.command == 'make':
+        if args.versions:
+            make_versions()
+            exit(0)
+        if args.only_repos is not None:
+            repositories = [repo for repo in repositories if repo['url'] in args.only_repos.split(',')]
+
+        if not args.clean:
+            make_package(repositories, args.generator_name, args.toolset_name)
+        else:
+            clean_all(repositories)
+    elif args.command == 'organize':
+        organize_sources(args.dst_name, args.dst_path)
+    elif args.command == 'install_all':
+        install_all(args.install_dst)
+    elif args.command == 'update':
+        update_scripts(args.script)
     else:
-        clean_all(repositories)
-elif args.command == 'organize':
-    organize_sources(args.dst_name, args.dst_path)
-elif args.command == 'install_all':
-    install_all(args.install_dst)
-elif args.command == 'update':
-    update_scripts(args.script)
-else:
-    exit('Unsupported command')
+        exit('Unsupported command')
