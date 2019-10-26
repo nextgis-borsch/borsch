@@ -6,7 +6,7 @@
 ## Purpose: Various tools
 ## Author: Dmitry Baryshnikov <dmitry.baryshnikov@nextgis.com>
 ## Author: Maxim Dubinin <maim.dubinin@nextgis.com>
-## Copyright (c) 2016 NextGIS <info@nextgis.com>
+## Copyright (c) 2016-2019 NextGIS <info@nextgis.com>
 ## License: GPL v.2
 ##
 ################################################################################
@@ -20,6 +20,7 @@ import sys
 import multiprocessing
 import glob
 import csv
+import common
 
 repositories = [
     {"url" : "borsch", "cmake_dir" : "cmake", "build" : [], "args" : []},
@@ -112,25 +113,6 @@ install_dir = 'inst'
 max_os_min_version = '10.11'
 mac_os_sdks_path = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs'
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    OKGRAY = '\033[0;37m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    DGRAY='\033[1;30m'
-    LRED='\033[1;31m'
-    LGREEN='\033[1;32m'
-    LYELLOW='\033[1;33m'
-    LBLUE='\033[1;34m'
-    LMAGENTA='\033[1;35m'
-    LCYAN='\033[1;36m'
-    WHITE='\033[1;37m'
-
 #print bcolors.WARNING + "Warning: No active frommets remain. Continue?" + bcolors.ENDC
 
 def parse_arguments():
@@ -155,7 +137,7 @@ def parse_arguments():
 
     parser_organize = subparsers.add_parser('organize')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
-    parser_organize.add_argument('--dst_name', dest='dst_name', required=True, help='destination folder name')
+    parser_organize.add_argument('--dst_name', dest='dst_name', required=False, help='destination folder name')
     parser_organize.add_argument('--dst_path', dest='dst_path', required=False, help='Specify destination folder path')
 
     parser_install_all = subparsers.add_parser('install_all')
@@ -182,40 +164,10 @@ def run(args):
     except subprocess.CalledProcessError, e:
         return False
 
-def color_print(text, bold, color):
-    if sys.platform == 'win32':
-        print text
-    else:
-        out_text = ''
-        if bold:
-            out_text += bcolors.BOLD
-        if color == 'GREEN':
-            out_text += bcolors.OKGREEN
-        elif color == 'LGREEN':
-            out_text += bcolors.LGREEN
-        elif color == 'LYELLOW':
-            out_text += bcolors.LYELLOW
-        elif color == 'LMAGENTA':
-            out_text += bcolors.LMAGENTA
-        elif color == 'LCYAN':
-            out_text += bcolors.LCYAN
-        elif color == 'LRED':
-            out_text += bcolors.LRED
-        elif color == 'LBLUE':
-            out_text += bcolors.LBLUE
-        elif color == 'DGRAY':
-            out_text += bcolors.DGRAY
-        elif color == 'OKGRAY':
-            out_text += bcolors.OKGRAY
-        else:
-            out_text += bcolors.OKGRAY
-        out_text += text + bcolors.ENDC
-        print out_text
-
 def git_clone():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        color_print('clone ' + repository['url'], True, 'LCYAN')
+        common.color_print('clone ' + repository['url'], True, 'LCYAN')
         if sys.platform == 'win32':
             run(('git', 'clone', '--depth', '1', 'https://github.com/nextgis-borsch/' + repository['url'] + '.git'))
         else:
@@ -224,7 +176,7 @@ def git_clone():
 def git_status():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        color_print('status ' + repository['url'], True, 'LGREEN')
+        common.color_print('status ' + repository['url'], True, 'LGREEN')
         try:
             os.chdir(repository['url'])
             run(('git', 'status'))
@@ -235,7 +187,7 @@ def git_status():
 def git_pull():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        color_print('pull ' + repository['url'], True, 'LYELLOW')
+        common.color_print('pull ' + repository['url'], True, 'LYELLOW')
         try:
             os.chdir(repository['url'])
             run(('git', 'pull'))
@@ -246,7 +198,7 @@ def git_pull():
 def git_push():
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        color_print('push ' + repository['url'], True, 'LCYAN')
+        common.color_print('push ' + repository['url'], True, 'LCYAN')
         try:
             os.chdir(repository['url'])
             run(('git', 'push'))
@@ -257,11 +209,11 @@ def git_push():
 def git_commit(message):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
     for repository in repositories:
-        color_print('commit to ' + repository['url'] + ' with message: ' + message, True, 'LCYAN')
+        common.color_print('commit to ' + repository['url'] + ' with message: ' + message, True, 'LCYAN')
         try:
             os.chdir(repository['url'])
             if run(('git', 'commit', '-a', '-m', message)):
-                color_print('All is OK', True, 'LMAGENTA')
+                common.color_print('All is OK', True, 'LMAGENTA')
             os.chdir(os.path.join(os.getcwd(), os.pardir))
         except:
             pass
@@ -273,12 +225,12 @@ def make_versions():
         repo_build_dir = os.path.join(root_dir, repository['url'], 'build')
         version_file_path = os.path.join(repo_build_dir, 'version.str')
         if not os.path.exists(version_file_path):
-            color_print(repository['url'] + ' - unknown', False, 'LRED')
+            common.color_print(repository['url'] + ' - unknown', False, 'LRED')
         else:
             with open(version_file_path) as f:
                 content = f.readlines()
                 version_str = content[0].rstrip()
-                color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
+                common.color_print(repository['url'] + ' - ' + version_str, False, 'LGREEN')
 
 def update_scripts(script):
     os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
@@ -286,13 +238,13 @@ def update_scripts(script):
     script_path = os.path.join(repo_root, 'borsch', 'cmake', script)
 
     for repository in repositories:
-        color_print('update ' + repository['url'], False, 'LYELLOW')
+        common.color_print('update ' + repository['url'], False, 'LYELLOW')
         if repository['url'] == 'borsch':
             continue
         repo_cmake_path = os.path.join(repo_root, repository['url'], repository['cmake_dir'], script)
         if os.path.exists(repo_cmake_path):
             shutil.copyfile(script_path, repo_cmake_path)
-            color_print('OK', True, 'LCYAN')
+            common.color_print('OK', True, 'LCYAN')
 
 
 def make_package(repositories, generator):
@@ -325,7 +277,7 @@ def make_package(repositories, generator):
             check_os = 'nix'
 
         if check_os in repository['build']:
-            color_print('make ' + repository['url'], True, 'LRED')
+            common.color_print('make ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
             repo_build_dir = os.path.join(repo_dir, 'build')
             repo_inst_dir = os.path.join(repo_dir, install_dir)
@@ -338,11 +290,11 @@ def make_package(repositories, generator):
             for repo_build_arg in repository['args']:
                 run_args.append(repo_build_arg)
             run_args.append('..')
-            color_print('configure ' + repository['url'], False, 'LBLUE')
+            common.color_print('configure ' + repository['url'], False, 'LBLUE')
             if run((run_args)):
-                color_print('build ' + repository['url'], False, 'LBLUE')
+                common.color_print('build ' + repository['url'], False, 'LBLUE')
                 if run(('cmake', '--build', '.', '--config', 'release', '--', build_args)):
-                    color_print('install ' + repository['url'], False, 'LBLUE')
+                    common.color_print('install ' + repository['url'], False, 'LBLUE')
                     run(('cmake', '--build', '.', '--config', 'release', '--target', 'install'))
                 else:
                     sys.exit("Build %s error!" % repository['url'])
@@ -350,8 +302,8 @@ def make_package(repositories, generator):
                 sys.exit("Configure %s error!" % repository['url'])
             # Special case to build JPEG12 package
             if  repository['url'] == 'lib_jpeg':
-                color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
-                color_print('make ' + repository['url'] + '12', True, 'LRED')
+                common.color_print('Special case for ' + repository['url'] + '12', False, 'LBLUE')
+                common.color_print('make ' + repository['url'] + '12', True, 'LRED')
                 repo_build_dir = os.path.join(repo_dir, 'build12')
                 if not os.path.exists(repo_build_dir):
                     os.makedirs(repo_build_dir)
@@ -379,7 +331,7 @@ def clean_all(repositories):
             check_os = 'nix'
 
         if check_os in repository['build']:
-            color_print('remove build for ' + repository['url'], True, 'LRED')
+            common.color_print('remove build for ' + repository['url'], True, 'LRED')
             repo_dir = os.path.join(repo_root, repository['url'])
             repo_build_dir = os.path.join(repo_dir, 'build')
 
@@ -458,11 +410,11 @@ def organize_sources(dst_name, dst_path=None):
 
         if os.path.exists(from_folder):
             if action == 'skip':
-                color_print(from_folder + ' ... skip', False, 'LBLUE' )
+                common.color_print(from_folder + ' ... skip', False, 'LBLUE' )
                 continue
             else:
                 copy_dir(from_folder, to_folder, exts)
-                color_print(from_folder + ' ... processed', False, 'LYELLOW' )
+                common.color_print(from_folder + ' ... processed', False, 'LYELLOW' )
 
     postprocess_path =  os.path.join(dst_path, 'opt', 'postprocess.py')
     if os.path.exists(postprocess_path):

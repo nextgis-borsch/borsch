@@ -207,25 +207,7 @@ def update_release(release, file_uid, file_name, username, password):
 
     color_print('Release updated. {}'.format(release['message']), True, 'LGREEN')
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='NextGIS Borsch tools. Utility to create or recreate release in repository')
-    parser.add_argument('-v', '--version', action='version', version='NextGIS Borsch repka_release version 1.0')
-    parser.add_argument('--login', dest='login', help='repka login')
-    parser.add_argument('--password', dest='password', help='repka password')
-    parser.add_argument('--repo_path', dest='repo', help='path to repository on disk')
-    parser.add_argument('--build_path', dest='build', help='build directory to search version.str and upload zip files')
-
-    args = parser.parse_args()
-
-    login = args.login
-    password = args.password
-    if args.repo:
-        repo_path = args.repo
-        build_path = args.build
-    else:
-        repo_path = os.getcwd()
-        build_path = os.path.join(repo_path, args.build)
-
+def do_work(repo_path, build_path, login, password):
     color_print('Repo: ' + repo_path + ', Build dir: ' + build_path, True, 'OKGRAY')
 
     with open(os.path.join(build_path, 'version.str')) as f:
@@ -259,3 +241,22 @@ if __name__ == "__main__":
     else:
         # Update current release
         update_release(release, file_uid, file_name, login, password)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='NextGIS Borsch tools. Utility to create or recreate release in repository')
+    parser.add_argument('-v', '--version', action='version', version='NextGIS Borsch repka_release version 1.0')
+    parser.add_argument('--login', dest='login', help='repka login')
+    parser.add_argument('--password', dest='password', help='repka password')
+    parser.add_argument('--repo_path', dest='repo', help='path to repository on disk')
+    parser.add_argument('--build_path', dest='build', help='build directory to search version.str and upload zip files')
+
+    args = parser.parse_args()
+
+    if args.repo:
+        repo_path = args.repo
+        build_path = args.build
+    else:
+        repo_path = os.getcwd()
+        build_path = os.path.join(repo_path, args.build)
+
+    do_work(repo_path, build_path, args.login, args.password)
