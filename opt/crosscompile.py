@@ -29,7 +29,7 @@ repositories = [
     {"name": "lib_jsonc", "args" : []},
     {"name": "lib_jbig", "args" : []},
     {"name": "lib_expat", "args" : ['-DBUILD_tools=OFF', '-DBUILD_examples=OFF', '-DBUILD_tests=OFF', '-DBUILD_doc=OFF']},
-    {"name": "lib_geos", "args" : ['-DGEOS_ENABLE_TESTS=OFF']},
+    {"name": "lib_geos", "args" : ['-DBUILD_TESTING=OFF']},
     {"name": "lib_openssl", "args" : ['-DOPENSSL_NO_AFALGENG=ON', '-DOPENSSL_NO_ASM=ON', '-DOPENSSL_NO_DYNAMIC_ENGINE=ON', '-DOPENSSL_NO_STATIC_ENGINE=OFF', '-DOPENSSL_NO_DEPRECATED=ON', '-DOPENSSL_NO_UNIT_TEST=ON']},
     {"name": "lib_lzma", "args" : ['-DBUILD_APPS=OFF']},
     {"name": "lib_jpeg", "args" : ['-DBUILD_APP=OFF']},
