@@ -77,6 +77,7 @@ repositories = [
     {"url" : "lib_crashpad", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_sentrynative", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "lib_qtkeychain", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
+    {"url" : "lib_xslt", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "python", "cmake_dir" : "cmake", "build" : ["win"], "args" : ["-DPYTHON_VERSION=2.7.12", "-DBUILD_LIBPYTHON_SHARED=ON"]},
     {"url" : "py_setuptools", "cmake_dir" : "cmake", "build" : ["win"], "args" : []},
     {"url" : "py_future", "cmake_dir" : "cmake", "build" : ["mac", "win"], "args" : []},
