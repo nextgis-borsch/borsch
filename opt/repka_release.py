@@ -174,12 +174,13 @@ def update_release(release, file_uid, file_name, username, password):
 
     # Check if file exists
     is_exists = False
-    for file in release['files']:
-        if file['name'] == file_name:
-            is_exists = True
-            file['id'] = None
-            file['upload_name'] = file_uid
-            file['name'] = file_name
+    if release['files']:
+        for file in release['files']:
+            if file['name'] == file_name:
+                is_exists = True
+                file['id'] = None
+                file['upload_name'] = file_uid
+                file['name'] = file_name
     if is_exists == False:
         file = {
             'name': file_name,
