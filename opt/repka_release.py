@@ -264,4 +264,4 @@ if __name__ == "__main__":
         repo_path = os.getcwd()
         build_path = os.path.join(repo_path, args.build)
 
-    do_work(repo_path, build_path, str(args.login, 'utf-8'), str(args.password, 'utf-8'))
+    do_work(repo_path, build_path, args.login, args.password)
