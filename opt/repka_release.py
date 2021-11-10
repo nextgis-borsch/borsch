@@ -223,7 +223,7 @@ def do_work(repo_path, build_path, login, password):
     tag = content[0]
     release_file = os.path.join(build_path, content[2]) + '.zip'
     
-    packet_name = str(get_repo_name(repo_path))
+    packet_name = str(get_repo_name(repo_path), 'utf-8')
 
 # 1. Get packet ID
     packet_id = get_packet_id(packet_name, login, password)
@@ -264,4 +264,4 @@ if __name__ == "__main__":
         repo_path = os.getcwd()
         build_path = os.path.join(repo_path, args.build)
 
-    do_work(repo_path, build_path, str(args.login), str(args.password))
+    do_work(repo_path, build_path, str(args.login, 'utf-8'), str(args.password, 'utf-8'))
