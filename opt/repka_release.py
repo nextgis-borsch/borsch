@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 ################################################################################
 ##
@@ -53,7 +53,7 @@ class bcolors:
 
 def color_print(text, bold, color):
     if sys.platform == 'win32':
-        print text
+        print(text)
     else:
         out_text = ''
         if bold:
@@ -79,7 +79,7 @@ def color_print(text, bold, color):
         else:
             out_text += bcolors.OKGRAY
         out_text += text + bcolors.ENDC
-        print out_text
+        print(out_text)
 
 def get_repo_name(repo):
     p = subprocess.check_output(['git', 'config', '--get', 'remote.origin.url'], cwd=repo)
@@ -133,7 +133,7 @@ def upload_file(file_path, username, password):
     load_response = subprocess.check_output(args)
     response = json.loads(load_response)
 
-    print response
+    print(response)
 
     file_uid = response['file']
     file_name = response['name']
@@ -192,7 +192,7 @@ def update_release(release, file_uid, file_name, username, password):
 
     data = json.dumps(release)
 
-    print data
+    print(data)
 
     clen = len(data)
 
