@@ -96,7 +96,7 @@ def get_packet_id(packet_name, username, password):
     request = urllib2.Request(url)
     
     if username is not None and password is not None:
-        base64string = base64.b64encode('%s:%s' % (username, password))
+        base64string = base64.b64encode('{}:{}'.format(username, password).encode("utf-8"))
         request.add_header("Authorization", "Basic %s" % base64string)   
 
     response = urllib2.urlopen(request)
