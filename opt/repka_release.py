@@ -14,8 +14,12 @@ import os
 import subprocess, shlex
 import sys
 import argparse
-import urllib2, json
+import json
 import base64
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 
 repka_endpoint = 'https://rm.nextgis.com'
 repo_id = 2
