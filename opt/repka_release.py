@@ -112,7 +112,7 @@ def get_release(packet_id, tag, username, password):
     request = urllib2.Request(url)
     
     if username is not None and password is not None:
-        base64string = base64.b64encode('%s:%s' % (username, password))
+        base64string = base64.b64encode('{}:{}'.format(username, password).encode("utf-8"))
         request.add_header("Authorization", "Basic %s" % base64string)   
 
     response = urllib2.urlopen(request)
@@ -223,7 +223,7 @@ def do_work(repo_path, build_path, login, password):
     tag = content[0]
     release_file = os.path.join(build_path, content[2]) + '.zip'
     
-    packet_name = get_repo_name(repo_path)
+    packet_name = str(get_repo_name(repo_path))
 
 # 1. Get packet ID
     packet_id = get_packet_id(packet_name, login, password)
@@ -264,4 +264,4 @@ if __name__ == "__main__":
         repo_path = os.getcwd()
         build_path = os.path.join(repo_path, args.build)
 
-    do_work(repo_path, build_path, args.login, args.password)
+    do_work(repo_path, build_path, str(args.login), str(args.password))
