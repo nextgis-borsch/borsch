@@ -94,10 +94,8 @@ def get_packet_id(packet_name, username, password):
     url =  repka_endpoint + '/api/packet?repository={}&filter={}'.format(repo_id, packet_name)
     color_print('Check packet url: ' + url, False, 'OKGRAY')
     request = urllib2.Request(url)
-    
-    if username is not None and password is not None:
-        base64string = base64.b64encode('{}:{}'.format(username, password).encode("utf-8"))
-        request.add_header("Authorization", "Basic %s" % base64string)   
+
+    add_auth_header(request, username, password) 
 
     response = urllib2.urlopen(request)
     packets = json.loads(response.read())
@@ -111,9 +109,7 @@ def get_release(packet_id, tag, username, password):
     color_print('Check release url: ' + url, False, 'OKGRAY')
     request = urllib2.Request(url)
     
-    if username is not None and password is not None:
-        base64string = base64.b64encode('{}:{}'.format(username, password).encode("utf-8"))
-        request.add_header("Authorization", "Basic %s" % base64string)   
+    add_auth_header(request, username, password)
 
     response = urllib2.urlopen(request)
     releases = json.loads(response.read())
@@ -161,9 +157,7 @@ def create_release(packet_id, name, description, tag, file_uid, file_name, usern
 
     request = urllib2.Request(url, data=data, headers={'Content-Type': 'application/json', 'Content-Length': clen})
     
-    if username is not None and password is not None:
-        base64string = base64.b64encode('%s:%s' % (username, password))
-        request.add_header("Authorization", "Basic %s" % base64string)   
+    add_auth_header(request, username, password)
 
     response = urllib2.urlopen(request)
     release = json.loads(response.read())
@@ -171,6 +165,12 @@ def create_release(packet_id, name, description, tag, file_uid, file_name, usern
     color_print('Release with ID {} created'.format(release['id']), False, 'LCYAN')
 
     return release['id']
+
+def add_auth_header(request, username, password):
+    if username is not None and password is not None:
+        auth = '{}:{}'.format(username, password)
+        base64string = base64.b64encode(auth.encode())
+        request.add_header('Authorization', 'Basic {}'.format(base64string))
 
 def update_release(release, file_uid, file_name, username, password):
     url = repka_endpoint + '/api/release/{}'.format(release['id'])
@@ -202,10 +202,7 @@ def update_release(release, file_uid, file_name, username, password):
     clen = len(data)
 
     request = PutRequest(url, data=data, headers={'Content-Type': 'application/json', 'Content-Length': clen})
-    
-    if username is not None and password is not None:
-        base64string = base64.b64encode('%s:%s' % (username, password))
-        request.add_header("Authorization", "Basic %s" % base64string)   
+    add_auth_header(request, username, password)
 
     response = urllib2.urlopen(request)
     release = json.loads(response.read())
