@@ -152,7 +152,8 @@ def create_release(packet_id, name, description, tag, file_uid, file_name, usern
         "files": [
             {"upload_name": file_uid, "name": file_name},
         ]
-    }).decode()
+    })
+    data = data.encode()
     clen = len(data)
 
     request = urllib2.Request(url, data=data, headers={'Content-Type': 'application/json', 'Content-Length': clen})
@@ -199,6 +200,7 @@ def update_release(release, file_uid, file_name, username, password):
 
     print(data)
 
+    data = data.encode()
     clen = len(data)
 
     request = PutRequest(url, data=data, headers={'Content-Type': 'application/json', 'Content-Length': clen})
