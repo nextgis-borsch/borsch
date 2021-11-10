@@ -197,7 +197,6 @@ def update_release(release, file_uid, file_name, username, password):
             release = [file]      
 
     data = json.dumps(release)
-
     print(data)
 
     data = data.encode()
