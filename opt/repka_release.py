@@ -171,7 +171,7 @@ def add_auth_header(request, username, password):
     if username is not None and password is not None:
         auth = '{}:{}'.format(username, password)
         base64string = base64.b64encode(auth.encode())
-        request.add_header('Authorization', 'Basic {}'.format(base64string))
+        request.add_header('Authorization', 'Basic {}'.format(base64string.decode()))
 
 def update_release(release, file_uid, file_name, username, password):
     url = repka_endpoint + '/api/release/{}'.format(release['id'])
