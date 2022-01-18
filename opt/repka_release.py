@@ -220,7 +220,10 @@ def do_work(repo_path, build_path, login, password):
     tag = content[0]
     release_file = os.path.join(build_path, content[2]) + '.zip'
     
-    packet_name = str(get_repo_name(repo_path), 'utf-8')
+    if sys.version_info.major > 3:
+        packet_name = str(get_repo_name(repo_path), 'utf-8')
+    else:
+        packet_name = get_repo_name(repo_path)
 
 # 1. Get packet ID
     packet_id = get_packet_id(packet_name, login, password)
