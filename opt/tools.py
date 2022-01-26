@@ -14,7 +14,6 @@
 import argparse
 import os
 import shutil
-import string
 import subprocess
 import sys
 import multiprocessing
@@ -164,12 +163,12 @@ def run(args):
             if 'nothing to commit' in output or 'Already up-to-date' in output or 'Everything up-to-date' in output:
                 return True
             else:
-                print output
+                print(output)
                 return True
         else:
             output_code = subprocess.call(args, stderr=subprocess.STDOUT)
             return output_code == 0
-    except subprocess.CalledProcessError, e:
+    except:
         return False
 
 def git_clone():
@@ -464,11 +463,11 @@ def install_all(install_dst):
                     try:
                         shutil.copy2(s, d)
                     except:
-                        print "Error with copy ", s
+                        print("Error with copy " + s)
 
     for f in os.listdir('.'):
         for_copy = os.path.join(repo_root, f, "inst")
-        print "Copy %s" % for_copy
+        print('Copy {}'.format(for_copy))
         if os.path.exists(for_copy):
             copytree(for_copy, install_dst)
 
