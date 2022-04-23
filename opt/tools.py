@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ################################################################################
 ##
@@ -6,7 +6,7 @@
 ## Purpose: Various tools
 ## Author: Dmitry Baryshnikov <dmitry.baryshnikov@nextgis.com>
 ## Author: Maxim Dubinin <maim.dubinin@nextgis.com>
-## Copyright (c) 2016-2019 NextGIS <info@nextgis.com>
+## Copyright (c) 2016-2022 NextGIS <info@nextgis.com>
 ## License: GPL v.2
 ##
 ################################################################################
@@ -440,7 +440,7 @@ def organize_sources(dst_name, dst_path=None):
     postprocess_path = os.path.join(dst_path, 'opt', 'postprocess.py')
     if os.path.exists(postprocess_path):
         os.chdir(os.path.join(dst_path, 'opt'))
-        run(('python', 'postprocess.py', sources_dir))
+        run((sys.executable, 'postprocess.py', sources_dir))
 
 
 def install_all(install_dst):

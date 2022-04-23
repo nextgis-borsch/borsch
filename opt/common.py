@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import sys
@@ -24,7 +23,7 @@ class bcolors:
 
 def color_print(text, bold, color):
     if sys.platform == 'win32':
-        print text
+        print(text)
     else:
         out_text = ''
         if bold:
@@ -50,4 +49,4 @@ def color_print(text, bold, color):
         else:
             out_text += bcolors.OKGRAY
         out_text += text + bcolors.ENDC
-        print out_text
+        print(out_text)
