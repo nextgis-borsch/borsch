@@ -68,7 +68,7 @@ def make_package(repo, root_dir, abi, login, password):
     print('Process {} [{}]...'.format(repo['name'], abi))
     repo_dir = os.path.join(root_dir, repo['name'])
     # Create build dir
-    build_dir = os.path.join(root_dir, 'build', repo['name'] + '_' + str(int(time.time())))
+    build_dir = os.path.join(root_dir, repo['name'] + '_' + str(int(time.time())))
     os.mkdir(build_dir)
     os.chdir(build_dir)
 
@@ -105,7 +105,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    borsch_root_dir = os.path.join(os.getcwd(), os.pardir, os.pardir)
+    borsch_root_dir = os.path.join(os.getcwd())
         
     for repo in get_packages(args.packages):
         for abi in abis:
