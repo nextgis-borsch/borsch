@@ -17,7 +17,6 @@ import time
 import repka_release
 import shutil
 import subprocess
-import common
 
 ndk_path = '/android-ndk'
 abis = ['x86_64', 'x86', 'arm64-v8a', 'armeabi-v7a']
@@ -66,7 +65,7 @@ def run(args):
         return False
     
 def make_package(repo, root_dir, abi, login, password):
-    common.color_print('Process {} [{}]...'.format(repo['name'], abi), False, 'LBLUE')
+    print('Process {} [{}]...'.format(repo['name'], abi))
     repo_dir = os.path.join(root_dir, repo['name'])
     # Create build dir
     build_dir = os.path.join(root_dir, 'build', repo['name'] + '_' + str(int(time.time())))
