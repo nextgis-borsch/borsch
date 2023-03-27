@@ -64,9 +64,10 @@ def run(args):
     except subprocess.CalledProcessError(e):
         return False
     
-def make_package(repo, repo_dir, abi, login, password):
+def make_package(repo, root_dir, abi, login, password):
     print('Process {} [{}]...'.format(repo['name'], abi))
     # Create build dir
+    repo_dir = os.path.join(root_dir, repo, '_code')
     build_dir = os.path.join(repo_dir, 'build', repo['name'] + '_' + str(int(time.time())))
     os.mkdir(build_dir)
     os.chdir(build_dir)
@@ -104,7 +105,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    borsch_root_dir = os.path.join(os.getcwd(), os.pardir)
+    borsch_root_dir = os.path.join(os.getcwd())
         
     for repo in get_packages(args.packages):
         for abi in abis:
