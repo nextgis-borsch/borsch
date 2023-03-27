@@ -104,7 +104,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    borsch_root_dir = s.path.join(os.getcwd(), os.pardir)
+    borsch_root_dir = os.path.join(os.getcwd(), os.pardir)
         
     for repo in get_packages(args.packages):
         for abi in abis:
