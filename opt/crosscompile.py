@@ -104,7 +104,9 @@ if __name__ == "__main__":
     parser.add_argument('--packages', dest='packages', help='packages list separated by semicolon')
 
     args = parser.parse_args()
-        
+    
+    root_dir = os.getcwd()
+    
     for repo in get_packages(args.packages):
         for abi in abis:
-            make_package(repo, os.getcwd(), abi, args.login, args.password)
+            make_package(repo, root_dir, abi, args.login, args.password)
