@@ -19,7 +19,7 @@ import shutil
 import subprocess
 import common
 
-ndk_path = '/Users/Bishop/Library/Android/sdk/ndk-bundle'
+ndk_path = '/android-ndk'
 abis = ['x86_64', 'x86', 'arm64-v8a', 'armeabi-v7a']
 base_opts = ['-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_static', '-DANDROID_CPP_FEATURES=rtti', '-G', 'Unix Makefiles', '-DCMAKE_MAKE_PROGRAM=make', '-DBUILD_SHARED_LIBS=OFF', '-DBUILD_STATIC_LIBS=ON', '-DBUILD_TARGET_PLATFORM=ANDROID', '-DSUPPRESS_VERBOSE_OUTPUT=ON', '-DCMAKE_BUILD_TYPE=Release', '-DSKIP_DEFAULTS=ON', '-DCMAKE_TOOLCHAIN_FILE=' + ndk_path + '/build/cmake/android.toolchain.cmake', '-DANDROID_NDK=' + ndk_path]
 repositories = [
