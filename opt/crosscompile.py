@@ -67,7 +67,7 @@ def run(args):
 def make_package(repo, repo_dir, abi, login, password):
     print('Process {} [{}]...'.format(repo['name'], abi))
     # Create build dir
-    build_dir = os.path.join(root_dir, 'build', repo['name'] + '_' + str(int(time.time())))
+    build_dir = os.path.join(repo_dir, 'build', repo['name'] + '_' + str(int(time.time())))
     os.mkdir(build_dir)
     os.chdir(build_dir)
 
