@@ -62,7 +62,7 @@ def run(args):
     try:
         output_code = subprocess.call(args, stderr=subprocess.STDOUT)
         return output_code == 0
-    except subprocess.CalledProcessError, e:
+    except subprocess.CalledProcessError(e):
         return False
     
 def make_package(repo, root_dir, abi, login, password):
