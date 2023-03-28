@@ -66,7 +66,7 @@ def get_packages(package_list):
     return out
 
 def run(args):
-    # print 'calling ' + string.join(args)
+    print('calling ' + ' '.join(args))
     try:
         output_code = subprocess.call(args, stderr=subprocess.STDOUT)
         return output_code == 0
