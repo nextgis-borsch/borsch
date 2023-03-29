@@ -33,7 +33,7 @@ repositories = [
     {"name": "lib_lzma", "args" : ['-DBUILD_APPS=OFF', '-DWITH_ICONV=ON', '-DWITH_ICONV_EXTERNAL=ON']},
     {"name": "lib_jpeg", "args" : ['-DBUILD_APP=OFF']},
     {"name": "lib_curl", "args" : ['-DWITH_OpenSSL_EXTERNAL=ON', '-DBUILD_CURL_EXE=OFF', '-DHTTP_ONLY=ON', '-DENABLE_MANUAL=OFF','-DWITH_ZLIB=ON', '-DCMAKE_USE_LIBSSH2=OFF', '-DCMAKE_USE_GSSAPI=OFF']},
-    {"name": "lib_xml2", "args" : ['-DWITH_ZLIB=ON', '-DWITH_LibLZMA=ON', '-DWITH_LibLZMA_EXTERNAL=ON', '-DWITH_ICONV=ON', '-DWITH_ICONV_EXTERNAL=ON', '-DBUILD_TESTING=OFF']},
+    {"name": "lib_xml2", "args" : ['-DWITH_ZLIB=ON', '-DWITH_LibLZMA=ON', '-DWITH_LibLZMA_EXTERNAL=ON', '-DWITH_ICONV=ON', '-DWITH_ICONV_EXTERNAL=ON', '-DLIBXML2_WITH_TESTS=OFF']},
     {"name": "lib_png", "args" : ['-DWITH_ZLIB=ON']},
     {"name": "lib_tiff", "args" : ['-DWITH_ZLIB=ON', '-DWITH_JPEG_EXTERNAL=ON', '-DWITH_JBIG_EXTERNAL=ON', '-DWITH_LibLZMA_EXTERNAL=ON', '-DWITH_JPEG=ON', '-DWITH_JBIG=ON', '-DWITH_LibLZMA=ON', '-DSKIP_TOOLS=ON', '-DSKIP_BUILD_DOCS=ON']},
     {"name": "lib_proj", "args" : ['-DBUILD_CCT=OFF', '-DBUILD_CS2CS=OFF', '-DBUILD_GEOD=OFF', '-DBUILD_GIE=OFF', '-DBUILD_PROJ=OFF', '-DBUILD_PROJINFO=OFF', '-DBUILD_PROJSYNC=OFF','-DWITH_SQLite3=ON', '-DWITH_SQLite3_EXTERNAL=ON', '-DBUILD_TESTING=OFF', '-DGENERATE_PROJ_DB=OFF', '-DWITH_TIFF=ON', '-DWITH_TIFF_EXTERNAL=ON', '-DWITH_CURL=ON', '-DWITH_CURL_EXTERNAL=ON', ]},
@@ -47,8 +47,9 @@ repositories = [
     {"name": "lib_kml", "args" : ['-DWITH_ZLIB=ON', '-DWITH_Boost=ON', '-DWITH_Boost_EXTERNAL=ON', '-DWITH_UriParser=ON', '-DWITH_UriParser_EXTERNAL=ON', '-DWITH_EXPAT=ON', '-DWITH_EXPAT_EXTERNAL=ON', '-DBUILD_TESTING=OFF']},
     {"name": "lib_opencad", "args" : ['-DBUILD_TESTING=OFF']},
     {"name": "lib_openjpeg", "args" : ['-DBUILD_TESTING=OFF', '-DBUILD_CODEC=OFF']},
-    {"name": "lib_pq", "args" : ['-DBUILD_TESTING=OFF']},
+    {"name": "lib_pq", "args" : ['-DBUILD_TESTING=OFF', '-DWITH_OpenSSL=ON', '-DWITH_OpenSSL_EXTERNAL=ON']},
     {"name": "lib_qhull", "args" : ['-DBUILD_TESTING=OFF']},
+    {"name": "nextgis_datastore", "args" : ['-DWITH_OpenSSL=ON', '-DWITH_OpenSSL_EXTERNAL=ON', '-DWITH_GEOS=ON', '-DWITH_GEOS_EXTERNAL=ON', '-DWITH_GDAL=ON', '-DWITH_GDAL_EXTERNAL=ON', '-DBUILD_TESTS=OFF']},
 ]
 
 def get_packages(package_list):
