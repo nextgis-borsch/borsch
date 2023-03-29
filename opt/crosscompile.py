@@ -46,7 +46,7 @@ repositories = [
     {"name": "lib_uriparser", "args" : ['-DBUILD_TESTING=OFF', '-DSKIP_BUILD_APPS=ON']},
     {"name": "lib_kml", "args" : ['-DWITH_ZLIB=ON', '-DWITH_Boost=ON', '-DWITH_Boost_EXTERNAL=ON', '-DWITH_UriParser=ON', '-DWITH_UriParser_EXTERNAL=ON', '-DWITH_EXPAT=ON', '-DWITH_EXPAT_EXTERNAL=ON', '-DBUILD_TESTING=OFF']},
     {"name": "lib_opencad", "args" : ['-DBUILD_TESTING=OFF']},
-    {"name": "lib_openjpeg", "args" : ['-DBUILD_TESTING=OFF']},
+    {"name": "lib_openjpeg", "args" : ['-DBUILD_TESTING=OFF', '-DBUILD_CODEC=OFF']},
     {"name": "lib_pq", "args" : ['-DBUILD_TESTING=OFF']},
     {"name": "lib_qhull", "args" : ['-DBUILD_TESTING=OFF']},
 ]
