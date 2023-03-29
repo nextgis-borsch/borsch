@@ -30,7 +30,7 @@ repositories = [
     {"name": "lib_expat", "args" : ['-DBUILD_tools=OFF', '-DBUILD_examples=OFF', '-DBUILD_tests=OFF', '-DBUILD_doc=OFF']},
     {"name": "lib_geos", "args" : ['-DBUILD_TESTING=OFF', '-DGEOS_ENABLE_INLINE=OFF',]},
     {"name": "lib_openssl", "args" : ['-DOPENSSL_NO_AFALGENG=ON', '-DOPENSSL_NO_ASM=ON', '-DOPENSSL_NO_DYNAMIC_ENGINE=ON', '-DOPENSSL_NO_STATIC_ENGINE=OFF', '-DOPENSSL_NO_DEPRECATED=ON', '-DOPENSSL_NO_UNIT_TEST=ON']},
-    {"name": "lib_lzma", "args" : ['-DBUILD_APPS=OFF']},
+    {"name": "lib_lzma", "args" : ['-DBUILD_APPS=OFF', '-DWITH_EXPAT=ON', '-DWITH_EXPAT_EXTERNAL=ON']},
     {"name": "lib_jpeg", "args" : ['-DBUILD_APP=OFF']},
     {"name": "lib_curl", "args" : ['-DWITH_OpenSSL_EXTERNAL=ON', '-DBUILD_CURL_EXE=OFF', '-DHTTP_ONLY=ON', '-DENABLE_MANUAL=OFF','-DWITH_ZLIB=ON', '-DCMAKE_USE_LIBSSH2=OFF', '-DCMAKE_USE_GSSAPI=OFF']},
     {"name": "lib_xml2", "args" : ['-DWITH_ZLIB=ON', '-DWITH_LibLZMA=ON', '-DWITH_LibLZMA_EXTERNAL=ON', '-DWITH_ICONV=ON', '-DWITH_ICONV_EXTERNAL=ON', '-DBUILD_TESTING=OFF']},
