@@ -12,6 +12,7 @@
 ################################################################################
 
 import argparse
+import io
 import os
 import shutil
 import subprocess
@@ -114,6 +115,8 @@ repositories = [
 
 args = {}
 organize_file = 'folders.csv'
+list_patches = set()
+list_extensions = None
 install_dir = 'inst'
 max_os_min_version = '10.11'
 mac_os_sdks_path = '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs'
@@ -142,6 +145,9 @@ def parse_arguments():
     parser_make.add_argument('--clean', dest='clean', action='store_true', default=False, help='clean packages')
 
     parser_organize = subparsers.add_parser('organize')
+    parser_organize.add_argument('--list', dest='list', action='store_true', default=False, help='output copied file names')
+    parser_organize.add_argument('--list_exts', dest='list_exts', type=str, default='*', help='filter list files by extensions: .cpp;.h etc')
+    parser_organize.add_argument('--compare', dest='compare', action='store_true', default=False, help='compare src and dest files')
     parser_organize.add_argument('--src', dest='src', required=True, help='original sources folder')
     parser_organize.add_argument('--dst_name', dest='dst_name', required=False, help='destination folder name')
     parser_organize.add_argument('--dst_path', dest='dst_path', required=False, help='Specify destination folder path')
@@ -366,23 +372,57 @@ def read_mappings(csv_path):
     return csvreader
 
 
-def copy_dir(src, dest, exts):
+def copy_dir(src, dest, exts, fake=False):
+    global list_patches
+    def run_shell(cargs):
+        p = subprocess.Popen(cargs, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p.communicate()
+        return p
+    def copy_file(f_name, dest_name):
+        if not fake:
+            shutil.copy(f_name, dest_name)
+        else:
+            f_ext = os.path.splitext(f_name)[1]
+            if '*' in list_extensions or f_ext in list_extensions:
+                result_compare = True
+                if args.compare:
+                    # result = subprocess.run(diff_command, shell=True, capture_output=True, text=True)
+                    dst_f_name = f'{dest_name}/{os.path.basename(f_name)}'
+                    result = run_shell(("diff", "-q", f_name, dst_f_name))
+                    if result.returncode == 0:
+                        result_compare = False
+
+                if result_compare:
+                    # out_stream = sys.stdout
+                    # io.TextIOWrapper.write(out_stream, f"{f_name.replace(args.src+'/', '')}\n")
+                    list_patches.add(f_name)
+
     if not os.path.exists(dest):
         os.makedirs(dest)
+
+    # if src == '/home/user/develop/qgis/images/themes/default/algorithms' :
+    #     print('/home/user/develop/qgis/images/themes/default/algorithms')
 
     files = glob.glob(src + "/*")
     for f in files:
         if not os.path.isdir(f):
             file_name = os.path.basename(f)
+
+            # if file_name == 'mAlgorithmOffsetLines.svg' :
+            #     print('mAlgorithmOffsetLines.svg')
+
             if '*' in exts or file_name in exts: # Check file name or if * mask
-                shutil.copy(f, dest)
+                copy_file(f, dest)
             else:
                 file_extension = os.path.splitext(f)[1].replace('.','') # Check extension
                 if file_extension != '' and file_extension in exts:
-                    shutil.copy(f, dest)
+                    copy_file(f, dest)
 
 
 def organize_sources(dst_name, dst_path=None):
+    global list_extensions
+    global list_patches
+
     if dst_path is None:
         os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
         repo_root = os.getcwd()
@@ -399,6 +439,8 @@ def organize_sources(dst_name, dst_path=None):
         exit('Source path ' + sources_dir + ' not exists')
 
     mappings = read_mappings(organize_file_path)
+
+    list_extensions = args.list_exts.split(';')
 
     for row in mappings:
         action = row['action']
@@ -431,11 +473,25 @@ def organize_sources(dst_name, dst_path=None):
 
         if os.path.exists(from_folder):
             if action == 'skip':
-                common.color_print(from_folder + ' ... skip', False, 'LBLUE' )
+                if not args.list:
+                    common.color_print(from_folder + f'... {action}', False, 'LBLUE' )
                 continue
             else:
-                copy_dir(from_folder, to_folder, exts)
-                common.color_print(from_folder + ' ... processed', False, 'LYELLOW' )
+                copy_dir(from_folder, to_folder, exts, args.list)
+                if not args.list:
+                    common.color_print(from_folder + ' ... processed', False, 'LYELLOW' )
+        else:
+           common.color_print(from_folder + f'... {action}' + ' not exist!', False, 'LRED' )
+
+    if args.list:
+        list_patches = sorted(list_patches)
+        out_stream = sys.stdout
+        for f_path in list_patches:
+            io.TextIOWrapper.write(out_stream, f"{f_path.replace(args.src+'/', '')}\n")
+        return
+
+    #DEBUG
+    return
 
     postprocess_path = os.path.join(dst_path, 'opt', 'postprocess.py')
     if os.path.exists(postprocess_path):
