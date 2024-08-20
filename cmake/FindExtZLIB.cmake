@@ -20,10 +20,8 @@
 # along with this script.  If not, see <http://www.gnu.org/licenses/>.
 ################################################################################
 
-# Set for sources
 set(repo nextgis-borsch/lib_z)
 set(repo_type github)
-# set(repo_bin_url https://api.github.com)
 # set(repo_branch master) # No need to set as master is default value
 
 # Set for binary artifacts
