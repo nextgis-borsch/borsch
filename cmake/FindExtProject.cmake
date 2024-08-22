@@ -467,7 +467,7 @@ function(find_extproject name)
     endif()
 
     if(find_extproject_EXACT) # If version mark exact, set branch name as tags/v1.X.X
-        set(repo_branch "tags/v${find_extproject_VERSION}")
+        set(repo_branch "v${find_extproject_VERSION}")
     elseif(NOT DEFINED repo_branch) # If repo_branch is not defined - set it to master.
         set(repo_branch master)
     endif()
