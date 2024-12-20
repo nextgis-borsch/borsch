@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>${NGS_APPLE_BUNDLE_NAME}</string>
+    <key>CFBundleIdentifier</key>
+    <string>${NGS_APPLE_BUNDLE_ID}</string>
+    <key>CFBundleVersion</key>
+    <string>${VERSION}</string>
+    <key>CFBundleShortVersionString</key>
+    <string>${VERSION}</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundlePackageType</key>
+    <string>FMWK</string>
+    <key>CFBundleExecutable</key>
+    <string>${PROJECT_NAME}</string>
+    <key>DTSDKName</key>
+    <string>${XCODE_IOS_PLATFORM}${IOS_SDK_VERSION}</string>
+    <key>MinimumOSVersion</key>
+    <string>${IOS_DEPLOYMENT_TARGET}</string>
+    <key>DTPlatformName</key>
+    <string>${XCODE_IOS_PLATFORM}</string>
+    <key>DTPlatformVersion</key>
+    <string>${IOS_SDK_VERSION}</string>
+    <key>DTPlatformBuild</key>
+    <string>${IOS_BUILD_VERSION}</string>
+    <key>DTSDKBuild</key>
+    <string>${IOS_BUILD_VERSION}</string>
+</dict>
+</plist>

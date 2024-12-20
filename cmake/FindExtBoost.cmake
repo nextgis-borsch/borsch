@@ -4,7 +4,7 @@
 # Author:   Dmitry Baryshnikov, polimax@mail.ru
 ################################################################################
 # Copyright (C) 2015-2019, NextGIS <info@nextgis.com>
-# Copyright (C) 2015-2019 Dmitry Baryshnikov
+# Copyright (C) 2015-2024 Dmitry Baryshnikov
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,5 +22,3 @@
 
 set(repo nextgis-borsch/lib_boost)
 set(repo_type github)
-# set(repo_branch master) # No need to set as master is default value
-set(repo_bin_url https://api.github.com)

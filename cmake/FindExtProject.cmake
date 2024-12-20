@@ -166,21 +166,40 @@ function(find_extproject name)
         set(EXT_INSTALL_DIR "${EP_PREFIX}/install")
     endif()
 
-    # Get some properties from <cmakemodules>/FindExt${name}.cmake file.
-    include(FindExt${name})
-
     if(find_extproject_EXACT)
         set(TEST_VERSION ${find_extproject_VERSION})
     else()
         set(TEST_VERSION IGNORE)
     endif()
 
-    if(NOT DEFINED repo_bin)
-        set(repo_bin ${repo})
+
+    # Get some properties from <cmakemodules>/FindExt${name}.cmake file.
+    include(FindExt${name})
+
+    if(NOT DEFINED repo_url)
+        if(repo_type STREQUAL "github")
+            set(repo_url "https://github.com")
+        else()
+            message(FATAL "repo is not defined. Cannot get package ${name}")
+        endif()
     endif()
+    
     if(NOT DEFINED repo_bin_type)
         set(repo_bin_type ${repo_type})
     endif()
+
+    if(NOT DEFINED repo_bin_url)
+        if(repo_bin_type STREQUAL "repka")
+            set(repo_bin_url "https://rm.nextgis.com")
+        else()
+            set(repo_bin_url ${repo_url})
+        endif()
+    endif()
+
+    if(NOT DEFINED repo_bin)
+        set(repo_bin ${repo})
+    endif()
+
     if(NOT DEFINED repo_bin_id)
         set(repo_bin_id 0)
     endif()

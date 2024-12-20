@@ -3,8 +3,8 @@
 # Purpose:  CMake build scripts
 # Author:   Dmitry Baryshnikov, polimax@mail.ru
 ################################################################################
-# Copyright (C) 2015-2019, NextGIS <info@nextgis.com>
-# Copyright (C) 2012-2019 Dmitry Baryshnikov
+# Copyright (C) 2015-2024, NextGIS <info@nextgis.com>
+# Copyright (C) 2012-2024 Dmitry Baryshnikov
 #
 # Permission is hereby granted, free of charge, to any person obtaining a
 # copy of this software and associated documentation files (the "Software"),
@@ -24,39 +24,6 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 # DEALINGS IN THE SOFTWARE.
 ################################################################################
-
-
-function(check_version major minor rev)
-    # parse the version number from gdal_version.h and include in
-    # major, minor and rev parameters
-    set(VERSION_FILE ${CMAKE_CURRENT_SOURCE_DIR}/core/gcore/gdal_version.h.in)
-
-    file(READ ${VERSION_FILE} GDAL_VERSION_H_CONTENTS)
-
-    string(REGEX MATCH "GDAL_VERSION_MAJOR[ \t]+([0-9]+)"
-      GDAL_MAJOR_VERSION ${GDAL_VERSION_H_CONTENTS})
-    string (REGEX MATCH "([0-9]+)"
-      GDAL_MAJOR_VERSION ${GDAL_MAJOR_VERSION})
-    string(REGEX MATCH "GDAL_VERSION_MINOR[ \t]+([0-9]+)"
-      GDAL_MINOR_VERSION ${GDAL_VERSION_H_CONTENTS})
-    string (REGEX MATCH "([0-9]+)"
-      GDAL_MINOR_VERSION ${GDAL_MINOR_VERSION})
-    string(REGEX MATCH "GDAL_VERSION_REV[ \t]+([0-9]+)"
-      GDAL_REV_VERSION ${GDAL_VERSION_H_CONTENTS})
-    string (REGEX MATCH "([0-9]+)"
-      GDAL_REV_VERSION ${GDAL_REV_VERSION})
-
-    set(${major} ${GDAL_MAJOR_VERSION} PARENT_SCOPE)
-    set(${minor} ${GDAL_MINOR_VERSION} PARENT_SCOPE)
-    set(${rev} ${GDAL_REV_VERSION} PARENT_SCOPE)
-
-    # Store version string in file for installer needs
-    file(TIMESTAMP ${VERSION_FILE} VERSION_DATETIME "%Y-%m-%d %H:%M:%S" UTC)
-    set(VERSION ${GDAL_MAJOR_VERSION}.${GDAL_MINOR_VERSION}.${GDAL_REV_VERSION})
-    get_cpack_filename(${VERSION} PROJECT_CPACK_FILENAME)
-    file(WRITE ${CMAKE_BINARY_DIR}/version.str "${VERSION}\n${VERSION_DATETIME}\n${PROJECT_CPACK_FILENAME}")
-
-endfunction(check_version)
 
 # search python module
 function(find_python_module module)
@@ -110,16 +77,6 @@ function(set_libraries libs is_shared bld_dir release_name debug_name)
             PARENT_SCOPE)
         endif()
     endif()
-endfunction(set_libraries)
-
-function(report_version name ver)
-
-    string(ASCII 27 Esc)
-    set(BoldYellow  "${Esc}[1;33m")
-    set(ColourReset "${Esc}[m")
-
-    message("${BoldYellow}${name} version ${ver}${ColourReset}")
-
 endfunction()
 
 function(warning_msg text)
@@ -133,7 +90,7 @@ function(warning_msg text)
 endfunction()
 
 # macro to find packages on the host OS
-macro( find_exthost_package )
+macro(find_exthost_package)
     if(CMAKE_CROSSCOMPILING)
         set( CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER )
         set( CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER )
@@ -151,7 +108,7 @@ endmacro()
 
 
 # macro to find programs on the host OS
-macro( find_exthost_program )
+macro(find_exthost_program)
     if(CMAKE_CROSSCOMPILING)
         set( CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER )
         set( CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER )
@@ -164,6 +121,22 @@ macro( find_exthost_program )
         set( CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY )
     else()
         find_program( ${ARGN} )
+    endif()
+endmacro()
+
+macro( find_exthost_path )
+    if(CMAKE_CROSSCOMPILING)
+        set( CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER )
+        set( CMAKE_FIND_ROOT_PATH_MODE_LIBRARY NEVER )
+        set( CMAKE_FIND_ROOT_PATH_MODE_INCLUDE NEVER )
+
+        find_path( ${ARGN} )
+
+        set( CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ONLY )
+        set( CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY )
+        set( CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY )
+    else()
+        find_path( ${ARGN} )
     endif()
 endmacro()
 

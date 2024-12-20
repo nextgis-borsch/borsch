@@ -28,5 +28,4 @@ set(repo_type github)
 # Set for binary artifacts
 set(repo_bin numpy)
 set(repo_bin_type repka)
-set(repo_bin_url https://rm.nextgis.com)
 set(repo_bin_id 2) # additional parameter. Not needed for github
