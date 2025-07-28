@@ -423,6 +423,12 @@ def organize_sources(dst_name, dst_path=None):
     global list_extensions
     global list_patches
 
+    common.color_print(
+        "WARNING: This script is deprecated. Please use organizer.py instead.",
+        True,
+        "LRED",
+    )
+
     if dst_path is None:
         os.chdir(os.path.join(os.getcwd(), os.pardir, os.pardir))
         repo_root = os.getcwd()
