@@ -3,8 +3,8 @@
 # Purpose:  CMake build scripts
 # Author:   Dmitry Baryshnikov, polimax@mail.ru
 ################################################################################
-# Copyright (C) 2015-2018, NextGIS <info@nextgis.com>
-# Copyright (C) 2015-2018 Dmitry Baryshnikov
+# Copyright (C) 2015-2025, NextGIS <info@nextgis.com>
+# Copyright (C) 2015-2022 Dmitry Baryshnikov
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +30,11 @@ if(ANDROID)
 endif()
 
 include(CMakeParseArguments)
+
+# Cache borsch directory
+if(NOT DEFINED _BORSCH_CMAKE_DIR)
+    get_filename_component(_BORSCH_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+endif()
 
 function(find_anyproject name)
 
@@ -70,6 +75,18 @@ function(find_anyproject name)
 
     write_ext_options(find_anyproject_SHARED)
 
+    # Temporarily prepend borsch cmake modules path to CMAKE_MODULE_PATH
+    # so that borsch Find*.cmake are searched first when using module mode.
+    # Restore on function exit.
+    set(_BORSCH_OLD_CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}")
+    if(EXISTS "${_BORSCH_CMAKE_DIR}")
+        if(CMAKE_MODULE_PATH)
+            set(CMAKE_MODULE_PATH "${_BORSCH_CMAKE_DIR};${CMAKE_MODULE_PATH}")
+        else()
+            set(CMAKE_MODULE_PATH "${_BORSCH_CMAKE_DIR}")
+        endif()
+    endif()
+
     if(WITH_${name})
         option(WITH_${name}_EXTERNAL "Set ON to use external ${name}" OFF)
         if(WITH_${name}_EXTERNAL)
@@ -87,7 +104,8 @@ function(find_anyproject name)
                 set(FIND_PROJECT_ARG ${FIND_PROJECT_ARG} QUIET)
             endif()
             if(find_anyproject_MODULE)
-                set(FIND_PROJECT_ARG ${FIND_PROJECT_ARG} MODULE)
+                set(${name}_RUN_IN_MODULE_MODE TRUE)
+                set(${UPPER_NAME}_RUN_IN_MODULE_MODE TRUE)
             endif()
             #if(find_anyproject_REQUIRED)
             #    set(FIND_PROJECT_ARG ${FIND_PROJECT_ARG} REQUIRED)
@@ -126,6 +144,7 @@ function(find_anyproject name)
             endmacro()
 
             set_variables(${name}_FOUND ${UPPER_NAME}_FOUND)
+            set_variables(${name}_VERSION_STRING ${UPPER_NAME}_VERSION_STRING)
             set_variables(${name}_VERSION_STR ${UPPER_NAME}_VERSION_STR)
             set_variables(${name}_VERSION ${UPPER_NAME}_VERSION)
             set_variables(${name}_INCLUDE_DIRS ${UPPER_NAME}_INCLUDE_DIRS)
@@ -138,16 +157,15 @@ function(find_anyproject name)
             endif()
         endif()
 
-        # message(STATUS "NGSTD_FOUND ${${IS_FOUND}}/${NGSTD_FOUND} ${NGSTD_NOT_FOUND_MESSAGE}")
         if(${IS_FOUND})
             set(${IS_FOUND} TRUE CACHE INTERNAL "use ${name}")
-            set(${VERSION_STRING} ${${VERSION_STRING}} CACHE INTERNAL "version ${name}")
+            # set(${VERSION_STRING} ${${VERSION_STRING}} CACHE INTERNAL "version ${name}")
             if(${UPPER_NAME}_INCLUDE_DIRS)
                 set(${UPPER_NAME}_INCLUDE_DIRS ${${UPPER_NAME}_INCLUDE_DIRS} CACHE INTERNAL "include directories ${name}")
                 set(${UPPER_NAME}_INCLUDE_DIR ${${UPPER_NAME}_INCLUDE_DIRS})
             endif()
             if(${UPPER_NAME}_INCLUDE_DIR)
-                set(${UPPER_NAME}_INCLUDE_DIR ${${UPPER_NAME}_INCLUDE_DIR} CACHE INTERNAL "include directories ${name}")
+                set(${UPPER_NAME}_INCLUDE_DIR ${${UPPER_NAME}_INCLUDE_DIR} CACHE INTERNAL "include directory ${name}")
                 set(${UPPER_NAME}_INCLUDE_DIRS ${${UPPER_NAME}_INCLUDE_DIR})
             endif()
 
@@ -166,26 +184,40 @@ function(find_anyproject name)
             set(Qt5Core_RCC_EXECUTABLE Qt5::rcc PARENT_SCOPE)
 
             if(${UPPER_NAME}_LIBRARIES)
-                set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARIES} CACHE INTERNAL "library ${name}")
-                set(${UPPER_NAME}_LIBRARY ${${UPPER_NAME}_LIBRARIES})
+                set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARIES} CACHE INTERNAL "libraries ${name}")
+                set(${UPPER_NAME}_LIBRARY ${${UPPER_NAME}_LIBRARIES} CACHE INTERNAL "library ${name}")
             endif()
             if(${UPPER_NAME}_LIBRARY)
                 set(${UPPER_NAME}_LIBRARY ${${UPPER_NAME}_LIBRARY} CACHE INTERNAL "library ${name}")
-                set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARY})
+                set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARY} CACHE INTERNAL "libraries ${name}")
             endif()
             if(${UPPER_NAME}_VERSION)
                 set(${UPPER_NAME}_VERSION ${${UPPER_NAME}_VERSION} CACHE INTERNAL "library ${name} version")
-                set(${UPPER_NAME}_VERSION_STR ${${UPPER_NAME}_VERSION} CACHE INTERNAL "library ${name} version")
+                set(${UPPER_NAME}_VERSION_STR ${${UPPER_NAME}_VERSION} CACHE INTERNAL "library ${name} version string")
+                set(${UPPER_NAME}_VERSION_STRING ${${UPPER_NAME}_VERSION} CACHE INTERNAL "library ${name} version string")
+            endif()
+            if(${UPPER_NAME}_VERSION_STR)
+                set(${UPPER_NAME}_VERSION ${${UPPER_NAME}_VERSION_STR} CACHE INTERNAL "library ${name} version")
+                set(${UPPER_NAME}_VERSION_STR ${${UPPER_NAME}_VERSION_STR} CACHE INTERNAL "library ${name} version string")
+                set(${UPPER_NAME}_VERSION_STRING ${${UPPER_NAME}_VERSION_STR} CACHE INTERNAL "library ${name} version string")
+            endif()
+            if(${UPPER_NAME}_VERSION_STRING)
+                set(${UPPER_NAME}_VERSION ${${UPPER_NAME}_VERSION_STRING} CACHE INTERNAL "library ${name} version")
+                set(${UPPER_NAME}_VERSION_STR ${${UPPER_NAME}_VERSION_STRING} CACHE INTERNAL "library ${name} version string")
+                set(${UPPER_NAME}_VERSION_STRING ${${UPPER_NAME}_VERSION_STRING} CACHE INTERNAL "library ${name} version string")
             endif()
 
-            mark_as_advanced(${IS_FOUND}
+            mark_as_advanced(
+                ${IS_FOUND}
                 ${UPPER_NAME}_INCLUDE_DIR
                 ${UPPER_NAME}_INCLUDE_DIRS
                 ${UPPER_NAME}_LIBRARY
                 ${UPPER_NAME}_LIBRARIES
                 ${UPPER_NAME}_VERSION
                 ${UPPER_NAME}_VERSION_STR
+                ${UPPER_NAME}_VERSION_STRING
             )
+
         elseif(find_anyproject_REQUIRED)
             message(FATAL_ERROR "${name} is required in ${PROJECT_NAME}!")
         else()
@@ -206,15 +238,15 @@ function(find_anyproject name)
     if(${UPPER_NAME} STREQUAL ZLIB AND BUILD_STATIC_LIBS AND UNIX)
         set(TARGET_LINK_LIB ${TARGET_LINK_LIB} z)
     else()
-    if(${UPPER_NAME}_LIBRARIES)
-        set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${UPPER_NAME}_LIBRARIES})
-    elseif(${UPPER_NAME}_LIBRARY)
-        set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${UPPER_NAME}_LIBRARY})
-    elseif(${name}_LIBRARIES)
-        set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${name}_LIBRARIES})
-    elseif(${name}_LIBRARY)
-        set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${name}_LIBRARY})
-    endif()
+        if(${UPPER_NAME}_LIBRARIES)
+            set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${UPPER_NAME}_LIBRARIES})
+        elseif(${UPPER_NAME}_LIBRARY)
+            set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${UPPER_NAME}_LIBRARY})
+        elseif(${name}_LIBRARIES)
+            set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${name}_LIBRARIES})
+        elseif(${name}_LIBRARY)
+            set(TARGET_LINK_LIB ${TARGET_LINK_LIB} ${${name}_LIBRARY})
+        endif()
     endif()
 
     set(TARGET_LINK_LIB ${TARGET_LINK_LIB} PARENT_SCOPE)
@@ -222,6 +254,9 @@ function(find_anyproject name)
     set(EXPORTS_PATHS ${EXPORTS_PATHS} PARENT_SCOPE)
 
     write_ext_options(find_anyproject_SHARED)
+
+    # Restore original module path to avoid side effects elsewhere
+    set(CMAKE_MODULE_PATH "${_BORSCH_OLD_CMAKE_MODULE_PATH}")
 endfunction()
 
 function(target_link_extlibraries name)

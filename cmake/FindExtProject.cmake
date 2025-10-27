@@ -3,8 +3,8 @@
 # Purpose:  CMake build scripts
 # Author:   Dmitry Baryshnikov, polimax@mail.ru
 ################################################################################
-# Copyright (C) 2015-2019, NextGIS <info@nextgis.com>
-# Copyright (C) 2015-2019 Dmitry Baryshnikov
+# Copyright (C) 2015-2025, NextGIS <info@nextgis.com>
+# Copyright (C) 2015-2025 Dmitry Baryshnikov
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ function(get_binary_package url repo repo_type repo_id exact_version is_static d
             if(exact_version)
                 string(FIND ${api_request.assets_${asset_id}.browser_download_url} "${exact_version}-${STATIC_PREFIX}${COMPILER}.zip" IS_FOUND)
             else()
-                string(FIND ${api_request.assets_${asset_id}.browser_download_url} "${STATIC_PREFIX}${COMPILER}.zip" IS_FOUND) 
+                string(FIND ${api_request.assets_${asset_id}.browser_download_url} "${STATIC_PREFIX}${COMPILER}.zip" IS_FOUND)
                 # In this case we get static and shared. Add one more check.
                 if(NOT is_static)
                     string(FIND ${api_request.assets_${asset_id}.browser_download_url} "static-${COMPILER}.zip" IS_FOUND_STATIC)
@@ -75,7 +75,7 @@ function(get_binary_package url repo repo_type repo_id exact_version is_static d
                         continue()
                     endif()
                 endif()
-            
+
                 if(IOS)
                     string(FIND ${api_request.files_${asset_id}.name} "ios-" IS_FOUND_OS)
                     if(IS_FOUND_OS GREATER 0)
@@ -86,7 +86,7 @@ function(get_binary_package url repo repo_type repo_id exact_version is_static d
             if(IS_FOUND GREATER 0)
                 color_message("Found binary package ${api_request.assets_${asset_id}.browser_download_url}")
                 set(${download_url} ${api_request.assets_${asset_id}.browser_download_url} PARENT_SCOPE)
-                string(REPLACE ".zip" "" FOLDER_NAME ${api_request.assets_${asset_id}.name} )
+                string(REPLACE ".zip" "" FOLDER_NAME ${api_request.assets_${asset_id}.name})
                 set(${name} ${FOLDER_NAME} PARENT_SCOPE)
                 break()
             endif()
@@ -123,14 +123,14 @@ function(get_binary_package url repo repo_type repo_id exact_version is_static d
                     continue()
                 endif()
             endif()
-        
+
             if(IOS)
                 string(FIND ${api_request.files_${asset_id}.name} "ios-" IS_FOUND_OS)
                 if(IS_FOUND_OS GREATER 0)
                     continue()
                 endif()
             endif()
-        
+
             if(NOT is_static)
                 string(FIND ${api_request.files_${asset_id}.name} "static-" IS_FOUND_STATIC)
                 if(IS_FOUND_STATIC GREATER 0)
@@ -174,6 +174,7 @@ function(find_extproject name)
 
 
     # Get some properties from <cmakemodules>/FindExt${name}.cmake file.
+    # This file should define repo_url, repo_type, repo, etc.
     include(FindExt${name})
 
     if(NOT DEFINED repo_url)
@@ -183,7 +184,7 @@ function(find_extproject name)
             message(FATAL "repo is not defined. Cannot get package ${name}")
         endif()
     endif()
-    
+
     if(NOT DEFINED repo_bin_type)
         set(repo_bin_type ${repo_type})
     endif()
@@ -212,10 +213,11 @@ function(find_extproject name)
         set(IS_STATIC YES)
     endif()
 
+    # Try to get prebuilt binary package
     get_binary_package(${repo_bin_url} ${repo_bin} ${repo_bin_type} ${repo_bin_id} ${TEST_VERSION} ${IS_STATIC} BINARY_URL BINARY_NAME)
 
     if(BINARY_URL)
-        # Download binary build files.
+        # Download binary build files
         if(NOT EXISTS ${CMAKE_BINARY_DIR}/${name}.zip)
             file(DOWNLOAD
                 ${BINARY_URL}
@@ -224,7 +226,7 @@ function(find_extproject name)
             )
         endif()
 
-        # Extact files.
+        # Extract files
         execute_process(
             COMMAND ${CMAKE_COMMAND} -E make_directory ${EXT_INSTALL_DIR}
         )
@@ -243,7 +245,7 @@ function(find_extproject name)
                         set(${name}_DIR ${EXT_INSTALL_DIR}/${BINARY_NAME}/share/${PNAME}/CMake)
                         break()
                     endif()
-                endforeach()       
+                endforeach()
             else()
                 if(EXISTS ${EXT_INSTALL_DIR}/${BINARY_NAME}/share/${name}/CMake)
                     set(${name}_DIR ${EXT_INSTALL_DIR}/${BINARY_NAME}/share/${name}/CMake)
@@ -252,7 +254,7 @@ function(find_extproject name)
                 elseif(EXISTS ${EXT_INSTALL_DIR}/${BINARY_NAME}/share/${LOWER_NAME}/CMake)
                     set(${name}_DIR ${EXT_INSTALL_DIR}/${BINARY_NAME}/share/${LOWER_NAME}/CMake)
                 endif()
-            endif()     
+            endif()
         elseif(OSX_FRAMEWORK AND NOT EXISTS ${EXT_INSTALL_DIR}/${BINARY_NAME}/CMake AND EXISTS ${EXT_INSTALL_DIR}/${BINARY_NAME}/Library/Frameworks)
             set(CMAKE_PREFIX_PATH ${EXT_INSTALL_DIR}/${BINARY_NAME}/Library/Frameworks)
         else()
@@ -267,14 +269,16 @@ function(find_extproject name)
             set(FIND_PROJECT_ARG ${FIND_PROJECT_ARG} NAMES ${find_extproject_NAMES})
         endif()
 
+        # Try to find package
         find_package(${name} NO_MODULE ${FIND_PROJECT_ARG} NAMES ${UPPER_NAME} ${name})
-        
+
         set(${UPPER_NAME}_FOUND ${${UPPER_NAME}_FOUND} PARENT_SCOPE)
         set(${UPPER_NAME}_VERSION ${${UPPER_NAME}_VERSION} PARENT_SCOPE)
         set(${UPPER_NAME}_VERSION_STR ${${UPPER_NAME}_VERSION_STR} PARENT_SCOPE)
         set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARIES} PARENT_SCOPE)
         set(${UPPER_NAME}_INCLUDE_DIRS ${${UPPER_NAME}_INCLUDE_DIRS} PARENT_SCOPE)
 
+        # Set imported targets as global
         foreach(TARGETG ${${UPPER_NAME}_LIBRARIES})
             if(TARGET ${TARGETG})
                 set_target_properties(${TARGETG} PROPERTIES IMPORTED_GLOBAL TRUE)
@@ -521,6 +525,7 @@ function(find_extproject name)
         DOWNLOAD_COMMAND "" # Git clone is executed below
     )
 
+    # Try to clone repo if not present
     if(NOT EXISTS "${EXT_SOURCE_DIR}/.git")
         color_message("Git clone ${repo_name} ...")
 
@@ -575,6 +580,7 @@ function(find_extproject name)
     set(${UPPER_NAME}_LIBRARIES ${${UPPER_NAME}_LIBRARIES} PARENT_SCOPE)
     set(${UPPER_NAME}_INCLUDE_DIRS ${${UPPER_NAME}_INCLUDE_DIRS} PARENT_SCOPE)
 
+    # Set imported targets as global and add dependencies
     set_target_properties(${${UPPER_NAME}_LIBRARIES} PROPERTIES IMPORTED_GLOBAL TRUE)
 
     add_dependencies(${${UPPER_NAME}_LIBRARIES} ${name}_EP)
@@ -586,7 +592,7 @@ function(find_extproject name)
         set(EXPORTS_PATHS ${EXPORTS_PATHS} ${EXT_BINARY_DIR}/${UPPER_NAME}Targets.cmake PARENT_SCOPE)
     endif()
 
-    # For static builds we need all libraries list in main project.
+    # For static builds we need all libraries list in main project
     if(EXISTS ${EXT_BINARY_DIR}/ext_options.cmake)
         include(${EXT_BINARY_DIR}/ext_options.cmake)
 
@@ -594,7 +600,7 @@ function(find_extproject name)
             include(${INCLUDE_EXPORT_PATH})
         endforeach()
 
-        # Add include into ext_options.cmake.
+        # Add include into ext_options.cmake
         set(WITHOPT "${WITHOPT}include(${EXT_BINARY_DIR}/ext_options.cmake)\n" PARENT_SCOPE)
     endif()
 

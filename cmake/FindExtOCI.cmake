@@ -23,7 +23,6 @@
 set(repo nextgis-borsch/lib_oci)
 set(repo_type github)
 # set(repo_branch master) # No need to set as master is default value
-# set(repo_bin_url https://api.github.com)
 
 # Set for binary artifacts
 set(repo_bin lib_oci)
