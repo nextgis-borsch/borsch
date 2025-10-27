@@ -58,7 +58,7 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
             # they're all the same in a framework
             SET (GDAL_INCLUDE_DIR ${GDAL_LIBRARY}/Headers CACHE PATH "Path to a file.")
             # set GDAL_CONFIG to make later test happy, not used here, may not exist
-            SET (GDAL_CONFIG ${GDAL_LIBRARY}/unix/bin/gdal-config CACHE FILEPATH "Path to a program.")
+            SET (GDAL_CONFIG_BIN ${GDAL_LIBRARY}/unix/bin/gdal-config CACHE FILEPATH "Path to a program.")
             # version in info.plist
             GET_VERSION_PLIST (${GDAL_LIBRARY}/Resources/Info.plist GDAL_VERSION)
             IF (NOT GDAL_VERSION)
@@ -82,11 +82,11 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
         FIND_LIBRARY(GDAL_LIBRARY NAMES gdal PATHS /usr/lib /usr/local/lib)
       ENDIF(CYGWIN)
 
-      IF (NOT GDAL_INCLUDE_DIR OR NOT GDAL_LIBRARY OR NOT GDAL_CONFIG)
+      IF (NOT GDAL_INCLUDE_DIR OR NOT GDAL_LIBRARY OR NOT GDAL_CONFIG_BIN)
         # didn't find OS X framework, and was not set by user
         SET(GDAL_CONFIG_PREFER_PATH "$ENV{GDAL_HOME}/bin" CACHE STRING "preferred path to GDAL (gdal-config)")
         SET(GDAL_CONFIG_PREFER_FWTOOLS_PATH "$ENV{FWTOOLS_HOME}/bin_safe" CACHE STRING "preferred path to GDAL (gdal-config) from FWTools")
-        FIND_PROGRAM(GDAL_CONFIG gdal-config
+        FIND_PROGRAM(GDAL_CONFIG_BIN gdal-config
             ${GDAL_CONFIG_PREFER_PATH}
             ${GDAL_CONFIG_PREFER_FWTOOLS_PATH}
             $ENV{LIB_DIR}/bin
@@ -94,12 +94,12 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
             /usr/bin/
             /app/bin/
             )
-        # MESSAGE("DBG GDAL_CONFIG ${GDAL_CONFIG}")
+        # MESSAGE("DBG GDAL_CONFIG_BIN ${GDAL_CONFIG_BIN}")
 
-        IF (GDAL_CONFIG)
+        IF (GDAL_CONFIG_BIN)
 
           ## extract gdal version
-          execute_process(COMMAND ${GDAL_CONFIG} --version
+          execute_process(COMMAND ${GDAL_CONFIG_BIN} --version
               OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE GDAL_VERSION )
           STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\1" GDAL_VERSION_MAJOR "${GDAL_VERSION}")
           STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\2" GDAL_VERSION_MINOR "${GDAL_VERSION}")
@@ -123,7 +123,7 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
           ENDIF( (GDAL_VERSION_MAJOR EQUAL 3) AND (GDAL_VERSION_MINOR EQUAL 0) AND (GDAL_VERSION_MICRO LESS 3) )
 
           # set INCLUDE_DIR to prefix+include
-          execute_process(COMMAND ${GDAL_CONFIG} --prefix
+          execute_process(COMMAND ${GDAL_CONFIG_BIN} --prefix
               OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE GDAL_PREFIX)
           #SET(GDAL_INCLUDE_DIR ${GDAL_PREFIX}/include CACHE STRING INTERNAL)
           FIND_PATH(GDAL_INCLUDE_DIR
@@ -136,7 +136,7 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
               )
 
           ## extract link dirs for rpath
-          execute_process(COMMAND ${GDAL_CONFIG} --libs
+          execute_process(COMMAND ${GDAL_CONFIG_BIN} --libs
               OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE GDAL_CONFIG_LIBS )
 
           ## split off the link dirs (for rpath)
@@ -179,10 +179,10 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
             FIND_LIBRARY(GDAL_LIBRARY NAMES ${GDAL_LIB_NAME} gdal PATHS ${GDAL_LINK_DIRECTORIES}/lib ${GDAL_LINK_DIRECTORIES})
           ENDIF (APPLE)
 
-        ELSE(GDAL_CONFIG)
+        ELSE(GDAL_CONFIG_BIN)
           MESSAGE("FindGDAL.cmake: gdal-config not found. Please set it manually. GDAL_CONFIG=${GDAL_CONFIG}")
-        ENDIF(GDAL_CONFIG)
-      ENDIF (NOT GDAL_INCLUDE_DIR OR NOT GDAL_LIBRARY OR NOT GDAL_CONFIG)
+        ENDIF(GDAL_CONFIG_BIN)
+      ENDIF (NOT GDAL_INCLUDE_DIR OR NOT GDAL_LIBRARY OR NOT GDAL_CONFIG_BIN)
     ENDIF(UNIX)
   ENDIF(WIN32)
 
