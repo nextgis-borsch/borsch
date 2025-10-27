@@ -92,6 +92,7 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
             $ENV{LIB_DIR}/bin
             /usr/local/bin/
             /usr/bin/
+            /app/bin/
             )
         # MESSAGE("DBG GDAL_CONFIG ${GDAL_CONFIG}")
 
@@ -131,6 +132,7 @@ if(NOT GDAL_FOUND OR NOT TARGET GDAL::GDAL)
               ${GDAL_PREFIX}/include
               /usr/local/include
               /usr/include
+              /app/include
               )
 
           ## extract link dirs for rpath
