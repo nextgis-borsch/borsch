@@ -6,7 +6,7 @@ Many C/C++ GIS libraries are usually built via autoconf/make/nmake/VC. While thi
 * b) better solves dependencies and
 * c) provides more uniform way of building packages.
 
-Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested if on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows, Linux and MacOS.
+Needed dependencies are automatically fetched from repositories. We’ve built an early prototype of such system and tested it on GDAL build process (over 50 core dependent libraries). Now a developer with only three lines of code in CMakeLists.txt for any project he is working on can add dependent GIS library. If needed library exists in the system the build system will use it, if not - it will be downloaded from Github. Our new build system works for both Windows, Linux and MacOS.
 
 # Common CMake scripts
 
