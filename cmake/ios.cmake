@@ -26,7 +26,7 @@ if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT CMAKE_BUILD_TYPE STREQUAL "Rele
     message(FATAL_ERROR "iOS not support build type ${CMAKE_BUILD_TYPE}")
 endif()
 
-set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ios.toolchain.cmake
+set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_LIST_DIR}/ios.toolchain.cmake
         CACHE PATH "Select iOS toolchain file path")
 
 set (IOS ON)

@@ -31,7 +31,7 @@ endif()
 # endif()
 
 if(NOT CMAKE_TOOLCHAIN_FILE)
-    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/android.toolchain.cmake
+    set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_LIST_DIR}/android.toolchain.cmake
         CACHE PATH "Select android toolchain file path")
 endif()
 

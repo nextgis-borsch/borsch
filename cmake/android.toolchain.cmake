@@ -200,7 +200,7 @@ endif()
 # inherit settings in recursive loads
 get_property( _CMAKE_IN_TRY_COMPILE GLOBAL PROPERTY IN_TRY_COMPILE )
 if( _CMAKE_IN_TRY_COMPILE )
- include( "${CMAKE_CURRENT_SOURCE_DIR}/../android.toolchain.config.cmake" OPTIONAL )
+ include( "${CMAKE_CURRENT_LIST_DIR}/../android.toolchain.config.cmake" OPTIONAL )
 endif()
 
 # this one is important

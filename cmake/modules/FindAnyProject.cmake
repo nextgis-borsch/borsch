@@ -90,7 +90,7 @@ function(find_anyproject name)
     if(WITH_${name})
         option(WITH_${name}_EXTERNAL "Set ON to use external ${name}" OFF)
         if(WITH_${name}_EXTERNAL)
-            include(FindExtProject)
+            include(${CMAKE_CURRENT_LIST_DIR}/FindExtProject.cmake)
             find_extproject(${name} ${ARGN})
         else()
             # transfer some input options to find_package arguments

@@ -25,7 +25,7 @@
 # DEALINGS IN THE SOFTWARE.
 ################################################################################
 
-include(helper)
+include(${CMAKE_CURRENT_LIST_DIR}/helper.cmake)
 
 function(pack PACKAGE_NAME PACKAGE_VENDOR VERSION)
     if(REGISTER_PACKAGE)

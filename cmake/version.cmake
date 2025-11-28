@@ -25,7 +25,7 @@
 # DEALINGS IN THE SOFTWARE.
 ################################################################################
 
-include(helper)
+include(${CMAKE_CURRENT_LIST_DIR}/helper.cmake)
 
 function(report_version name ver)
     string(ASCII 27 Esc)

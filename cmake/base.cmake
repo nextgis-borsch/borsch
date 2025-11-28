@@ -31,12 +31,12 @@ set(BUILD_TARGET_PLATFORM "DESKTOP" CACHE STRING "Select build target platform")
 set_property(CACHE BUILD_TARGET_PLATFORM PROPERTY STRINGS "ANDROID" "IOS" "DESKTOP")
 
 if(BUILD_TARGET_PLATFORM STREQUAL "ANDROID")
-    include(android)
+    include(${CMAKE_CURRENT_LIST_DIR}/android.cmake)
     if(ANDROID_EP_PREFIX)
       set(EP_PREFIX "${ANDROID_EP_PREFIX}/${ANDROID_ABI}" CACHE INTERNAL "External project prefix")
     endif()
 elseif(BUILD_TARGET_PLATFORM STREQUAL "IOS")
-    include(ios)
+    include(${CMAKE_CURRENT_LIST_DIR}/ios.cmake)
 else() # DESKTOP
     if(OSX_FRAMEWORK AND (BUILD_SHARED_LIBS OR BUILD_STATIC_LIBS))
       message(FATAL_ERROR "Only OSX_FRAMEWORK key or any or both BUILD_SHARED_LIBS
@@ -68,14 +68,14 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
     add_definitions(-D_DEBUG)
 endif()
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/borsch/cmake/uninstall.cmake.in
+configure_file(${CMAKE_CURRENT_LIST_DIR}/uninstall.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake IMMEDIATE @ONLY)
 
 if(IOS)
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/borsch/cmake/Info.plist.in"
+    configure_file("${CMAKE_CURRENT_LIST_DIR}/Info.plist.in"
                  "${CMAKE_BINARY_DIR}/ios/Info.plist")
 elseif(APPLE)
-    configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/borsch/cmake/Info.plist.in"
+    configure_file("${CMAKE_CURRENT_LIST_DIR}/Info.plist.in"
                  "${CMAKE_BINARY_DIR}/osx/Info.plist")
 endif()
 
