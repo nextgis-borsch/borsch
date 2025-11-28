@@ -69,7 +69,7 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
 endif()
 
 configure_file(${CMAKE_CURRENT_LIST_DIR}/uninstall.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake IMMEDIATE @ONLY)
+    ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake IMMEDIATE @ONLY)
 
 if(IOS)
     configure_file("${CMAKE_CURRENT_LIST_DIR}/Info.plist.in"
