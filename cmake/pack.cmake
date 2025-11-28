@@ -27,11 +27,10 @@
 
 include(${CMAKE_CURRENT_LIST_DIR}/helper.cmake)
 
-function(pack PACKAGE_NAME PACKAGE_VENDOR VERSION)
+function(pack PACKAGE_UPPER_NAME PACKAGE_VENDOR VERSION)
     if(REGISTER_PACKAGE)
         # Export the package for use from the build-tree
         # (this registers the build-tree with a global CMake-registry)
-        string(TOUPPER ${PROJECT_NAME} PACKAGE_UPPER_NAME)
         export(PACKAGE ${PACKAGE_UPPER_NAME})
     endif()
 
