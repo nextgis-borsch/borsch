@@ -22,7 +22,7 @@
 
 # URL source: https://github.com/sbellus/json-cmake
 
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.16.3 FATAL_ERROR)
 
 if(POLICY CMP0054)
     # http://www.cmake.org/cmake/help/v3.1/policy/CMP0054.html
