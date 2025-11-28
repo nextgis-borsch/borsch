@@ -31,7 +31,7 @@ function(color_message text)
 endfunction()
 
 function(get_binary_package url repo repo_type repo_id exact_version is_static download_url name)
-    include(util)  # TODO: Find out why this is necessary and, perhaps, remove it
+    include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/helper.cmake)
     get_compiler_version(COMPILER)
     get_prefix(STATIC_PREFIX ${is_static})
 

@@ -18,7 +18,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
         set(INSTALL_CMAKECONF_DIR ${CMAKE_INSTALL_DATADIR}/${PACKAGE_UPPER_NAME}/CMake CACHE INTERNAL "Installation directory for cmake config files" FORCE)
     endif()
     
-    configure_file(${CMAKE_CURRENT_LIST_DIR}/PackageConfig.cmake.in
+    configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/PackageConfig.cmake.in
         ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
 
     if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
