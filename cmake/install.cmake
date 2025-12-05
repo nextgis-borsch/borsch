@@ -1,4 +1,30 @@
+# Adds install-rules for package with name PACKAGE_UPPER_NAME using the given TARGETS and HEADERS
+# Usage example:
+# ```
+# create_borsch_install_rules(MY_PACKAGE
+#     TARGETS target1 target2
+#     HEADERS header1.h header2.h header3.h
+# )
+# ```
+#
+# Or, preferably, using lists:
+# ```
+# set(TARGETS target1 target2)
+# set(HEADERS header1.h header2.h header3.h)
+# create_borsch_install_rules(MY_PACKAGE
+#     TARGETS ${TARGETS}
+#     HEADERS ${HEADERS}
+# )
+# ```
 function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
+    cmake_parse_arguments(
+        PARSE_ARGV 1
+        ARG
+        ""
+        ""
+        "TARGETS;HEADERS"
+    )
+    
     if(OSX_FRAMEWORK)
         set(INSTALL_LIB_DIR "Library/Frameworks" CACHE INTERNAL "Installation directory for libraries" FORCE)
         set(INSTALL_CMAKECONF_DIR ${INSTALL_LIB_DIR}/${PACKAGE_UPPER_NAME}.framework/Resources/CMake CACHE INTERNAL "Installation directory for cmake config files" FORCE)
@@ -17,12 +43,17 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
         set(INSTALL_PKGCONFIG_DIR "${INSTALL_LIB_DIR}/pkgconfig" CACHE INTERNAL "Installation directory for pkgconfig (.pc) files" FORCE)
         set(INSTALL_CMAKECONF_DIR ${CMAKE_INSTALL_DATADIR}/${PACKAGE_UPPER_NAME}/CMake CACHE INTERNAL "Installation directory for cmake config files" FORCE)
     endif()
+
+    # Add all targets to the build-tree export set
+    export(TARGETS ${ARG_TARGETS}
+        FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake
+    )
     
     configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/PackageConfig.cmake.in
         ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
 
     if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
-        install(TARGETS ${TARGETS}
+        install(TARGETS ${ARG_TARGETS}
             EXPORT ${PACKAGE_UPPER_NAME}Targets
             RUNTIME DESTINATION ${INSTALL_BIN_DIR} # at least for dlls
             ARCHIVE DESTINATION ${INSTALL_LIB_DIR}
@@ -42,7 +73,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
     endif()
 
     if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL)
-        install(FILES ${HEADERS} DESTINATION ${INSTALL_INC_DIR} COMPONENT dev)
+        install(FILES ${ARG_HEADERS} DESTINATION ${INSTALL_INC_DIR} COMPONENT dev)
     endif()
 
 endfunction(create_borsch_install_rules)

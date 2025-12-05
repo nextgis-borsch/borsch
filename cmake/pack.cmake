@@ -28,11 +28,6 @@
 include(${CMAKE_CURRENT_LIST_DIR}/helper.cmake)
 
 function(pack PACKAGE_UPPER_NAME PACKAGE_VENDOR VERSION)
-    # Add all targets to the build-tree export set
-    export(TARGETS ${TARGETS}
-        FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake
-    )
-
     if(REGISTER_PACKAGE)
         # Export the package for use from the build-tree
         # (this registers the build-tree with a global CMake-registry)
@@ -56,4 +51,3 @@ function(pack PACKAGE_UPPER_NAME PACKAGE_VENDOR VERSION)
     set(CPACK_PACKAGE_FILE_NAME ${PROJECT_CPACK_FILENAME})
     include(CPack)
 endfunction()
-
