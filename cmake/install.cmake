@@ -42,7 +42,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
     endif()
 
     if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL)
-        install(FILES ${HEADERS} DESTINATION ${INSTALL_INC_DIR})
+        install(FILES ${HEADERS} DESTINATION ${INSTALL_INC_DIR} COMPONENT dev)
     endif()
 
 endfunction(create_borsch_install_rules)
