@@ -1,5 +1,6 @@
 include(${CMAKE_CURRENT_LIST_DIR}/install.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/pack.cmake)
+include(CMakePackageConfigHelpers)
 
 # Adds install and packaging rules for package with name PACKAGE_NAME using the given VENDOR, VERSION, TARGETS and HEADERS
 # Usage example:
