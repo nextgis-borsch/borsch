@@ -16,15 +16,15 @@
 #     HEADERS ${HEADERS}
 # )
 # ```
-function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
+function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS HEADERS_DIRS)
     cmake_parse_arguments(
         PARSE_ARGV 1
         ARG
         ""
         ""
-        "TARGETS;HEADERS"
+        "TARGETS;HEADERS;HEADERS_DIRS"
     )
-    
+
     if(OSX_FRAMEWORK)
         set(INSTALL_LIB_DIR "Library/Frameworks" CACHE INTERNAL "Installation directory for libraries" FORCE)
         set(INSTALL_CMAKECONF_DIR ${INSTALL_LIB_DIR}/${PACKAGE_UPPER_NAME}.framework/Resources/CMake CACHE INTERNAL "Installation directory for cmake config files" FORCE)
@@ -48,7 +48,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
     export(TARGETS ${ARG_TARGETS}
         FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake
     )
-    
+
     configure_file(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/PackageConfig.cmake.in
         ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
 
@@ -75,6 +75,18 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
 
     if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL)
         install(FILES ${ARG_HEADERS} DESTINATION ${INSTALL_INC_DIR} COMPONENT dev)
+
+        install(DIRECTORY ${ARG_HEADERS_DIRS}
+            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+            COMPONENT dev
+            FILES_MATCHING PATTERN "*.h"
+        )
+
+        install(DIRECTORY ${ARG_HEADERS_DIRS}
+            DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+            COMPONENT dev
+            FILES_MATCHING PATTERN "*.hpp"
+        )
     endif()
 
 endfunction(create_borsch_install_rules)

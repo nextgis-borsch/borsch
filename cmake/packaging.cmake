@@ -23,13 +23,13 @@ include(${CMAKE_CURRENT_LIST_DIR}/pack.cmake)
 #     HEADERS ${HEADERS}
 # )
 # ```
-function(create_borsch_package PACKAGE_NAME PACKAGE_VENDOR VERSION TARGETS HEADERS)
+function(create_borsch_package PACKAGE_NAME VENDOR VERSION TARGETS COMPATIBILITY HEADERS HEADERS_DIRS)
     cmake_parse_arguments(
         PARSE_ARGV 1
         ARG
         ""
         "VENDOR;VERSION;COMPATIBILITY"
-        "TARGETS;HEADERS"
+        "TARGETS;HEADERS;HEADERS_DIRS"
     )
 
     string(TOUPPER ${PACKAGE_NAME} PACKAGE_UPPER_NAME)
@@ -48,9 +48,10 @@ function(create_borsch_package PACKAGE_NAME PACKAGE_VENDOR VERSION TARGETS HEADE
         COMPATIBILITY ${ARG_COMPATIBILITY}
     )
 
-    create_borsch_install_rules(${PACKAGE_UPPER_NAME} 
+    create_borsch_install_rules(${PACKAGE_UPPER_NAME}
         TARGETS ${ARG_TARGETS}
         HEADERS ${ARG_HEADERS}
+        HEADERS_DIRS ${ARG_HEADERS_DIRS}
     )
 
     pack(${PACKAGE_UPPER_NAME} ${ARG_VENDOR} ${ARG_VERSION})
