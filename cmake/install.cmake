@@ -65,6 +65,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS)
         # Install the <Package>Config.cmake
         install(FILES
             ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake
+            ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}ConfigVersion.cmake
             DESTINATION ${INSTALL_CMAKECONF_DIR} COMPONENT dev
         )
 

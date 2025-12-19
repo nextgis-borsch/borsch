@@ -28,7 +28,7 @@ function(create_borsch_package PACKAGE_NAME PACKAGE_VENDOR VERSION TARGETS HEADE
         PARSE_ARGV 1
         ARG
         ""
-        "VENDOR;VERSION"
+        "VENDOR;VERSION;COMPATIBILITY"
         "TARGETS;HEADERS"
     )
 
@@ -37,6 +37,16 @@ function(create_borsch_package PACKAGE_NAME PACKAGE_VENDOR VERSION TARGETS HEADE
     include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/base.cmake)
 
     add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
+
+    if(NOT DEFINED ${ARG_COMPATIBILITY})
+        set(ARG_COMPATIBILITY AnyNewerVersion)
+    endif()
+
+    write_basic_package_version_file(
+        "${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}ConfigVersion.cmake"
+        VERSION ${ARG_VERSION}
+        COMPATIBILITY ${ARG_COMPATIBILITY}
+    )
 
     create_borsch_install_rules(${PACKAGE_UPPER_NAME} 
         TARGETS ${ARG_TARGETS}
