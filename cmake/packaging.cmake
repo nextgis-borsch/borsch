@@ -27,33 +27,34 @@ include(CMakePackageConfigHelpers)
 function(create_borsch_package PACKAGE_NAME VENDOR VERSION TARGETS COMPATIBILITY HEADERS HEADERS_DIRS)
     cmake_parse_arguments(
         PARSE_ARGV 1
-        ARG
+        PACKAGE
         ""
         "VENDOR;VERSION;COMPATIBILITY"
         "TARGETS;HEADERS;HEADERS_DIRS"
     )
 
     string(TOUPPER ${PACKAGE_NAME} PACKAGE_UPPER_NAME)
+    string(TOLOWER ${PACKAGE_NAME} PACKAGE_LOWER_NAME)
 
     include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/base.cmake)
 
     add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
 
-    if(NOT DEFINED ${ARG_COMPATIBILITY})
-        set(ARG_COMPATIBILITY AnyNewerVersion)
+    if(NOT DEFINED ${PACKAGE_COMPATIBILITY})
+        set(PACKAGE_COMPATIBILITY AnyNewerVersion)
     endif()
 
     write_basic_package_version_file(
         "${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}ConfigVersion.cmake"
-        VERSION ${ARG_VERSION}
-        COMPATIBILITY ${ARG_COMPATIBILITY}
+        VERSION ${PACKAGE_VERSION}
+        COMPATIBILITY ${PACKAGE_COMPATIBILITY}
     )
 
     create_borsch_install_rules(${PACKAGE_UPPER_NAME}
-        TARGETS ${ARG_TARGETS}
-        HEADERS ${ARG_HEADERS}
-        HEADERS_DIRS ${ARG_HEADERS_DIRS}
+        TARGETS ${PACKAGE_TARGETS}
+        HEADERS ${PACKAGE_HEADERS}
+        HEADERS_DIRS ${PACKAGE_HEADERS_DIRS}
     )
 
-    pack(${PACKAGE_UPPER_NAME} ${ARG_VENDOR} ${ARG_VERSION})
+    pack(${PACKAGE_UPPER_NAME} ${PACKAGE_VENDOR} ${PACKAGE_VERSION})
 endfunction(create_borsch_package)

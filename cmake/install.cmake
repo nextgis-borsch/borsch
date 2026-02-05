@@ -19,7 +19,7 @@
 function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS HEADERS_DIRS)
     cmake_parse_arguments(
         PARSE_ARGV 1
-        ARG
+        PACKAGE
         ""
         ""
         "TARGETS;HEADERS;HEADERS_DIRS"
@@ -45,7 +45,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS HEADERS_
     endif()
 
     # Add all targets to the build-tree export set
-    export(TARGETS ${ARG_TARGETS}
+    export(TARGETS ${PACKAGE_TARGETS}
         FILE ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Targets.cmake
     )
 
@@ -53,7 +53,7 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS HEADERS_
         ${PROJECT_BINARY_DIR}/${PACKAGE_UPPER_NAME}Config.cmake @ONLY)
 
     if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
-        install(TARGETS ${ARG_TARGETS}
+        install(TARGETS ${PACKAGE_TARGETS}
             EXPORT ${PACKAGE_UPPER_NAME}Targets
             RUNTIME DESTINATION ${INSTALL_BIN_DIR} # at least for dlls
             ARCHIVE DESTINATION ${INSTALL_LIB_DIR}
@@ -74,15 +74,15 @@ function(create_borsch_install_rules PACKAGE_UPPER_NAME TARGETS HEADERS HEADERS_
     endif()
 
     if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL)
-        install(FILES ${ARG_HEADERS} DESTINATION ${INSTALL_INC_DIR} COMPONENT dev)
+        install(FILES ${PACKAGE_HEADERS} DESTINATION ${INSTALL_INC_DIR} COMPONENT dev)
 
-        install(DIRECTORY ${ARG_HEADERS_DIRS}
+        install(DIRECTORY ${PACKAGE_HEADERS_DIRS}
             DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
             COMPONENT dev
             FILES_MATCHING PATTERN "*.h"
         )
 
-        install(DIRECTORY ${ARG_HEADERS_DIRS}
+        install(DIRECTORY ${PACKAGE_HEADERS_DIRS}
             DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
             COMPONENT dev
             FILES_MATCHING PATTERN "*.hpp"
