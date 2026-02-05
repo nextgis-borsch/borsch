@@ -31,7 +31,7 @@ function(color_message text)
 endfunction()
 
 function(get_binary_package url repo repo_type repo_id exact_version is_static download_url name)
-    include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/helper.cmake)
+    include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/../helper.cmake)
     get_compiler_version(COMPILER)
     get_prefix(STATIC_PREFIX ${is_static})
 
@@ -112,7 +112,7 @@ function(get_binary_package url repo repo_type repo_id exact_version is_static d
         # Get assets files.
         file(READ ${CMAKE_BINARY_DIR}/${repo}_latest.json _JSON_CONTENTS)
 
-        include(${CMAKE_CURRENT_LIST_DIR}/JSONParser.cmake)
+        include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/../JSONParser.cmake)
         sbeParseJson(api_request _JSON_CONTENTS)
         foreach(asset_id ${api_request.files})
             string(FIND ${api_request.files_${asset_id}.name} "${STATIC_PREFIX}${COMPILER}.zip" IS_FOUND)
@@ -175,7 +175,7 @@ function(find_extproject name)
 
     # Get some properties from <cmakemodules>/FindExt${name}.cmake file.
     # This file should define repo_url, repo_type, repo, etc.
-    include(${CMAKE_CURRENT_LIST_DIR}/FindExt${name}.cmake)
+    include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/FindExt${name}.cmake)
 
     if(NOT DEFINED repo_url)
         if(repo_type STREQUAL "github")
@@ -537,7 +537,7 @@ function(find_extproject name)
                 set(BRANCH --branch ${repo_branch})
             endif()
             execute_process(
-                COMMAND ${GIT_EXECUTABLE} clone ${BRANCH} --depth 1 ${repo_url} ${name}_EP
+                COMMAND ${GIT_EXECUTABLE} clone ${BRANCH} --depth 1 ${repo_url} ${name}_EP --recurse-submodules
                 WORKING_DIRECTORY  ${EXT_DOWNLOAD_DIR}
                 RESULT_VARIABLE error_code
             )
