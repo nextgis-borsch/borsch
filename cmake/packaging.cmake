@@ -40,7 +40,15 @@ function(create_borsch_package PACKAGE_NAME VENDOR VERSION TARGETS COMPATIBILITY
 
     add_custom_target(uninstall COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/uninstall.cmake)
 
-    if(NOT DEFINED ${PACKAGE_COMPATIBILITY})
+    if(NOT DEFINED PACKAGE_VENDOR)
+        set(PACKAGE_VENDOR NextGIS)
+    endif()
+    
+    if(NOT DEFINED PACKAGE_BUGREPORT)
+        set(PACKAGE_BUGREPORT info@nextgis.com)
+    endif()
+
+    if(NOT DEFINED PACKAGE_COMPATIBILITY)
         set(PACKAGE_COMPATIBILITY AnyNewerVersion)
     endif()
 
