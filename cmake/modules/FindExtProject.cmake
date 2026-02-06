@@ -54,7 +54,7 @@ function(get_binary_package url repo repo_type repo_id exact_version is_static d
         # Get assets files.
         file(READ ${CMAKE_BINARY_DIR}/${repo}_latest.json _JSON_CONTENTS)
 
-        include(${CMAKE_CURRENT_LIST_DIR}/JSONParser.cmake)
+        include(${CMAKE_CURRENT_FUNCTION_LIST_DIR}/../JSONParser.cmake)
         sbeParseJson(api_request _JSON_CONTENTS)
         foreach(asset_id ${api_request.assets})
             if(exact_version)
