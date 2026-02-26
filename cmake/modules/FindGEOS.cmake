@@ -90,16 +90,18 @@ ELSE(WIN32)
 
       IF (GEOS_CONFIG_PROGRAM)
 
-        EXEC_PROGRAM(${GEOS_CONFIG_PROGRAM}
-            ARGS --version
-            OUTPUT_VARIABLE GEOS_VERSION)
+        execute_process(
+            COMMAND ${GEOS_CONFIG_PROGRAM} --version
+            OUTPUT_VARIABLE GEOS_VERSION
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
         STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\1" GEOS_VERSION_MAJOR "${GEOS_VERSION}")
         STRING(REGEX REPLACE "([0-9]+)\\.([0-9]+)\\.([0-9]+)" "\\2" GEOS_VERSION_MINOR "${GEOS_VERSION}")
 
         # set INCLUDE_DIR to prefix+include
-        EXEC_PROGRAM(${GEOS_CONFIG_PROGRAM}
-            ARGS --prefix
-            OUTPUT_VARIABLE GEOS_PREFIX)
+        execute_process(
+            COMMAND ${GEOS_CONFIG_PROGRAM} --prefix
+            OUTPUT_VARIABLE GEOS_PREFIX
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
 
         FIND_PATH(GEOS_INCLUDE_DIR
             geos_c.h
@@ -109,9 +111,10 @@ ELSE(WIN32)
             )
 
         ## extract link dirs for rpath
-        EXEC_PROGRAM(${GEOS_CONFIG_PROGRAM}
-            ARGS --libs
-            OUTPUT_VARIABLE GEOS_CONFIG_LIBS )
+        execute_process(
+            COMMAND ${GEOS_CONFIG_PROGRAM} --libs
+            OUTPUT_VARIABLE GEOS_CONFIG_LIBS
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
 
         ## split off the link dirs (for rpath)
         ## use regular expression to match wildcard equivalent "-L*<endchar>"

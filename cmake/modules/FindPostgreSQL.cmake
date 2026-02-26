@@ -21,21 +21,24 @@ find_program(PG_CONFIG NAMES pg_config
   DOC "Path to pg_config utility")
 
 if(PG_CONFIG)
-  exec_program(${PG_CONFIG}
-    ARGS "--version"
-    OUTPUT_VARIABLE PG_CONFIG_VERSION)
+  execute_process(
+    COMMAND ${PG_CONFIG} --version
+    OUTPUT_VARIABLE PG_CONFIG_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
 
   if(${PG_CONFIG_VERSION} MATCHES "^[A-Za-z]+[ ](.*)$")
     string(REGEX REPLACE "^[A-Za-z]+[ ](.*)$" "\\1" POSTGRESQL_VERSION "${PG_CONFIG_VERSION}")
   endif()
 
-  exec_program(${PG_CONFIG}
-    ARGS "--includedir"
-    OUTPUT_VARIABLE PG_CONFIG_INCLUDEDIR)
+  execute_process(
+    COMMAND ${PG_CONFIG} --includedir
+    OUTPUT_VARIABLE PG_CONFIG_INCLUDEDIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-  exec_program(${PG_CONFIG}
-    ARGS "--libdir"
-    OUTPUT_VARIABLE PG_CONFIG_LIBDIR)
+  execute_process(
+    COMMAND ${PG_CONFIG} --libdir
+    OUTPUT_VARIABLE PG_CONFIG_LIBDIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
 else()
   set(POSTGRESQL_VERSION "unknown")
 endif()

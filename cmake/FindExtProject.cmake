@@ -266,11 +266,64 @@ function(find_extproject name)
         endif()
 
         if(find_extproject_NAMES)
-            set(FIND_PROJECT_ARG ${FIND_PROJECT_ARG} NAMES ${find_extproject_NAMES})
+            set(_find_project_names ${find_extproject_NAMES} ${UPPER_NAME} ${name})
+            list(REMOVE_DUPLICATES _find_project_names)
+        else()
+            set(_find_project_names ${UPPER_NAME} ${name})
         endif()
 
         # Try to find package
-        find_package(${name} NO_MODULE ${FIND_PROJECT_ARG} NAMES ${UPPER_NAME} ${name})
+        find_package(${name} NO_MODULE ${FIND_PROJECT_ARG} NAMES ${_find_project_names})
+
+        # Normalize package result variables. Some config packages expose
+        # <Alias>_* variables (e.g. KML_*) while this function expects
+        # <UPPER_NAME>_* (e.g. LIBKML_*).
+        if((NOT (DEFINED ${UPPER_NAME}_FOUND AND ${${UPPER_NAME}_FOUND})) AND
+           (DEFINED ${name}_FOUND AND ${name}_FOUND))
+            set(${UPPER_NAME}_FOUND TRUE)
+        endif()
+        if((NOT DEFINED ${UPPER_NAME}_VERSION OR "${${UPPER_NAME}_VERSION}" STREQUAL "") AND
+           DEFINED ${name}_VERSION)
+            set(${UPPER_NAME}_VERSION ${${name}_VERSION})
+        endif()
+        if((NOT DEFINED ${UPPER_NAME}_VERSION_STR OR "${${UPPER_NAME}_VERSION_STR}" STREQUAL "") AND
+           DEFINED ${name}_VERSION_STR)
+            set(${UPPER_NAME}_VERSION_STR ${${name}_VERSION_STR})
+        endif()
+        if((NOT DEFINED ${UPPER_NAME}_LIBRARIES OR "${${UPPER_NAME}_LIBRARIES}" STREQUAL "") AND
+           DEFINED ${name}_LIBRARIES)
+            set(${UPPER_NAME}_LIBRARIES ${${name}_LIBRARIES})
+        endif()
+        if((NOT DEFINED ${UPPER_NAME}_INCLUDE_DIRS OR "${${UPPER_NAME}_INCLUDE_DIRS}" STREQUAL "") AND
+           DEFINED ${name}_INCLUDE_DIRS)
+            set(${UPPER_NAME}_INCLUDE_DIRS ${${name}_INCLUDE_DIRS})
+        endif()
+        foreach(_alt_name IN LISTS find_extproject_NAMES)
+            string(TOUPPER "${_alt_name}" _alt_upper_name)
+            if(NOT _alt_upper_name MATCHES "^[A-Za-z_][A-Za-z0-9_]*$")
+                continue()
+            endif()
+            if((NOT (DEFINED ${UPPER_NAME}_FOUND AND ${${UPPER_NAME}_FOUND})) AND
+               (DEFINED ${_alt_upper_name}_FOUND AND ${${_alt_upper_name}_FOUND}))
+                set(${UPPER_NAME}_FOUND TRUE)
+            endif()
+            if((NOT DEFINED ${UPPER_NAME}_VERSION OR "${${UPPER_NAME}_VERSION}" STREQUAL "") AND
+               DEFINED ${_alt_upper_name}_VERSION)
+                set(${UPPER_NAME}_VERSION ${${_alt_upper_name}_VERSION})
+            endif()
+            if((NOT DEFINED ${UPPER_NAME}_VERSION_STR OR "${${UPPER_NAME}_VERSION_STR}" STREQUAL "") AND
+               DEFINED ${_alt_upper_name}_VERSION_STR)
+                set(${UPPER_NAME}_VERSION_STR ${${_alt_upper_name}_VERSION_STR})
+            endif()
+            if((NOT DEFINED ${UPPER_NAME}_LIBRARIES OR "${${UPPER_NAME}_LIBRARIES}" STREQUAL "") AND
+               DEFINED ${_alt_upper_name}_LIBRARIES)
+                set(${UPPER_NAME}_LIBRARIES ${${_alt_upper_name}_LIBRARIES})
+            endif()
+            if((NOT DEFINED ${UPPER_NAME}_INCLUDE_DIRS OR "${${UPPER_NAME}_INCLUDE_DIRS}" STREQUAL "") AND
+               DEFINED ${_alt_upper_name}_INCLUDE_DIRS)
+                set(${UPPER_NAME}_INCLUDE_DIRS ${${_alt_upper_name}_INCLUDE_DIRS})
+            endif()
+        endforeach()
 
         set(${UPPER_NAME}_FOUND ${${UPPER_NAME}_FOUND} PARENT_SCOPE)
         set(${UPPER_NAME}_VERSION ${${UPPER_NAME}_VERSION} PARENT_SCOPE)

@@ -4,17 +4,52 @@
 #  @PACKAGE_UPPER_NAME@_LIBRARIES    - libraries to link against
 #  @PACKAGE_UPPER_NAME@_VERSION      - @PACKAGE_NAME@ version
 
-# These are IMPORTED targets created by @PACKAGE_UPPER_NAME@Targets.cmake
-set(@PACKAGE_UPPER_NAME@_LIBRARIES @PACKAGE_TARGETS@)
+# These are IMPORTED targets created by the package targets file.
+set(_@PACKAGE_UPPER_NAME@_libraries_raw @PACKAGE_TARGETS@)
 set(@PACKAGE_UPPER_NAME@_VERSION "@PACKAGE_VERSION@")
 set(@PACKAGE_UPPER_NAME@_FOUND TRUE)
 
-# Our library dependencies (contains definitions for IMPORTED targets)
-include("${CMAKE_CURRENT_LIST_DIR}/@PACKAGE_UPPER_NAME@Targets.cmake")
+# Our library dependencies (contains definitions for IMPORTED targets).
+# Support both borsch-style and upstream GDAL export file naming.
+set(_@PACKAGE_UPPER_NAME@_targets_file "${CMAKE_CURRENT_LIST_DIR}/@PACKAGE_UPPER_NAME@Targets.cmake")
+if(EXISTS "${_@PACKAGE_UPPER_NAME@_targets_file}")
+    include("${_@PACKAGE_UPPER_NAME@_targets_file}")
+else()
+    set(_@PACKAGE_UPPER_NAME@_targets_file "${CMAKE_CURRENT_LIST_DIR}/@PACKAGE_UPPER_NAME@-targets.cmake")
+    if(EXISTS "${_@PACKAGE_UPPER_NAME@_targets_file}")
+        include("${_@PACKAGE_UPPER_NAME@_targets_file}")
+    else()
+        message(FATAL_ERROR
+            "Could not find @PACKAGE_UPPER_NAME@ targets file. Tried "
+            "'${CMAKE_CURRENT_LIST_DIR}/@PACKAGE_UPPER_NAME@Targets.cmake' and "
+            "'${CMAKE_CURRENT_LIST_DIR}/@PACKAGE_UPPER_NAME@-targets.cmake'")
+    endif()
+endif()
+unset(_@PACKAGE_UPPER_NAME@_targets_file)
 
 set(@PACKAGE_UPPER_NAME@_INCLUDE_DIRS "")
+set(@PACKAGE_UPPER_NAME@_LIBRARIES "")
+
+# Normalize exported library list to existing CMake targets.
+# This avoids falling back to plain linker flags like -lGDAL when only
+# namespaced imported targets (e.g. GDAL::GDAL) are available.
+foreach(target ${_@PACKAGE_UPPER_NAME@_libraries_raw})
+    set(_resolved_target "${target}")
+    if(NOT TARGET "${_resolved_target}" AND TARGET "@PACKAGE_UPPER_NAME@::${target}")
+        set(_resolved_target "@PACKAGE_UPPER_NAME@::${target}")
+    endif()
+    if(TARGET "${_resolved_target}")
+        list(APPEND @PACKAGE_UPPER_NAME@_LIBRARIES "${_resolved_target}")
+    else()
+        list(APPEND @PACKAGE_UPPER_NAME@_LIBRARIES "${target}")
+    endif()
+endforeach()
+unset(_@PACKAGE_UPPER_NAME@_libraries_raw)
 
 foreach(target ${@PACKAGE_UPPER_NAME@_LIBRARIES})
+    if(NOT TARGET "${target}")
+        continue()
+    endif()
     get_target_property(INTERFACE_DIRS ${target} INTERFACE_INCLUDE_DIRECTORIES)
     if(INTERFACE_DIRS)
         list(APPEND @PACKAGE_UPPER_NAME@_INCLUDE_DIRS ${INTERFACE_DIRS})
